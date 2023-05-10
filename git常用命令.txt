@@ -18,7 +18,7 @@ git add  .   //添加多个文件到暂存区
 
 git commit -m "提交说明"//提交到本地仓库里
 
-git commit -a -m  "直接将文件保存到本地仓库 跳过暂存区  可以提交多个暂存区里的文件" 
+git commit -a -m  "直接将修改过的文件保存到本地仓库 跳过暂存区  可以提交多个暂存区里的文件" 
 
 git checkout-- 文件名字//撤销对原文件的修改  如果文件保存到本地仓库后就不能在撤销了    将从工作区删除的文件恢复
 
@@ -32,6 +32,8 @@ git rm --cached  文件名  //只从仓库中移除该文件保留工作区的�
 
 git log //查看日志
 
+git push //将本地仓库的文件添加到github 远程仓库里
+
 第一种用法：回退到上一个版本（HEAD代表当前版本，有一个^代表上一个版本，以此类推
 
 git reset --hard  HEAD      //恢复 重置
@@ -42,9 +44,53 @@ git reset --hard  d7b5
 
 查看命令历史：查看仓库的操作历史
 
-git reflog
+git reflog // 查看历史记录
+
+ ssh-keygen -t  rsa -b 4096 -C "1959921870@qq.com"  //在本地C盘里创建一个SSH  key 文件
+
+git clone  远程仓库的地址   //将远程仓库保存到本地
+
+git branch  //查看当前仓库的分支
+
+git branch  新分支名字  //创建新分支
+
+git checkout 分支名字  //切换分支
+
+git checkout -b 分支名字  //切换并创建新分支
+
+git merge 分支名字  //合并分支   ！合并时先切换到主分支再合并
+
+git branch -d //删除分支
+
+git branch -D  //强制删除分支
+
+git push -u  远程仓库的名字 本地分支名字：远程 分支名字     //将本地仓库分支添加到远程仓库   冒号后面可以省略 
+
+git remote show //查看远程仓库的名字
+
+git remote show  远程仓库名称    //查看远程仓库的分支信息
+
+git checkout  远程分支名字     //将远程仓库的分支下载到本地分支
+
+git checkout -b  新名字 origin/远程分支名字   //将远程分支下载到本地分支并重新命名 
+
+git pull  //将远程分支的修改的内容下载到本地
+
+git push 远程仓库名字 --delete 远程分支的名字  //删除远程分支
+
+//将本地仓库上传到远程仓库
+
+```将本地仓库添加到github仓库
+git remote add origin git@github.com:ZARZK/project-02.git
+git branch -M main
+git push -u origin main
+```
 
 //说明
+
+*号表示当前所在的分支
+
+origin  默认远程仓库的名字
 
 nothing to commit, working tree clean //所有的文件未修改  没有要被提交的文件
 
@@ -58,9 +104,7 @@ M绿色表示已修改且放到暂存区但未保存到本地存储里
 
 D绿色表示文件被删除
 
-忽略文件 .gitignore  可以定义忽略的文件 使用方法先保存到本地仓库 再定义忽略的文件
-
-glob模式 正则 
+忽略文件 .gitignore  可以定义忽略的文件 使用方法先保存到本地仓库 再定义忽略的文件  
 
 
 
