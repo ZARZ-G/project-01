@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.mini.js"></script>
+    <script src="./js/template-web.js"></script>
+</head>
+
+<body>
+    <div class="user-box"></div>
+    <!-- 模板要有id号 -->
+    <script type="text/html" id="user">
+        <div>姓名：{{name}}</div>
+        <div>年龄：{{age}}</div>
+        <div>性别：{{gender}}</div>
+        <div>住址：{{address}}</div>
+    </script>
+
+    <script>
+        // const str = '中华人民共和国'
+        // const reg = /人/
+        // console.log(reg.exec(str))
+        // exec方法匹配到返回对应的值 匹配不到返回null
+
+        // const str = '<div>我是{{name}}</div>'
+        // const regc = /{{([a-zA-Z]+)}}/  //分组
+        // console.log(reg.exec(str)[0], reg.exec(str)[1])
+
+        // let str = '<div>我是{{name}}</div>'
+        // const reg = /{{([a-zA-Z]+)}}/
+        // const result = reg.exec(str)
+        // str = str.replace(result[0], result[1])
+        // console.log(str)
+
+        // let str = '<div>我是{{name}}今年{{age}}岁了</div>'
+        // const reg = /{{\s*([a-zA-Z]+)\s*}}/
+
+        // const res1 = reg.exec(str)
+        // str = str.replace(res1[0], res1[1])
+        // console.log(str)
+        // const res2 = reg.exec(str)
+        // str = str.replace(res2[0], res2[1])
+        // console.log(str)
+
+        // const res3 = reg.exec(str)
+        // console.log(res3)
+
+
+
+        // let str = '<div>我是{{name}}今年{{age}}岁了</div>'
+        // const reg = /{{\s*([a-zA-Z]+)\s*}}/
+        // let res = null
+        // while (res = reg.exec(str)) {
+        //     str = str.replace(res[0], res[1])
+        // }
+        // console.log(str)
+
+        //利用正则替换真值
+
+        // const data = { name: '张三', age: 20 }
+        // let str = '<div>我是{{name}}今年{{age}}岁了</div>'
+        // const reg = /{{\s*([a-zA-Z]+)\s*}}/
+        // let res = null
+        // while (res = reg.exec(str)) {
+        //     str = str.replace(res[0], data[res[1]])
+        // }
+        // console.log(str)
+
+
+        //定义数据
+        const data = {
+            name: '张三',
+            age: 20,
+            gender: '男',
+            address: '武汉黑马程序员'
+        }
+
+        function template(id, data) {
+            let str = document.getElementById(id).innerHTML
+            const reg = /{{\s*([a-zA-Z]+)\s*}}/
+
+            let res = null
+            while (res = reg.exec(str)) {
+                str = str.replace(res[0], data[res[1]])
+                console.log(res[0], res[1])
+            }
+            return str
+        }
+
+        //调用方法
+        $('.user-box').html(template('user', data))
+
+
+    </script>
+</body>
+
+</html>

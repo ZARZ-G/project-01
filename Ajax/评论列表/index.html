@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jQuery.mini.js"></script>
+    <script src="./index.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            margin: 10px;
+        }
+
+        .thead {
+            border-radius: 5px;
+            width: 100%;
+            border: 1px solid #187bd7;
+            margin-bottom: 20px;
+        }
+
+        .thead h4 {
+            background-color: #187bd7;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            font-weight: normal;
+        }
+
+        form {
+            padding: 10px;
+        }
+
+        form p {
+            font-size: 14px;
+            margin: 10px 20px;
+        }
+
+        #text {
+            width: 100%;
+            height: 30px;
+        }
+
+        #textarea {
+            width: 100%;
+            resize: none;
+            height: 80px;
+        }
+
+        #text,
+        #textarea {
+            outline: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background-color: #187bd7;
+            color: white;
+            font-size: 14px;
+            border: none;
+            height: 30px;
+            width: 80px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .tbody div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tbody {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .li {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tbody .li:last-child {
+            border: none;
+        }
+
+        .tbody .ctime {
+            line-height: 20px;
+            background-color: #ecaf2d;
+            color: white;
+            margin: 0px 10px 0px 5px;
+            font-size: 12px;
+            height: 20px;
+            padding: 0px 5px;
+            border-radius: 10px;
+        }
+
+        .tbody .critic {
+            line-height: 20px;
+            background-color: #1dbccd;
+            color: white;
+            line-height: 20px;
+            height: 20px;
+            padding: 0px 5px;
+            border-radius: 10px;
+            font-size: 12px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- 头部 -->
+        <div class="thead">
+            <div class="title">
+                <h4>发表评论</h4>
+            </div>
+            <form action="" method="post">
+                <p>评论人:</p>
+                <input type="text" name="username" id="text" placeholder="请输入评论人">
+                <p>评论内容:</p>
+                <textarea name="content" id="textarea" placeholder="请输入评论内容(最多120字)"></textarea>
+                <button type="submit">发表评论</button>
+            </form>
+        </div>
+
+        <!-- 内容 -->
+        <div class="tbody">
+            <!-- <div class="li">
+                <p class="retext">欢迎大家</p>
+                <div>
+                    <p class="critic">评论人：小红</p>
+                    <p class="ctime">评论时间：2019-2-2 8:00:00</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+</body>
+
+</html>

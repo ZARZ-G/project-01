@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="form" autocomplete="off">
+        姓名 <input type="text" name="uname" id="">
+        密码 <input type="text" name="upwd" id="">
+        <button type="submit">提交</button>
+    </form>
+    <script>
+
+
+        //使用formData对象快速获取表单的值 表单的name属性要和服务器的属性一致
+        //将表单的值发送给服务器
+        // document.querySelector('#form').addEventListener('submit', function (e) {
+        //     e.preventDefault()
+        //     const fd = new FormData(document.querySelector('#form'))
+
+        //     const xhr = new XMLHttpRequest()
+        //     xhr.open('post', 'http://www.liulongbin.top:3006/api/formdata')
+        //     xhr.send(fd)
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.status === 200 && xhr.readyState === 4) {
+        //             console.log(JSON.parse(xhr.responseText))
+        //         }
+        //     }
+        // })
+
+
+        const xhr = new XMLHttpRequest()
+        xhr.timeout = 100
+        xhr.ontimeout = function () {
+            console.log('超时了')
+        }
+        xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        }
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

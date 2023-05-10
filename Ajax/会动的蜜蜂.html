@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html {
+        background: url(./img/蜂巢.jpg) no-repeat;
+        background-size: 100%;
+        /* 隐藏鼠标指针 */
+        cursor: none;
+        /* 隐藏滚动条 */
+        overflow: hidden;
+    }
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 300px;
+    }
+</style>
+
+<body>
+    <img src="./img/蜜蜂.gif" alt="">
+</body>
+
+<script>
+
+    //手写节流
+    let time = null
+
+    const mifeng = document.querySelector('img')
+    document.querySelector('html').addEventListener('mousemove', function (e) {
+        if (time) { return }
+
+
+        time = setTimeout(() => {
+            let x = e.pageX
+            let y = e.pageY
+            if (x <= 0) {
+                mifeng.style.transform = 'rotateY(188deg)'
+            }
+            if (x >= document.querySelector('body').clientWidth) {
+                mifeng.style.transform = 'rotateY(0deg)'
+            }
+            if (y <= document.querySelector('body').clientHeight) {
+                mifeng.style.transform = 'rotate(150deg)'
+            }
+            console.log(123)
+            mifeng.style.left = x + 'px'
+            mifeng.style.top = y + 'px'
+            time = null //关键点
+        }, 16);
+
+
+    })
+</script>
+
+</html>

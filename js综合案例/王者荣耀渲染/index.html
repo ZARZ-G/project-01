@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>英雄</title>
+  <link rel="stylesheet" href="./css/hero.css" />
+  <link rel="stylesheet" href="./css/comm-v1.css" />
+</head>
+
+<body>
+  <div class="herolist-box">
+    <div class="clearfix herolist-types">
+      <ul class="types-left">
+        <li>综合</li>
+        <li>定位</li>
+      </ul>
+
+      <!-- tab栏切换 -->
+      <ul class="clearfix types-ms">
+        <li data-ptype="10">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>本周免费</label>
+        </li>
+        <li data-ptype="11">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>新手推荐</label>
+        </li>
+      </ul>
+      <ul class="clearfix types-ms">
+        <li class="current" data-type="0">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>全部</label>
+        </li>
+        <li data-type="3">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>坦克</label>
+        </li>
+        <li data-type="1">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>战士</label>
+        </li>
+        <li data-type="4">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>刺客</label>
+        </li>
+        <li data-type="2">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>法师</label>
+        </li>
+        <li data-type="5">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>射手</label>
+        </li>
+        <li data-type="6">
+          <span class="ms-radio"><i class="i"></i></span>
+          <label>辅助</label>
+        </li>
+      </ul>
+    </div>
+    <div class="herolist-content">
+      <ul class="herolist clearfix">
+        <!-- <li>
+          <a href="#" target="_blank"><img src="" width="91" height="91" alt="曜" />曜</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- 数组比较多，放在了外接的js文件中 -->
+  <script src="./hero.js"></script>
+  <script>
+    const ul = document.querySelector('.herolist')
+
+    //打开页面渲染所有的图片
+    render(heroArr)
+    function render(heroArr) {
+      //数组解构一定要放到渲染函数里面去
+      const data = [{ icon, name, pay_type, hero_type }] = heroArr
+      ul.innerHTML = ''
+      heroArr.forEach((item, i) => {
+        ul.innerHTML += ` 
+        <li>
+          <a href="#" target="_blank"><img src="${data[i].icon}" width="91" height="91" title="${data[i].name}" />${data[i].name}</a>
+        </li>`
+      })
+    }
+
+    //点不同的按钮筛选不同的人物
+    /*
+    pay_type :  10 本周免费  11 新手推荐
+    hero_type : 3:坦克  1:战士  4:刺客  2:法师   5:射手   6:助辅
+    */
+
+    const lis = document.querySelectorAll('.types-ms li')
+    lis.forEach((item, i) => {
+      item.addEventListener('click', function (e) {
+
+        if (e.target.tagName == 'I') {
+          console.log(e.target.tagName)
+          document.querySelector('li.current').classList.remove('current')
+          this.classList.add('current')
+          const newarr = heroArr.filter((item, i) => {
+            return item.pay_type == e.target.parentNode.parentNode.dataset.ptype || item.hero_type == e.target.parentNode.parentNode.dataset.type
+          })
+          if (e.target.parentNode.parentNode.dataset.type == '0') {
+            render(heroArr)
+          }
+          render(newarr)
+        }
+      })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>

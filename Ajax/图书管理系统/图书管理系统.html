@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理系统</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        table {
+            margin: auto;
+            border: 1px solid black;
+        }
+
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px 100px;
+            height: 30px;
+            text-align: center;
+        }
+
+
+        tbody tr:hover {
+            background-color: #f1f0f0;
+        }
+
+        .add input {
+            margin-left: 20px;
+            height: 20px;
+        }
+
+        #lib {
+            padding: 0px 20px;
+            outline: none;
+            border-radius: 20px;
+            height: 30px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            font-size: 18px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .trs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead class="thead">
+            <tr class="add">
+                <td>编号</td>
+                <td>书名<input type="text" name="textbox" id="bookname" placeholder="请输入书名"></td>
+                <td>作者<input type="text" name="textbox" id="author" placeholder="请输入作者名字"></td>
+                <td>出版社<input type="text" name="textbox" id="publisher" placeholder="请输入出版社地址"></td>
+                <td><button class="addbook">添加此书</button></td>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+            <tr class="trs">
+                <td>图书名称</td>
+                <td colspan="3"><input type="text" name="" id="lib" placeholder="Seacher"></td>
+                <td><button class="seach">搜索</button></td>
+            </tr>
+        </thead>
+        <!-- 实体数据 -->
+        <tbody class="tbody">
+            <!-- <tr>
+                <td>ID</td>
+                <td>书名</td>
+                <td>作者</td>
+                <td>出版社</td>
+                <td><a href="javascript:;">删除</a></td>
+            </tr> -->
+        </tbody>
+    </table>
+    <!-- 引入jquery文件 -->
+    <script src="jQuery.mini.js"></script>
+    <script>
+        $(function () {
+            //渲染页面
+            function render() {
+                $.ajax({
+                    type: 'get',
+                    url: 'http://www.liulongbin.top:3006/api/getbooks ',
+                    data: {},
+                    success: function (res) {
+                        if (res.status === 200) {
+                            //先清空tbody的内容再渲染
+                            $('.tbody').empty('')
+                            $.each(res.data, function (i, item) {
+                                const { id, bookname, author, publisher } = item
+                                $('.tbody').append(`
+                                <tr>
+                                <td>${id}</td>
+                                <td>${bookname}</td>
+                                <td>${author}</td>
+                                <td>${publisher}</td>
+                                <td><a href="javascript:;" class='del' data-id='${id}'>删除</a></td>
+                                </tr>
+                            `)
+                            })
+                        }
+                    }
+                })
+            }
+            render()
+            //删除功能
+            $('.tbody').on('click', '.del', function (e) {
+                $.ajax({
+                    type: 'get',
+                    url: 'http://www.liulongbin.top:3006/api/delbook',
+                    data: {
+                        id: e.target.dataset.id
+                    },
+                    success: function (res) {
+                        if (res.status === 200) {
+                            render()
+                        }
+                    }
+                })
+
+            })
+
+            //增加功能
+            $('.addbook').on('click', fn)
+            function fn() {
+                const inputs = $('.add [type=text]')
+                //非空判断
+                for (let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value == '' || inputs[i].value.trim() == '') {
+                        return alert('内容为空')
+                    }
+                }
+                $.ajax({
+                    type: 'post',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: {
+                        bookname: inputs[0].value,
+                        author: inputs[1].value,
+                        publisher: inputs[2].value
+                    },
+                    success: function (res) {
+                        if (res.status == 201) {
+                            render()
+                        }
+                    }
+                })
+                //清空
+                $.each(inputs, function (i, item) {
+                    item.value = ''
+                })
+            }
+
+            $('[name=textbox]').on('keyup', function (e) {
+                console.log(this)
+                if (e.key == 'Enter')
+                    fn()
+            })
+
+            $('.seach').on('click', find)
+
+
+
+            function find() {
+                if ($('#lib').val() == '' || $('#lib').val().trim() == '') return alert('搜索内容不能为空')
+                $.get('http://www.liulongbin.top:3006/api/getbooks', { bookname: $('#lib').val() }, function (res) {
+                    if (res.status == 200 && res.data.length != 0) {
+                        $('.tbody').prepend(`
+                          <tr>
+                          <td>${res.data[0].id}</td>
+                          <td>${res.data[0].bookname}</td>
+                          <td>${res.data[0].author}</td>
+                          <td>${res.data[0].publisher}</td>
+                          <td><a href="javascript:;" class='dele'>删除</a></td>
+                          </tr> 
+                          `)
+                        $('#lib').val('')
+                    }
+                    else {
+                        alert('没有找到哦')
+                        $('#lib').val('')
+                    }
+                })
+            }
+            $('.tbody').on('click', '.dele', function () {
+                $(this).closest('tr').remove()
+            })
+
+            $('#lib').on('keyup', function (e) {
+                if (e.key == 'Enter') {
+                    find()
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>

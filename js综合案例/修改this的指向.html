@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .size {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <button>点击</button>
+    <script>
+        // const obj = { name: '张三' }
+        const div = document.querySelector('div')
+
+
+        // function fn(x, y) {
+        //     //让this指向div
+        //     this.classList.add('size')
+        //     console.log(x + y)
+        //     this.addEventListener('click', function () {
+        //         alert('你好啊')
+        //     })
+        // }
+        // fn.call(div, 1, 2)
+
+        //求数组的最大值
+        // const arr = [1, 2, 3, 4, 0, 5, 45, 66, 6]
+        // const max = Math.max.apply(Math, arr)
+        // const min = Math.min.apply(Math, arr)
+        // console.log(max, min)
+        // const max = Math.max(...arr)
+        // const min = Math.min(...arr)
+        // console.log(max, min)
+
+        // let max = arr.length - 1
+        // let min = arr.length - 1
+        // for (let i = 0; i < arr.length; i++) {
+        //     if (max < arr[i]) {
+        //         max = arr[i]
+        //     }
+        //     if (min > arr[i]) {
+        //         min = arr[i]
+        //     }
+        // }
+        // console.log(max, min)
+
+        // function fn(x, y) {
+        //     this.classList.add('size')
+        //     console.log(this)
+        //     console.log(x + y)
+        // }
+
+        // const fun = fn.bind(div, 1, 2)
+        // fun()
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', function () {
+            this.disabled = true
+            setTimeout(function () {
+                this.disabled = false
+            }.bind(this), 2000);
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./news.css" />
+  <script src="./js/jquery.js"></script>
+  <script src="./js/template-web.js"></script>
+</head>
+
+<body>
+
+  <div id="news-list">
+    <!-- <div class="news-item">
+      <img class="thumb" src="" alt="" />
+      <div class="right-box">
+        <h1 class="title">5G商用在即，三大运营商营收持续下降</h1>
+        <div class="tags">
+          <span>三大运营商</span>
+          <span>中国移动</span>
+          <span>5G商用</span>
+        </div>
+        <div class="footer">
+          <div>
+            <span>胡润百富</span>&nbsp;&nbsp;
+            <span>2019-10-28 10:14:38</span>
+          </div>
+          <span>评论数：66</span>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+  <!-- 定义模板 -->
+  <!-- {{变量}} 变量和大括号之间不能有空格-->
+  <script type="text/html" id="user">
+    <div class="news-item">
+      <img class="thumb" src="http://www.liulongbin.top:3006{{img}}" alt="" />
+      <div class="right-box">
+        <h1 class="title">{{title}}</h1>
+        <div class="tags">{{@tags}}</div>
+        <div class="footer">
+          <div>
+            <span>{{source}}</span>&nbsp;&nbsp;
+            <span>{{time|getTime}}</span>
+          </div>
+          <span>评论数：{{cmtcount}}</span>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script>
+    $(function () {
+      //时间处理的方法
+      // template.defaults.imports.getTime = function (time) {
+      //   const date = new Date(time)//创建带有日期格式的时间对象
+      //   console.log(date.getMonth())
+      //   //年月日 时分秒
+      //   const year = date.getFullYear()
+      //   const month = date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth() + 1
+      //   const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+
+      //   const h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+      //   const f = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      //   const m = date.getSeconds()
+      //   return `${year}-${month}-${day} ${h}:${f}:${m}`
+      // }
+
+
+
+
+
+      $.ajax({
+        type: 'get',
+        url: 'http://www.liulongbin.top:3006/api/news',
+        success: function (res) {
+          if (res.status !== 200) return alert('获取新闻失败')
+          $.each(res.data, function (i, item) {
+            let { cmtcount, img, source, tags, time, title } = item
+            function gettime(time) {
+              const date = new Date(time)
+              //年月日 时分秒
+              const year = date.getFullYear()
+              const month = date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth() + 1
+              const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+
+              const h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+              const f = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+              const m = date.getSeconds()
+              return `${year}-${month}-${day} ${h}:${f}:${m}`
+            }
+
+            // 将字符串转换成数组
+            $('#news-list').append(`
+            <div class="news-item">
+            <img class="thumb" src="http://www.liulongbin.top:3006${img}" alt="${title}" />
+            <div class="right-box">
+              <h1 class="title">${title}</h1>
+              <div class="tags">    
+                ${tags.split(',').map(item => `<span>${item}</span>`).join('')}
+              </div>
+              <div class="footer">
+                <div>
+                  <span>${source}</span>&nbsp;&nbsp;
+                  <span>${gettime(time)}</span>
+                </div>
+                <span>评论数：${cmtcount}</span>
+              </div>
+            </div>
+          </div>
+            `)
+          })
+
+        }
+      })
+
+      // //定义数据
+      // $.ajax({
+      //   type: 'get',
+      //   url: 'http://www.liulongbin.top:3006/api/news',
+      //   success: function (res) {
+      //     $.each(res.data, (i, item) => {
+      //       item.tags = item.tags.split(',').map(item => `<span>${item}</span>`).join('')
+      //       $('#news-list').append(template('user', item))
+      //     })
+      //   }
+      // })
+
+
+    })
+  </script>
+</body>
+
+</html>

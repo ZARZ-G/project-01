@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 1060px;
+            height: 536px;
+            border: 1px solid black;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        ul {
+            bottom: 0px;
+            left: 0px;
+            position: absolute;
+            width: 2800px;
+            height: 520px;
+        }
+
+        ul>li {
+            margin-right: 10px;
+            float: left;
+            transition: all .5s;
+        }
+
+        .prev,
+        .next {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            z-index: 99;
+            font-size: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .prev {
+            left: 0px;
+
+        }
+
+        .next {
+            right: 0px;
+        }
+
+        .weiyi {
+            margin-left: -230px;
+
+        }
+
+        .weiyi2 {
+            margin-left: 230px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button class="prev">《</button>
+        <button class="next">》</button>
+        <ul>
+            <li><img src="./img/1.gif" alt=""></li>
+            <li><img src="./img/2.png" alt=""></li>
+            <li><img src="./img/3.jpg" alt=""></li>
+            <li><img src="./img/4.jpg" alt=""></li>
+            <li><img src="./img/5.png" alt=""></li>
+            <li><img src="./img/6.png" alt=""></li>
+            <li><img src="./img/7.png" alt=""></li>
+            <li><img src="./img/8.jpg" alt=""></li>
+            <li><img src="./img/9.png" alt=""></li>
+            <li><img src="./img/10.gif" alt=""></li>
+            <li><img src="./img/11.png" alt=""></li>
+            <li><img src="./img/12.png" alt=""></li>
+        </ul>
+    </div>
+
+    <script>
+        //节流阀
+        let flag = true
+        const box = document.querySelector('.box')
+        const prev = document.querySelector('.prev')
+        const next = document.querySelector('.next')
+        const ul = document.querySelector('ul')
+        let lis = document.querySelectorAll('ul li')
+
+
+        prev.addEventListener('click', function () {
+            const li = document.querySelector('ul li:first-child')
+            //当我一点按钮就移除所有li的weiyi类 给第一个li添加weiyi类 
+            document.querySelector('ul li.weiyi') ? document.querySelector('ul li.weiyi').classList.remove('weiyi') : li.classList.add('weiyi')
+            li.classList.add('weiyi')
+            if (flag) {
+                flag = false
+                //删除之前克隆节点并追加到ul盒子的最后面
+                ul.append(li.cloneNode(true))
+                setTimeout(() => {
+                    ul.removeChild(li)
+                    flag = true
+                }, 500);
+            }
+        })
+
+
+
+        next.addEventListener('click', function () {
+            const lastli = document.querySelector('ul li:last-child')
+            if (document.querySelector('ul li.weiyi')) document.querySelector('ul li.weiyi').classList.remove('weiyi')
+            ul.insertBefore(lastli.cloneNode(true), document.querySelector('ul li:nth-child(1)'))
+            ul.removeChild(lastli)
+            lis = document.querySelectorAll('ul li')
+            console.log(lis)
+            lis.forEach(item => {
+                item.style.transform = `translateX(-230px)`
+            })
+
+            setTimeout(() => {
+                lis.forEach(item => {
+                    item.style.transform = `translateX(0px)`
+                })
+            }, 500);
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        box.addEventListener('mouseover', function (e) {
+            if (e.target.tagName == 'IMG') {
+                e.target.style.marginTop = '-15px'
+            }
+        })
+
+        box.addEventListener('mouseout', function (e) {
+            if (e.target.tagName == 'IMG') {
+                e.target.style.marginTop = '0px'
+            }
+        })
+    </script>
+</body>
+
+</html>

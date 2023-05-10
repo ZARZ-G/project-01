@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getajax(data) {
+            const arr = []
+            //k就是对象的属性名
+            for (let k in data) {
+                arr.push(k + '=' + data[k])
+            }
+            return arr.join('&')
+        }
+
+
+        function itheima(opation) {
+            const xhr = new XMLHttpRequest()
+            const str = getajax(opation.data)
+            //判断请求的方式
+            if (opation.type.toUpperCase() === 'GET') {
+                xhr.open(opation.type, opation.url + '?' + str)
+                xhr.send()
+            }
+            else if (opation.type.toUpperCase() === "POST") {
+                xhr.open(opation.type, opation.url)
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')//固定写法
+                xhr.send(`${str}`)
+            }
+            //处理数据
+            xhr.onreadystatechange = function () {
+                // 将xhr请求的结果反序列化并输出
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // JSON.parse()返回的是一个对象
+                    const res = JSON.parse(xhr.responseText)
+                    opation.success(res)
+                }
+            }
+        }
+
+
+
+        itheima({
+            type: 'get',
+            url: 'http://www.liulongbin.top:3006/api/getbooks',
+            data: { bookname: '西游记' },
+            success: function (res) {
+                console.log(res)
+            }
+        })
+
+        // itheima({
+        //     type: 'post',
+        //     url: 'http://www.liulongbin.top:3006/api/addbook',
+        //     data: {
+        //         bookname: '蜡笔大小新',
+        //         author: "动画",
+        //         publisher: '北京图书出版社'
+        //     },
+        //     success: function (res) {
+        //         console.log(res)
+        //     }
+        // })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

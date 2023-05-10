@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.mini.js"></script>
+</head>
+
+<body>
+    <div class="title"></div>
+    <p class="name">姓名：<span></span></p>
+    <p class="age">年龄：<span></span></p>
+    <p class="huiyuan">会员：<span></span></p>
+    <p class="time">注册时间：<span></span></p>
+    <p>爱好：</p>
+    <ul>
+        <!-- <li>吃饭</li> -->
+    </ul>
+
+    <script>
+        var data = {
+            title: '<h3>用户信息</h3>',
+            name: 'zs',
+            age: 20,
+            isVIP: true,
+            regTime: new Date(),
+            hobby: ['吃饭', '睡觉', '打游戏']
+        }
+
+
+        $(function () {
+            $('.title').html(data.title)
+            $('.name span').html(data.name)
+            $('.age span').html(data.age)
+            $('.huiyuan span').html(data.isVIP)
+            $('.time span').html(data.regTime)
+            $(data.hobby).each((i, item) => {
+                $('ul').append(`
+            <li>${item}</li>
+            `)
+            })
+
+        })
+    </script>
+</body>
+
+</html>

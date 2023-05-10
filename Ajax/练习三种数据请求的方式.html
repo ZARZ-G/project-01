@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+
+
+    <button class="btn1">get请求数据</button>
+    <button class="btn2">post提交数据</button>
+    <button class="btn3">ajax请求数据</button>
+    <button class="btn4">ajax提交数据</button>
+    <script src="./js/jQuery.mini.js"></script>
+    <script>
+        $(function () {
+            // 复习get post ajax请求数据的三种方法
+            $('.btn1').click(function () {
+                $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+                    console.log(res)
+                })
+            })
+
+
+            $('.btn2').click(function () {
+                $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: '南北桥', author: '鸟山明', publisher: '日本出版社' }, function () {
+                    console.log('添加成功')
+                })
+            })
+
+
+            $('.btn3').click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: 'http://www.liulongbin.top:3006/api/getbooks',
+                    data: {},
+                    success: function (res) {
+                        console.log(res)
+                    }
+                })
+            })
+
+            $('.btn4').click(function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: { bookname: '山海经', author: 'xxx', publisher: '日本出版社' },
+                    success: () => {
+                        console.log('成功')
+                    }
+                })
+            })
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>

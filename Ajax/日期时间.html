@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const time = '2022-1-1 3:1:30'
+
+        const data = new Date(time)
+        window.document.write(`${data.getFullYear()}年${data.getMonth() + 1 < 10 ? '' + data.getMonth() + 1 : data.getMonth() + 1}月${data.getDate() < 10 ? '0' + data.getDate() : data.getDate()}日 ${data.getHours() < 10 ? '0' + data.getHours() : data.getHours()}点${data.getMinutes() < 10 ? '0' + data.getMinutes() : data.getMinutes()}分${data.getSeconds()}秒`)
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

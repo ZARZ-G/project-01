@@ -1,0 +1,12 @@
+新接口地址： 
+http://ajax-base-api-t.itheima.net/api/robot' 传输
+http://ajax-base-api-t.itheima.net/api/synthesize 转换
+ 
+
+data: {
+        spoken: text//将用户输入的内容发送给服务器
+      },
+
+ data: {
+        text: text
+      },

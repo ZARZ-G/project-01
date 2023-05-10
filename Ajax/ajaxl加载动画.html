@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.mini.js"></script>
+</head>
+
+<body>
+    <input type="file" name="" id="file">
+    <button class="btn">上传</button>
+    <img src="" alt="" id="img">
+    <div><img src="./img/loding.gif" alt="" width="200" style="display:none" class="loding" /></div>
+
+    <script>
+        document.querySelector('.btn').addEventListener('click', function () {
+            const files = document.querySelector('#file').files
+            if (files.length <= 0) {
+                return alert('你没有选中要上传的图片')
+            }
+
+            const fd = new FormData()
+            fd.append('avatar', files[0])
+
+
+            $(function () {
+
+                //开始
+                $(document).ajaxStart(function () {
+                    $('.loding').css('display', 'block')
+                })
+
+
+                $.ajax({
+                    type: 'post',
+                    url: 'http://www.liulongbin.top:3006/api/upload/avatar',
+                    data: fd,
+                    processData: false,//过程数据
+                    contentType: false,//内容类型
+                    success: function (res) {
+                        if (res.status === 200) {
+                            $('#img').attr('src', 'http://www.liulongbin.top:3006' + res.url)
+                        }
+                    }
+                })
+
+
+                // 结束
+
+                $(document).ajaxStop(function () {
+                    $('.loding').css('display', 'none')
+                })
+            })
+
+
+
+        })
+    </script>
+</body>
+
+</html>

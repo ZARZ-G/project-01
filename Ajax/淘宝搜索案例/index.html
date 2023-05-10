@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- 导入页面的基本样式 -->
+  <link rel="stylesheet" href="./css/search.css" />
+  <!-- 导入 jQuery -->
+  <script src="./lib/jquery.js"></script>
+  <!-- 导入模板引擎 -->
+  <script src="./lib/template-web.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="./images/taobao_logo.png" alt="" class="logo" />
+
+    <div class="box">
+      <!-- tab 栏 -->
+      <div class="tabs">
+        <div class="tab-active">宝贝</div>
+        <div>店铺</div>
+      </div>
+      <!-- 搜索区域（搜索框和搜索按钮） -->
+      <div class="search-box">
+        <input id="ipt" type="text" class="ipt" placeholder="请输入要搜索的内容" /><button class="btnSearch">
+          搜索
+        </button>
+      </div>
+      <!-- 搜索建议列表 -->
+      <div id="suggest-list">
+        <!-- <div class="suggest-item"></div> -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //给搜索框添加一个keyup事件
+    //手写防抖 开启定时器 清除定时器
+
+
+    let time = null
+    const list = document.querySelector('#suggest-list')
+    document.querySelector('#ipt').addEventListener('keyup', function () {
+      const keyword = this.value.trim()
+      clearTimeout(time) //关键点
+      list.innerHTML = ''
+      if (keyword.length <= 0) {
+        list.style.display = 'none'
+        return
+      }
+
+      debounce(keyword)
+    })
+
+    function request(keyword) {
+      $.ajax({
+        url: 'https://suggest.taobao.com/sug?q=' + keyword,
+        dataType: 'jsonp',
+        success: function (res) {
+
+
+          const arr = res.result
+          if (arr.result !== null) {
+            list.style.display = 'block'
+          }
+
+          arr.forEach(item => {
+            const div = document.createElement('div')
+            div.classList.add('suggest-item')
+            div.innerHTML = item[0]
+            list.append(div)
+          })
+        }
+      })
+    }
+
+
+    // 防抖函数
+    function debounce(keyword) {
+      time = setTimeout(() => {
+        request(keyword)
+      }, 500)
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

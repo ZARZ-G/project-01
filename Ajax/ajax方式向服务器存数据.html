@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">ajax方式向服务器存数据</button>
+    <script src="./js/jQuery.mini.js"></script>
+    <script>
+
+        $(function () {
+            $('.btn').on('click', function () {
+                $.ajax({
+                    type: 'post',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: {
+                        bookname: '黑马程序员',
+                        author: '黑马程序员',
+                        publisher: '人民邮电出版社'
+                    },
+                    success: (res) => {
+                        console.log(res)
+                    }
+                })
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $(function () {
+        //     $('.btn').click(function () {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: 'http://www.liulongbin.top:3006/api/addbook',
+        //             data: {
+        //                 bookname: 'HTML',
+        //                 author: '黑马程序员',
+        //                 publisher: '人民邮电出版社'
+        //             },
+        //             success: function () {
+        //                 console.log('保存成功')
+        //             }
+
+        //         })
+        //     })
+        // })
+    </script>
+</body>
+
+</html>

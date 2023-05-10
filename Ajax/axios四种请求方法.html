@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/axios.js"></script>
+</head>
+
+<body>
+    <button id="btn1">发出axios get请求</button>
+    <button id="btn2">发出axios post请求</button>
+    <button id="btn3">发出get请求</button>
+    <button id="btn4">发出post请求</button>
+</body>
+<script>
+
+    document.querySelector('#btn1').addEventListener('click', function () {
+        // params属性是参数
+        // axios的get请求
+        axios.get('http://www.liulongbin.top:3006/api/getbooks', { id: 1 }).then(function (res) {
+            console.log(res.data)
+        })
+    })
+
+
+
+    document.querySelector('#btn2').addEventListener('click', function () {
+        ////axios的post请求
+        axios.post('http://www.liulongbin.top:3006/api/addbook', {
+            bookname: "英雄联盟", author: "吴承恩", publisher: "北京图书出版社"
+        }).then(function (res) {
+            console.log(res.data)
+        })
+
+    })
+
+
+    document.querySelector('#btn3').addEventListener('click', function () {
+        //axios直接请求的两种方法
+        axios({
+            type: 'get',
+            url: 'http://www.liulongbin.top:3006/api/getbooks?bookname=英雄联盟',
+            // 指定请求的数据名字 params 是即将与请求一起发送的 URL 参数
+            //params: { bookname: "英雄联盟", author: "吴承恩", publisher: "北京图书出版社" }
+        }).then(function (res) {
+            console.log(res.data)
+        })
+    })
+
+    document.querySelector('#btn4').addEventListener('click', function () {
+        //axios直接请求的两种方法
+        axios({
+            type: 'post',
+            url: 'http://www.liulongbin.top:3006/api/addbook',
+            data: { bookname: "英雄联盟", author: "吴承恩", publisher: "北京图书出版社" }
+        }).then(function (res) {
+            console.log(res.data)
+        })
+
+    })
+
+
+
+
+
+
+</script>
+
+</html>

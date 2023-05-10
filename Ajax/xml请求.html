@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.mini.js"></script>
+</head>
+
+<body>
+    <script>
+        //使用不带参数的xhrGet请求
+        // // 创建xhr对象
+        // const xhr = new XMLHttpRequest()
+        // // 调用xhr.open()方法
+        // xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks')
+        // // 调用xhr.send()方法
+        // xhr.send()//该方法不可省略 发送请求
+        // // 监听xhr.onreadystatechange事件
+        // // readyState 状态值
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200)
+        //         console.log(xhr)
+        //     document.write(xhr.responseText)
+        // }
+
+
+        //使用带参数的xhrGet请求
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks')
+        // xhr.send()//发送请求
+        // xhr.onreadystatechange = () => {
+        //     //如果对象的状态值是4且对象的响应状态时200有效
+        //     if (xhr.readyState === 4 && xhr.status === 200)
+        //         document.write(xhr.responseText)
+        // }
+
+        // $.get('http://www.liulongbin.top:3006/api/getbooks?bookname=王者荣耀', (res) => console.log(res))
+
+        //使用查找字符串简化jquery的get post ajax
+        // $(function () {
+        //     $.get('http://www.liulongbin.top:3006/api/getbooks?id=1', (res) => console.log(res))
+
+        //     // $.ajax({
+        //     //     type: 'get',
+        //     //     url: 'http://www.liulongbin.top:3006/api/getbooks?id=1',
+        //     //     // data: { id: 1},
+        //     //     success: function (res) {
+        //     //         console.log(res)
+        //     //     }
+        //     // })
+        // })
+
+        // url编码和解码
+        // console.log(encodeURI('黑马程序员'))
+        // console.log(decodeURI('%E6%88%91%E6%98%AF%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88'))
+
+
+        // xhr对象完成post请求
+        // 创建xhr对象
+        // const xhr = new XMLHttpRequest()
+        // //         调用open()方法
+        // xhr.open('post', 'http://www.liulongbin.top:3006/api/addbook')
+        // //         设置Content - Type属性
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        // //         调用send('查询字符串')
+        // xhr.send('bookname=王者荣耀&author=腾讯&publisher=深圳出版社')
+        // //          监听 onreadystatechange事件
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.status == 200 && xhr.readyState == 4)
+        //         console.log(xhr)
+        // }
+
+
+        //JSON练习
+        // const str = ['1', '2']
+        // const str = { name: '小明', age: 20 }
+        // const str = { "name": "小明" }
+        // let str2 = JSON.parse(`{ "name": "小明","name2": "张三","name3": "小王" }`)
+        // str2 = JSON.stringify(str2)
+        // console.log(str2)
+
+
+        //将后台数据进行json转换
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks')
+        // xhr.send()
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.status == 200 && xhr.readyState == 4) {
+        //         //将服务器上的JSON字符串数据转换成对象格式方便渲染页面时使用
+        //         const res = JSON.parse(xhr.responseText)
+        //         const arr = res.data
+        //         arr.forEach(item => {
+        //             document.write(`<p>${item.bookname}</p>`)
+        //         })
+        //     }
+        // }
+
+        //xhrget请求
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks?bookname=西游记')
+        // xhr.send()
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200)
+        //         console.log(xhr)
+        // }
+
+        // bookname: "西游记", author: "吴承恩", publisher: "北京图书出版社"
+
+        //xhrpost请求
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('post', 'http://www.liulongbin.top:3006/api/addbook')
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        // xhr.send('bookname=清华大学&author=腾讯&publisher=深圳出版社')
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks?bookname=清华大学')
+        //         xhr.send()
+        //         xhr.onreadystatechange = function () {
+        //             if (xhr.status == 200 && xhr.readyState == 4)
+        //                 console.log(xhr)
+        //         }
+        //     }
+        // }
+
+        // const str = JSON.stringify([10, 20, 30]) //序列化
+        // const str2 = JSON.parse(str)//反序列化
+        // console.log(str2)
+
+        $(function () {
+            $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: "小游记", author: "吴承恩", publisher: "北京图书出版社" }, function (res) {
+                console.log(res)
+            })
+        })
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>追加</button>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul')
+        const qian = document.querySelector('ul li:first-child')
+        document.querySelector('button').addEventListener('click', function () {
+            const li = document.querySelector('ul li:last-child')
+            const cloneli = li.cloneNode(true)
+            ul.insertBefore(cloneli, document.querySelector('ul li:first-child'))
+        })
+    </script>
+</body>
+
+</html>

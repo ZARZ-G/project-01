@@ -1,0 +1,16 @@
+{
+  "id": "4036101",
+  "name": "用户",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1727461",
+      "name": "225默认头像",
+      "font_class": "morentouxiang",
+      "unicode": "e8c9",
+      "unicode_decimal": 59593
+    }
+  ]
+}
