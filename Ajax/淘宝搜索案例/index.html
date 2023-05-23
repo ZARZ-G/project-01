@@ -39,58 +39,41 @@
   </div>
 
   <script>
-    //给搜索框添加一个keyup事件
-    //手写防抖 开启定时器 清除定时器
-
-
-    let time = null
-    const list = document.querySelector('#suggest-list')
-    document.querySelector('#ipt').addEventListener('keyup', function () {
-      const keyword = this.value.trim()
-      clearTimeout(time) //关键点
-      list.innerHTML = ''
-      if (keyword.length <= 0) {
-        list.style.display = 'none'
-        return
-      }
-
-      debounce(keyword)
+    //搜索框添加keyup事件
+    //手写防抖函数
+    let timer = null
+    $(function () {
+      $('.ipt').on('keyup', shake)
     })
 
-    function request(keyword) {
-      $.ajax({
-        url: 'https://suggest.taobao.com/sug?q=' + keyword,
-        dataType: 'jsonp',
-        success: function (res) {
 
 
-          const arr = res.result
-          if (arr.result !== null) {
-            list.style.display = 'block'
+    function shake() {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        $('#suggest-list').empty()//松开键盘就关闭定时器
+        //将用户输入的内容发送到后台
+        const text = $('.ipt').val()
+        $.ajax({
+          url: 'https://suggest.taobao.com/sug',
+          data: { q: text },
+          dataType: 'jsonp',
+          success: function (res) {
+            console.log($('#suggest-list')[0].children.length)
+            res.result.forEach(item => {
+              console.log(item[0])
+              $('#suggest-list').append(`
+              <div class="suggest-item">${item[0]}</div>
+              `)
+            })
+            //追加后先判断是否有孩子如果有就显示 没有就隐藏
+            $('#suggest-list')[0].children.length !== 0 ? $('#suggest-list')[0].style.display = "block" : $('#suggest-list')[0].style.display = "none"
           }
-
-          arr.forEach(item => {
-            const div = document.createElement('div')
-            div.classList.add('suggest-item')
-            div.innerHTML = item[0]
-            list.append(div)
-          })
-        }
-      })
+        })
+      }, 1000)
     }
-
-
-    // 防抖函数
-    function debounce(keyword) {
-      time = setTimeout(() => {
-        request(keyword)
-      }, 500)
-    }
-
-
-
-
   </script>
+
 </body>
 
 </html>

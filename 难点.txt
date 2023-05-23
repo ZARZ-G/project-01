@@ -1,5 +1,13 @@
+app.use(cors())//cors是一个方法
+req.query() req.data()  req.end()  req.send() req.body() req.params 获取动态参数
+res.send（str）//将响应的结果发送到浏览器上
+引用类型只有地址相同才相同 []===[] //false
+将js转换成jquery 用$('对象名')  将jquery转换成js用[0]或get(0)
+原型的作用: 共享数据, 节省内存空间
+match() 返回正则匹配到的结果  可以作为方法的参数使用
+node 导入模块的方法    const fs=require('fs')
 get 没有请求体 post 有请求体
-jsonp 支持get   cors  支持get post 实现跨域请求  浏览器的同源策略阻止网页跨域请求
+jsonp 支持get   cors  支持get post   功能：实现跨域请求  浏览器的同源策略阻止网页跨域请求
 快速获取表单的值用serialize() 这是一个jquery方法 需要给input添加name属性    通过创建FormData()对象 快速获取表单的值
 xhr.responseText属性的值是xhr请求的结果  ！！！
 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded') 不好记  固定写法  设置请求标头
@@ -8,9 +16,10 @@ json.parse()里面的参数必须是字符串类型
 JSON 全称javascript对象表示法  json本质是字符串    可转换数字 字符串 布尔值 null 数组 对象 
 XML可扩展标记语言
 on 在……时候
-正则表达式\S\s的意思
+*正则表达式\S\s的意思
 [\s]表示匹配 空白字符
 [\S]表示匹配 非空白字符
+g表示匹配全局
 两者同时出现[\s\S]表示匹配 任何字符
 
 
@@ -30,7 +39,7 @@ reduce()
 findIndex()
 isArray()
 splice（）删数组指定元素
-split(',')将字符串转成数组
+split(',')将字符串转换成数组
 slice(m,n)切数组里的某一部分
 replace() 替换字符串中的某个值
 改变原数组的方法 push() pop() unshift() shift() sort() reverse() splice()
@@ -64,8 +73,7 @@ replace() 替换字符串中的某个值
 
 json.parse()
 json.stringify()
-boolean()方法将字符串转换成true 0或者是nuLl "" 为false
-
+boolean(str)方法将变量转换成布尔类型 true 0或者是false 1  null "" 为false
 null是object类型 表示空对象
 
 
@@ -83,17 +91,16 @@ consolel.log(123)
 trim()方法的正确使用
 input.value.trim()==''
 截取字符串
-substr(start,length)
+substr(start,count)
 slice(start,length)
 substring(start,length)
-
 
 
 //随机产生颜色
   const color = prompt('请输入true或者是false')
 
         function Getcolor(color) {
-
+    
             if (color == 'true') {
                 //方法一 rgb(255,255,255)
                 const newcolor = fn1()
@@ -103,11 +110,11 @@ substring(start,length)
                 //方法二#ffffff  0~f
                 const newcolor = fn2()
                 document.querySelector('html').style.backgroundColor = newcolor
-
+    
             }
-
+    
         }
-
+    
         Getcolor(color)
         function fn1() {
             let c = 'rgb('
@@ -119,7 +126,7 @@ substring(start,length)
             }
             c = c.substr(0, c.length - 1)
             return c + ')'
-
+    
         }
         function fn2() {
             let c = '#'
@@ -131,13 +138,13 @@ substring(start,length)
                 c += newdata[i]
             }
             return c
-
+    
         }
 
 
 
 
-日期时间的对象
+日期时间的对象 new Date()
 
 最快获得当前日期时间的写法是 toLocaleString() 
 new data() 是指每过一秒钟获得一次当前的时间或日期
@@ -151,21 +158,15 @@ new data() 是指每过一秒钟获得一次当前的时间或日期
 先在计时器外面调用一下函数
 计时器调用函数
 
-
-当一个函数当做参数来传递给另外一个函数的时候，这个函数就是回调函数
-
-
+当一个函数当做参数来传递给另外一个函数的时候，这个函数就是回调函数 callback
 双击 dblclick()
 
 开启定时器 容易忘记   
 将定时器封装成一个方法 想要开启时只要调用一下该方法就行了
-
-事件监听如何添加多个事件
-
 tx.value==''|| tx.value.trim() == ''   trim方法的正确使用
 document.querySelectorAll('.cks:checked').length 获取所有被选中的小复选的数量
-this指向调用者
-data-id=‘0’ 自定义属性要从0开始 数组的下标是从0开始的
+this指向调用者   e指向触发事件的对象
+data-id='0' 自定义属性要从0开始 因为数组的下标是从0开始的
 
 获取自定义属性
 e.target.dataset.id 或者是 e.target.id
@@ -175,10 +176,9 @@ e.stopPropagation()
 阻止默认行为
 e.preventDefault() 
 
-普通事件解绑 onclick() 用 null 空对象
-addEventListener()
-用removeEventListener()
-
+*匿名函数无法解绑
+普通事件解绑 onclick() 用 onclick=null
+addEventListener() 用removeEventListener('click',fn)
 
 页面尺寸发生变化 resize事件
 页面滚动就要添加scroll事件
@@ -204,29 +204,29 @@ js给伪元素添加事件监听
 
 e.target 可以通过标签名和类名或者id查找子元素
 
-//自动函数避免变量污染 结尾要加;隔开
+//自动执行函数避免变量污染 结尾要加;隔开
 
 创建节点
 document.createElement('标签名')
 获取父节点 parentNode
 
 checkbox属性里的 ischecked 属性用来判断该被选中 true 表示被选中 false表示没有选中
-nextElementSibling 获取当前节点的下一个节点(获得下一个兄弟节点)
+nextElementSibling 获取当前节点的下一个节点
 previousElementSibling 获取当前节点的上一个节点
 
-给页面添加滚动的过渡
+*给页面添加滚动的过渡
 html {
   scroll-behavior: smooth；
 }
 
 e.getTime() 得到时间戳
 
-js获取元素的类名用 calssName属性
-判断是否包含某个类名 e.classList.contains
+js获取元素的类名用 e.target.calssName属性
+判断是否包含某个类名 e.target.classList.contains('') //true or false
 
-追加 append(e) appendchild(e) 插入到父元素的最后   重点
+追加 append(e) appendchild(e) 插入到父元素的最后面  重点
 insertBefore(克隆的元素,插入的位置)  插入到某个元素的前面 
-e.cloneNode(true) 克隆
+e.cloneNode(true) 克隆  //true 深克隆 
 删除孩子 removeChild(e)
 删除父亲 remove(e)
 
@@ -236,8 +236,8 @@ e.cloneNode(true) 克隆
 盒子的宽高属性修改的时候要加px单位
 mouseenter mouseleave  没有委托的功能 
 
-for循环遍历数组 如果条件有一个不成立用return可以终止循环 但是forEach循环不能终止循环
-
+for循环遍历数组 如果条件有一个不成立用return可以终止循环 但是forEach循环用return不能终止循环
+*throw Error() //抛出异常 强制终止forEach遍历数组
 关闭input的自动提示信息 autocomplete ='off'/ no
 
 this.reset() 清空表单 重置
@@ -245,32 +245,28 @@ setInterval() 最低延迟100毫秒
 setTimeout() 最低延迟40毫秒
 
 让窗体跳到指定该的链接    window.location.href = 'http://www.baidu.com' 
- loaction.reload(true) //强制刷新页面
-
+loaction.reload(true) //强制刷新页面
 history.go(1,-1,0)  前进，后退，刷新
 
 sessionStorage 临时存储 只要关闭了浏览器保存的数据就会丢失
 
 存储数据：localStorage.setItem(key,JSON.stringify(value))
-
 获取数据：JSON.parse(localStorage.getItem(key))
- 
 删除：localStorage.removeItem('key')
 
-(arr.join('') //去除数组的逗号
+arr.join('') //去除数组的逗号
 
 JSON是一种基于JavaScript语法子集的开放标准数据交换格式
- throw Error() //抛出异常 终止forEach遍历数组
 
 元素更换背景图片JS写法
     document.querySelector('div').style.backgroundImage = `url(./images/${arr[r]})`
 
- 获取编号的正确写法  让数组的最后一位编号加1  容易忘记
+ 获取表格编号的正确写法  让数组的最后一位编号加1  容易忘记
  id: arr.length ? arr[arr.length - 1].id + 1 : 1 
 
 渲染后台数据尽量减少Dom操作 推荐遍历数组渲染页面   推荐 map().join()
 通过DOM操作  foreach循环或者for循环  map()+join() 三种方法完成页面渲染
- 
+
 map方法如果数组为空就不遍历和for循环一样
 map((item,i)=>{})方法返回处理过的结果 是个数组
 
@@ -279,7 +275,8 @@ confirm() 确认框 返回 true false
 Array.from(lis) 把伪数组转换为真数组
 input标签里的required属性是指必写的属性
 
-test()正则检测
+test()//正则检测
+exec()//返回数组
 
 元素更换背景图片JS写法
 document.querySelector('div').style.backgroundImage = `url(./images/${arr[r]})`
@@ -320,9 +317,9 @@ new关键字执行步骤
 
 
 split(',')//将字符串分割成数组
-substring('开始索引号'，‘结束索引号’)截取
+substring('开始索引号'，'结束索引号')截取
 includes('ele')包含
-indexOf()是否包含某个字符
+indexOf()获取字符索引号
 replace(‘e’,'新')替换字符
 
 arr.find((item)=>item>10)//返回满足条件的第一个元素
@@ -332,8 +329,9 @@ Number.toFixed(2) 保留两位小数
 
 thorw new Error('参数不能为空') 抛异常
 
-Object.values().join('/') 将对象的值转换为字符串
-Object/keys() 获取对象的属性 
+Object.values().join('/') //将对象的值转换为字符串
+Object/keys() //获取对象的属性 
+Object.assign() //赋值对象 合并对象
 
 
 输入框输入内容 节流
@@ -345,7 +343,7 @@ ${item.isChecked ? 'checked' : ''} 判断复选框是否选中
 
 ''表示没有内容 空数据
 
- [type=checkbox] 属性选择器
+ input[type=checkbox] 属性选择器
 
 共同点修改this指向
 fn.call(对象，1，2，3)   //参数是1，2，3
@@ -355,7 +353,9 @@ fn.bind(对象，1，2，3)不调用函数 返回一个函数
 定时器的this默认指向window 
 reduce() 累计器
 
-非空判断强力推荐for循环
+*非空判断强力推荐for循环
+
+join('\r\n') //将数组转成字符串并且换行
 
 
 

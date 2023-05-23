@@ -1,14 +1,10 @@
 ### 请求的根路径
 
-> http://www.liulongbin.top:3006
-
-
-
-
+> 
 
 ### 评论列表
 
-+ 接口URL：  /api/cmtlist
++ 接口URL：  http://www.liulongbin.top:3006/api/cmtlist
 + 调用方式： GET
 + 参数格式：无
 + 响应格式：
@@ -52,7 +48,7 @@
 
 ### 发表评论
 
-+ 接口URL：  /api/addcmt
++ 接口URL：  http://www.liulongbin.top:3006/api/addcmt
 + 调用方式： POST
 + 参数格式：
 
@@ -83,7 +79,7 @@
 
 ### 新闻列表
 
-+ 接口URL：  /api/news
++ 接口URL：  http://www.liulongbin.top:3006/api/news
 + 调用方式： GET
 + 参数格式：无
 + 响应格式：

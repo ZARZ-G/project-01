@@ -1,7 +1,7 @@
 新接口地址： 
-http://ajax-base-api-t.itheima.net/api/robot' 传输
-http://ajax-base-api-t.itheima.net/api/synthesize 转换
- 
+http://ajax-base-api-t.itheima.net/api/robot'  用户传输
+
+http://ajax-base-api-t.itheima.net/api/synthesize  机器人语音转换
 
 data: {
         spoken: text//将用户输入的内容发送给服务器

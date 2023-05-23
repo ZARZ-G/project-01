@@ -26,6 +26,7 @@
         <li class="left_word">
           <img src="img/person01.png" /> <span>嗨，最近想我没有？</span>
         </li>
+        <!-- 用户输入的文字 -->
         <!-- <li class="right_word">
             <img src="img/person02.png" /> <span>你好哦</span>
           </li> -->
@@ -44,74 +45,63 @@
   <!-- 注意：只要为 audio 指定了新的 src 属性，而且指定了 autoplay，那么，语音就会自动播放 -->
   <audio src="" id="audio" autoplay style="display: none;"></audio>
   <script type="text/javascript" src="js/scroll.js"></script>
+  <!-- 自动滚动resetui -->
+
   <script>
+    //将文本框里的值追加到消息区
     $(function () {
-      ////将用户说的话追加给ul
-      $('.input_sub').on('click', fn)
-      function fn() {
-        //判断是否为空内容
-        if ($('.input_txt').val() == '' || $('.input_txt').val().trim() == '') {
-          //清内容
-          $('.input_txt').val('')
-          return alert('内容不能为空')
-        }
-        $('.talk_list').append(` 
-            <li class="right_word">
-            <img src="img/person02.png" /> <span>${$('.input_txt').val()}</span>
-            </li>
-           `)
-        resetui()
-        //将用户输入的内容传给服务器
-        getMsg($('.input_txt').val())
-        //清内容
-        $('.input_txt').val('')
-      }
-
-      //将机器人说的话追加给ul
-      function getMsg(text) {
-        $.ajax({
-          type: 'get',
-          url: 'http://ajax-base-api-t.itheima.net/api/robot',
-          data: {
-            spoken: text
-          },
-          success: function (res) {
-            if (res.message == 'success') {
-              $('.talk_list').append(` 
-              <li class="left_word">
-              <img src="img/person01.png" /> <span>${res.data.info.text}</span>
-              </li>
-           `)
-              getVoice(res.data.info.text)
-              resetui()
-            }
-          }
-        })
-
-      }
-
-      //将机器人说的话上传给服务器拿到语音路径
-      function getVoice(text) {
-        $.ajax({
-          type: 'get',
-          url: 'http://ajax-base-api-t.itheima.net/api/synthesize',
-          data: { text: text },
-          success: function (res) {
-            console.log(res)
-            if (res.status !== 200) return alert('语音转换失败')
-            $('#audio').attr('src', res.voiceUrl)
-          }
-        })
-
-      }
-
-      //当在文本框中点击回车时发送用户说的话
-      $('.input_txt').on('keyup', function (e) {
-        if (e.key == 'Enter') fn()
+      $('#btnSend').on('click', send)
+      $('#ipt').on('keyup', function (e) {
+        if (e.key == 'Enter')
+          send()
       })
-
     })
+    function send() {
+      const text = $('#ipt').val()
+      if (text === null || text.trim() === '')
+        return alert('内容不能为空')
+      $('#talk_list').append(`
+        <li class="right_word">
+            <img src="img/person02.png" /> <span>${text}</span>
+          </li>
+        `)
+      resetui()
+      $('#ipt').val('')
+      render(text)
+    }
+
+    //将用户输入的值发送给后台 渲染机器人的话
+    function render(text) {
+      $.ajax({
+        type: 'get',
+        url: 'http://ajax-base-api-t.itheima.net/api/robot',
+        data: { spoken: text },
+        success: function (res) {
+          // console.log(res.data.info.text) 机器人说的话
+          $('#talk_list').append(`
+          <li class="left_word">
+            <img src="img/person01.png" /> <span>${res.data.info.text}</span>
+          </li>
+            `)
+          resetui()
+          //将机器人说的话转成声音并播放
+          $.ajax({
+            type: 'get',
+            url: 'http://ajax-base-api-t.itheima.net/api/synthesize',
+            data: { text: res.data.info.text },
+            success: function (res) {
+              console.log(res)
+              if (res.status === 200) {
+                $('#audio')[0].src = `${res.voiceUrl}`
+              }
+            }
+          })
+        }
+      })
+    }
+
   </script>
+
 </body>
 
 </html>

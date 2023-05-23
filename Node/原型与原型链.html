@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //声明一个方法
+        //通过构造函数存公共的属性
+
+        function Person() {
+            this.name = '张三'
+            this.age = 20
+        }
+        //通过原型存公共的方法
+        Person.prototype = {
+            sayHi: function () {
+                console.log('我是sayHi')
+            },
+            fn: () => {
+                console.log('我是方法fn')
+            }
+        }
+
+        //对象的属性__proto__ 指向构造函数的原型prototype 指向object类的原型Object
+        const obj = new Person()
+        console.log(obj.__proto__.sayHi())
+        console.log(obj.name, obj.age)
+
+        const dx = { name: 'zs' }
+        const dx2 = dx
+        console.log(Object.is(dx, dx2))
+        const date = { a: 1, b: 2, c: 3 }
+        console.log(Object.keys(date))
+        console.log(Object.values(date))
+
+        //复制对象
+        const xm = { name: '小明', gender: '男' }
+        const xh = { age: 29, name: '小红' }
+        const xw = Object.assign({}, xm)
+        console.log(xw)
+        //合并对象 
+        const ls = Object.assign({}, xh, xm)//不改变原数据
+        console.log(ls)
+        console.log(xh)
+
+
+
+    </script>
+</body>
+
+</html>
