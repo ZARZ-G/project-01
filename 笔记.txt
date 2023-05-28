@@ -1,0 +1,623 @@
+/* 清除浮动 */
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+相对定位的元素他的位置不会被其他元素占用的 而绝对定位会
+
+JS笔记
+函数没有返回值返回的结果就是undefined
+let声明的变量是块级变量没有变量提升  var声明的变量是全局变量有变量提升
+0 false 1 true
+如果点中间没有空格：li.active{color:red;}
+意思就是选择类名为 active 的 li 
+事件委托巧用 子元素未创建出来时可以先将删除的方法委托给父元素   
+
+将字符串转成数字型
+Number()
+parseInt(num)
+parseFloat(num)
++(num)
+toFixed(2) 将数字保留两位小数  括号里不写就是取整 
+
+数组
+数组的类型是对象型 object
+数组中删除的方法包括 shift(头删) pop(尾删)  指定位置删除splice(1,1) 
+数组中增加的方法包括 unshift(头加) push(尾加) 
+indexOf(变量)索引号 -1没找到  0表示找到
+includes(变量)包含  true 表示找到 false没找到
+find()方法  找到返回该对象 没找到返回undefined
+Array.from()将伪数组转换成真数组
+every() 查找符合所有条件的元素
+some() 找单个符号条件的元素
+arr.join('')将数组转换为字符串
+
+遍历数组的方法
+while for  arr.foreach((item,i)=>{}) map((item,i)=>{}) for v of while  filter(function(item,index,self))   reduce(total,item,index,self){}) every(function(item,index,self){}) some(function(item,index,self){}
+find(function (item, index){}) findIndex(function (item) {})
+遍历对象的方法
+for k  in  object.values()  object.keys()  for v of
+
+
+如何生成0-10的随机数呢？ Math.floor(Math.random() * (10 + 1))
+重点：如何生成N-M之间的随机数 Math.floor(Math.random() * (M- N + 1)) + N
+
+//求范围数字的函数
+ function getRandom(M, N) {
+            return Math.floor(Math.random() * (M - N + 1)) + N
+        }
+
+js小数取整
+ parseInt()
+ toFixed(n) 
+
+
+方法的名字不能和变量或者常量的名字相同
+对象分为有名对象和匿名对象
+数组分为有名数组和匿名数组
+方法分为有名方法和匿名方法
+obj[k]表示该对象的每一个属性值
+
+
+if else 适合多条件的判断
+switch case 适合单条件的判断
+
+对于引用数据类型，const声明的变量，里面存的不是 值，不是值，不是值，是 地址 (数组或者是对象)
+
+将匿名函数赋值给变量或者是对象那么它就是函数类型，就相当于给匿名函数起了一个名字然后调用
+
+
+
+元素更换背景图片JS写法
+    document.querySelector('div').style.backgroundImage = `url(./images/${arr[r]})`
+
+
+定时器的返回值是一个编号 number类型 用于关闭定时器 
+定时器里面不能写clearTimeout()
+
+
+轮播图 写法
+1.用数组对象
+2.用img标签
+3.通过radius按钮
+
+
+lamda表达式写的函数内不能用for循环的嵌套 他只能指向一个对象
+
+
+e.target.tagName 判断元素的标签名
+
+e.target表示当前触发的那个对象
+
+e.target.dataset.id 默认是字符串类型 需要用+来转换成数字型
+e.target.dataset.name 获取元素自定义属性名
+
+e.key表示按下哪个按键
+
+
+
+
+1. 通过时间戳得到是毫秒，需要转换为秒在计算
+事件戳的获取方法三种方法
+e.getTime()
++new Date()
+Date.now()
+const 总秒数=将来时间戳减去现在时间戳/1000
+2. 转换公式：
+Ø d = parseInt(总秒数/ 60/60 /24); // 计算天数
+Ø h = parseInt(总秒数/ 60/60 %24) // 计算小时
+Ø m = parseInt(总秒数 /60 %60 ); // 计算分数
+Ø s = parseInt(总秒数%60); // 计算当前秒数
+
+
+
+//节点属性
+通过子元素获得父节点 parentNode
+通过父元素找单个子元素用   父元素.children[n]
+通过父元素找所有的子元素用   父元素.children
+通过父元素找所有的子节点元素用   父元素.childNodes  //包括文本 标签
+通过父元素找子元素获得的数量用     父元素.childElementCount
+通过父元素替换节点       父元素. replaceChild(插入的节点，被替换的节点)
+
+
+
+// 角度换算： 公式复制即可
+  //   小时角度公式：小时 * 30 + 分钟 / 60 * 30 
+  //   分钟角度公式：分钟* 6 + 秒 / 60 * 6
+  //   秒角度公式： 当前秒数 * 6
+
+this.reset()清空表单
+
+
+localStorage.setItem  存
+localstorage.getItem  取
+
+本地存储只能存储字符串数据类型
+
+  //将后台数据存到本地存储
+ localStorage.setItem('user-data', JSON.stringify(dataArr))
+ //将本地存储的数据取出来渲染页面   json. parse去除双引号
+    const localData = JSON.parse(localStorage.getItem('user-data'))
+
+
+JSON.stringify() 将复杂数据转换成字符串
+
+e.preventDefault() 阻止表单默认跳转
+
+
+lis[i].index=i //获取li的下标
+
+
+箭头函数加大括号要写return 不写大括号可以省略return
+
+a:focus,a:active  tab栏切换
+
+通过foreach给数组添加方法
+    const lis = document.querySelectorAll('ul li')
+     lis.forEach(item => {
+       item.addEventListener('click', () => alert(123))
+      })
+
+
+字符串常用方法
+replace() 替换字符串中的某个值
+indexOf()判断是否找到
+String(num), toString(num) 将num转换成字符串
+split(',') 将字符串转换成数组
+splice（）删数组指定元素                                                                          
+join('')将数组转换成字符串
+substring(n,m) 截取字符串
+startWith(n) 是否以n开头 是返回true 不是返回false
+includes(n) 判断是否包含n 是返回true 不是返回false
+const {}=arr //快速声明多个数组里的变量
+Object.values() //获取对象里的值
+Object.keys()//获取对象里的属性名
+Object.assign()//浅拷贝
+
+
+构造函数的this和原型里的this都指向实例对象
+对象原型指向原型对象 __proto__ 指向 prototype
+
+对象都有__proto__ 指向原型
+原型对象都有constructor 指向构造函数
+
+remove()删除盒子
+
+
+立即执行函数和数组解构要加分号
+
+深拷贝 
+递归
+lodash
+json转换
+
+浅拷贝 
+展开运算符
+assign()
+
+重写this指向三种方法
+call apply  bind 
+
+
+防抖的核心原理
+利用setTimeout定时器来实现
+1 声明定时器变量
+2 每次鼠标移动的时候都要先判断是否有定时器 如果有就清除原来的定时器
+3 如果没有定时器就开启定时器 存入到定时器变量里
+4 定时器里面写函数调用
+
+
+
+checkbox属性里的 ischecked 属性用来判断该被选中 true 表示被选中 false表示没有选中
+- nextElementSibling 获取当前节点的下一个节点(获得下一个兄弟节点)
+- previousElementSibling 获取当前节点的上一个节点
+
+js判断标签是否包含某个类
+方法一：利用正则去检测className的值
+方法二：利用标签的classList属性的方法contains()
+方法三：jQuery的方法hasClass()
+
+JS 获取元素下标的6种方法
+方法一：给每个按钮 自定义data-index属性
+for(var i = 0; i < btns.length; i++){
+     btns[i].setAttribute('data-index',i)
+     btns[i].onclick = function(){
+        console.log(this.dataset['index'])
+     }
+ }
+方法二：存下标
+for(var i = 0; i < btns.length; i++){
+    btns[i].index = i;
+    btns[i].onclick = function(){
+        console.log(this.index)
+     }
+}
+方法三：forEach
+btns.forEach(function(item, index) {
+    item.onclick = function() {
+    console.log(index)
+    }
+})
+方法四：let
+  for(let i = 0; i< btns.length; i++){ 
+    btns[i].onclick = function(){
+        console.log(i)
+    }
+}
+方法五：闭包
+for(var i = 0; i < btns.length; i++){
+    (function(i){
+        btns[i].onclick = function(){
+           console.log(i)
+          } 
+     })(i)
+  } 
+方法六：闭包
+for(var i = 0; i < btns.length; i++){
+    btns[i].onclick = (function(i){
+        return function(){
+        console.log(i)
+        }
+    })(i)
+}
+
+
+javascript中获取元素高度和宽度的方法如下：
+网页可见区域宽： document.body.clientWidth
+网页可见区域高： document.body.clientHeight
+网页可见区域宽： document.body.offsetWidth (包括边线的宽)
+网页可见区域高： document.body.offsetHeight (包括边线的高)
+网页正文全文宽： document.body.scrollWidth
+网页正文全文高： document.body.scrollHeight
+网页被卷去的高： document.body.scrollTop
+网页被卷去的左： document.body.scrollLeft
+
+
+
+
+
+
+jQuery笔记
+jquery快速获取表单的值用 serialize()函数 表单要有name属性 存值
+jquery转换js用[0]
+Jquery可以不通过循环给多个对象绑定事件
+jquet绑定事件的方法 bind() on() live() delegate()
+Jquery委托写法
+$('父元素').on('click','del',function(){})
+
+jQuery 具有隐式转换的功能
+jQuery的this默认指向document
+javascript 的this默认指向Window
+
+children()查到儿子元素  === ul li
+find()查找孙子元素 ===ul li a
+
+addClass() 添加类
+removeClass() 移除类
+toggleClass() 切换类  有就移除没有就添加
+eq() 选择第几个孩子  用于数组 下标从0开始
+stop()方法停止动画排队
+动画效果是在元素隐藏的基础上实现的
+
+
+jquert判断元素是否包含某个类名jQuery的方法hasClass()
+.text() - 设置或返回所选元素的文本内容 
+.html() - 设置或返回所选元素的内容(包括 HTML 标记) 
+.val() - 设置或返回表单字段的值(只针对表单或者输入框)
+jquery修改元素自带的属性用e.css('widht',200+'px')
+判断是否包含自定义的属性
+attr() 获取自定义属性
+prop() 获取元素自身的属性
+data() 获取元素自定义属性 缓存
+
+checkbox:checked表示被选中的
+substr()截取字符串
+splice（i，1）删除数组元素
+
+jQuery遍历数组
+数组.each(function(i,ele){}) 第一个参数是索引号 第二个参数是元素 跟JS里的foreach相反
+JQuery遍历对象
+$.each(数组,function(i,ele){}) 
+
+jquery删除父元素用$(this).closest('父元素').remove()
+remove()删除元素
+jQuery中的清空盒子的内容用tbody.empty('')
+html('')删除子节点
+$('p').prepend($('<div>我是前面的</div>'))
+$('p').append($('<div>我是后面的</div>'))
+$('p').before($('<div>我是上一个兄弟元素</div>'))
+$('p').after($('<div>我是下一个兄弟元素</div>'))
+on()事件委托
+off()解绑所有的事件
+ $('div').off('mouseover') 只解绑选定的事件
+one()事件只执行一次
+元素.方法名()自动触发事件
+trigger()自动触发事件
+triggerHandler()不触发元素默认行为
+empty('')清空内容
+
+jquery插件的使用步骤
+1 从官网下载文件夹并解压
+2将解压好的文件复制到自己创建的文件夹里
+3引入demo.css,main.js,mini.js, mini.css
+4将主题标签复制到body里
+5调用插件
+Jquery清空文本框内容的方法 input.val('')
+trim()方法判断文本框的内容是否包含空格
+offset()获取盒子距离html的距离 不受父盒子影响
+position()获取子盒子距离父盒子的距离  
+
+ 给窗体添加滚动事件
+$(window).scroll(function(){
+
+})
+
+scrolltop() 不能赋值 只能在小括号里写距离
+jQuery获取元素的索引号通过 index()方法
+mousewheel 鼠标滚轮滚动事件
+
+Jquery获得元素宽度和高度的方法
+e.width()
+e.height()
+e.innerwidth()
+e.innerheight()
+e.outerwidth()
+e.outerheight()
+
+
+e.offset({left,top})
+e.offset().top//距离顶部的距离
+e.offset().left//距离左侧的距离
+e.position().top//距离父元素顶部的距离
+e.position().left//距离父元素左侧的距离
+
+form表单的常用属性 method enctype target action
+表单用来收集用户的数据  ajax用来将数据提交给服务器
+axios 是网络请求的库
+
+
+
+
+移动端笔记
+translate和margin的区别。
+margin移动盒子会影响其余的盒子。把其他人挤走。
+translate移动盒子不会影响其他的盒子。不脱标。
+
+tarnsform 位移在前旋转在后
+背景渐变 background-image:linear-gradient()
+图片斜切 transform:skew(deg)
+
+开启3D空间
+transform-style:preserve-3d
+
+视口标签作用让网页的宽度和设备的宽度保持一样
+移动端默认 980px 
+二倍体让图片更清晰
+flex 弹性布局 不脱标
+
+flex主轴 justifly-content
+flex侧轴 align-items
+align-items只能设置单行盒子 
+align-content设置多行 
+默认下高是父亲的高 宽是内容的宽
+
+盒子显示省略号
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+
+盒子的宽度等于像素除字体大小
+目前rem布局方案中，将网页等分成10份， HTML标签的字号为视口宽度的 1/10 
+父盒子的宽度默认100% 不用计算 
+子盒子的宽度和高度以及字体大小 行高都是要计算的
+vw/vh将视口划分成100份
+bootstrap 将视口分成12份 
+bootstrap 只适合企业站   内容少
+
+
+ajax笔记
+jquery的请求方式有三种
+$.get  $.post $.ajax
+ajax的常用属性包括type url data success
+URL地址就是接口
+window.load()事件
+ajax 模板引擎 正则
+模板引擎的过滤器 template.defaults.imports.方法名字=function(参数){} 
+new Date(年月日 时分秒) 如果有参数 对象可以直接获取里面的日期和时间
+reg.exec(str)  //正则查找
+serialize 将数据转化成字符串  快速获取表单的值
+
+readystate状态
+ 0 － （xhr对象已经被创建）还没有调用open()方法
+ 1 － （载入）已调用open()方法，正在发送请求
+ 2 － （载入完成）send()方法执行完成，已经接收到全部响应内容
+ 3 － （交互）正在解析响应内容
+ 4 － （完成）响应内容解析完成，可以在客户端调用了
+
+responseText属性 获得响应的值
+？查询字符串 代表查找的意思  key=value && key=value
+
+jquery的请求基于xmlhttpRequest()
+xmlhttpRequest get请求的步骤
+创建xhr对象
+调用xhr.open(‘请求类型'，url地址接口)方法
+调用xhr.send()方法
+监听xhr.onreadystatechange=(){}事件
+
+xmlhttpRequest post请求的方法
+创建xhr对象
+调用open()方法
+设置Content-Type属性
+调用send('查询字符串')
+监听 onreadystatechange事件
+xhr.responseText //返回json类型的字符串
+axios //是http的库  params 是即将与请求一起发送的 URL 参数
+使用时需要先引入axios.js文件 有四种请求的方法 查看请求的数据要写then(function(res){})方法
+jsonp 只能get请求 不能post请求
+
+
+
+Node.JS 笔记
+
+node.js是javascript 的运行环境 用来做后端开发的插件
+
+node.js 常用的命令
+
+ESC 清除命令   cls 清空内容   TAB自动补全   上箭头打印上一条命令
+
+__dirname 获取文件的根路径
+
+path.join()//拼接路径 
+
+path.basename()//将文件名解析出来
+path.extname() //获取文件的扩展名
+
+DNS将域名转换成IP地址
+http 端口号 80   默认可以省略
+本地地址 127.0.0.1 ==> localhost
+
+sc config i8042prt start= disabled 重启
+sc config i8042prt start= auto  
+
+创建服务器的四个步骤
+const http=require('http')  //导入模块
+const server=http.createServer() //创建一个服务器对象
+server.on('request',function(req,res){ //绑定requeset方法
+console.log('req.url')
+})
+
+server.listen(80,function(){ //添加事件监听
+console.log('http://127.0.0.1')
+})
+
+ctrl+c 关闭服务器
+inetmgr IIS管理器
+
+
+ //设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+ res.setHeader(200, { "Content-type": "text/html;charset=UTF-8" });
+ res.end() //将请求的内容发送到网页上
+
+模块分为三种 
+内置模块 fs path http 
+用户自定义的模块
+第三方模块（包）
+
+//自定义模块内置module对象  module代表当前的模块
+//将私有的成员共享出去   module.exports 属性 ||exports 指向同一个对象   
+  *输出的结果以module.expor{}为准
+   module.exports={}===exports={}  不建议混用
+npm 包管理工具的常用命令
+npm i 包名  //安装包
+npm i //安装所有的包
+npm uninstall 包名 //卸载包
+npm init -y  //创建项目的包配置文件 项目的文件夹名字不能是中文
+npm i 包名 -D // 将包名放到开发依赖区域里
+npm i 包名 -g //安装全局包
+npm uninstall 包名 -g //卸载全局包
+2.22.1  大版本.功能版本.bug修复  //语义化规范  version 版本号  resolved 下载地址
+
+切换包的下载地址
+npm config get registry  //查看包的下载地址
+npm config set registry=https://registry.npm.taobao.org  //设置包的下载地址 *发布包只能是国外的网站 .npmjs.
+npm login //登录网站
+npm publish//发布包
+npm unpublish 包名 --force //删除包
+
+npm i nrm -g  //安装nrm工具
+nrm ls //查看所有的镜像源
+nrm use taobao //切换镜像源
+
+Express 服务器框架 web网站服务器 API接口服务器
+*res.send()//将请求的结果发送到网页上
+npm i express@4.17.1 //安装快速服务器模块
+npm i cors //安装跨域资源共享模块
+req.query获取客户端发送过来的查询参数
+req.params 获取动态参数
+app.use('/[前缀]'，express.static('./wenjianjia')) //获取文件夹里的文件
+ndoemon 安装命令 npm i-g nodemon  //自动重启服务器是全局的模块
+app.use('/[前缀]','路由名字')//服务器使用路由
+
+*中间件就是一个函数 可以是全局也可以是局部  中间件之间共享req和res对象
+express 内置express.static()  express.json()  express.urlencoded() 3个中间件
+*app.use(express.urlencoded({ extended: false }))基于第三方中间件"body-parser" //作用是将表单数据解析出来
+const router=express.Router()//创建路由
+
+//配置post请求的中间件
+*app.use(express.urlencoded({ extended: false }))
+
+node内置解析模块querystring  解析方法 qs.parse()
+req.params包含路由参数（在URL的路径部分），而req.query包含URL的查询参数（在URL的？后的参数）。
+
+npm i mysql //安装mysql 模块
+配置mysql=>({ host//IP地址， user//账号名字， password//账号密码 ，database//数据库名字 })
+检测数据库是否配置成功//db.query('select 1',(err,results)=>{})
+*只有查找返回的是数组 
+
+//配置session
+app.use(session({
+secret:'itheima',
+resabe:false,
+saveUninitialized:true
+}))
+前后端身份认证 session jwt 
+jwt由三部分组成 header头部.payload有效荷载 .signature 签名
+安装session // npm i express-session
+
+CORS的使用 ==>跨域资源共享
+安装 npm i cors 
+导入 const cors=require('cors')
+使用cors app.user(cors())
+
+session 只能存20分钟 不限定存储容量 保存到服务器的内存里
+jwt将用户的信息保存到浏览器里
+npm i jsonwebtoken express-jwt //jwt安装两个包
+jsnowebtoken 生成jwt字符串
+express.jwt 将jwt字符串解析json对象
+req.user //获取用户的信息
+npm i bcryptjs@2.4.3//安装加密模块
+npm install @hapi/joi@17.1.0  //安装表单每项的验证规则
+npm i @escook/express-joi  //安装用户信息验证模块
+req.body //用户输入的参数 是一个对象类型
+expressjoi()//方法用于数据的验证
+affectedRows //表示受影响的行数
+Multer是Express官方推出的，用于Node.jsmultipart/form-data请求数据处理的中间件
+Multer 安装方法 npm i multer@1.4.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
