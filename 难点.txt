@@ -1,5 +1,6 @@
 app.use(cors())//cors是一个方法
-req.query() req.data()  req.end()  req.send() req.body() req.params 获取动态参数
+req.query req.data()  req.end()  req.send() req.body() req.params 获取动态参数
+req.query //获取查询字符串的内容
 res.send（str）//将响应的结果发送到浏览器上
 引用类型只有地址相同才相同 []===[] //false
 将js转换成jquery 用$('对象名')  将jquery转换成js用[0]或get(0)
