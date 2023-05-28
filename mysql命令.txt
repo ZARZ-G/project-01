@@ -1,4 +1,4 @@
-TINYINT(1)  0 正常  1禁用  true或false
+TINYINT(1)布尔类型   0 正常  1禁用  true或false  
 PK主键  NN 不能为空  AI自增  UQ值唯一
 varchar()字符串   int 整数
  
