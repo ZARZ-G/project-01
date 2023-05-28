@@ -1,0 +1,16 @@
+{
+  "name": "itheima-tools-zkk",
+  "version": "1.0.0",
+  "description": "提供了格式化的时间，HTMLEscape的功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "itheima",
+    "deteFormat",
+    "escape"
+  ],
+  "author": "朱康康",
+  "license": "ISC"
+}
