@@ -37,7 +37,7 @@ some() 找单个符号条件的元素
 arr.join('')将数组转换为字符串
 
 遍历数组的方法
-while for  arr.foreach((item,i)=>{}) map(item,i) for v of while  filter(function(item,index,self))   reduce(total,item,index,self){}) every(function(item,index,self){}) some(function(item,index,self){}
+while for  arr.foreach((item,i)=>{}) map((item,i)=>{}) for v of while  filter(function(item,index,self))   reduce(total,item,index,self){}) every(function(item,index,self){}) some(function(item,index,self){}
 find(function (item, index){}) findIndex(function (item) {})
 遍历对象的方法
 for k  in  object.values()  object.keys()  for v of
@@ -151,7 +151,7 @@ e.preventDefault() 阻止表单默认跳转
 
 lis[i].index=i //获取li的下标
 
- 
+
 箭头函数加大括号要写return 不写大括号可以省略return
 
 a:focus,a:active  tab栏切换
@@ -164,6 +164,7 @@ a:focus,a:active  tab栏切换
 
 
 字符串常用方法
+replace() 替换字符串中的某个值
 indexOf()判断是否找到
 String(num), toString(num) 将num转换成字符串
 split(',') 将字符串转换成数组
@@ -183,7 +184,7 @@ Object.assign()//浅拷贝
 
 对象都有__proto__ 指向原型
 原型对象都有constructor 指向构造函数
- 
+
 remove()删除盒子
 
 
@@ -264,7 +265,7 @@ for(var i = 0; i < btns.length; i++){
     })(i)
 }
 
- 
+
 javascript中获取元素高度和宽度的方法如下：
 网页可见区域宽： document.body.clientWidth
 网页可见区域高： document.body.clientHeight
@@ -418,7 +419,6 @@ bootstrap 将视口分成12份
 bootstrap 只适合企业站   内容少
 
 
-
 ajax笔记
 jquery的请求方式有三种
 $.get  $.post $.ajax
@@ -441,7 +441,6 @@ readystate状态
 responseText属性 获得响应的值
 ？查询字符串 代表查找的意思  key=value && key=value
 
-
 jquery的请求基于xmlhttpRequest()
 xmlhttpRequest get请求的步骤
 创建xhr对象
@@ -456,79 +455,138 @@ xmlhttpRequest post请求的方法
 调用send('查询字符串')
 监听 onreadystatechange事件
 xhr.responseText //返回json类型的字符串
-axios //是http的库
-params 是即将与请求一起发送的 URL 参数
+axios //是http的库  params 是即将与请求一起发送的 URL 参数
 使用时需要先引入axios.js文件 有四种请求的方法 查看请求的数据要写then(function(res){})方法
 jsonp 只能get请求 不能post请求
 
 
 
+Node.JS 笔记
 
+node.js是javascript 的运行环境 用来做后端开发的插件
 
+node.js 常用的命令
 
+ESC 清除命令   cls 清空内容   TAB自动补全   上箭头打印上一条命令
 
+__dirname 获取文件的根路径
 
+path.join()//拼接路径 
 
+path.basename()//将文件名解析出来
+path.extname() //获取文件的扩展名
 
+DNS将域名转换成IP地址
+http 端口号 80   默认可以省略
+本地地址 127.0.0.1 ==> localhost
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-关闭笔记本自带键盘，请参考以下方法： 左下角搜索栏中搜索cmd，以管理员身份运行 在弹出的窗口中将下面这段代码输入进去，并回车。 
 sc config i8042prt start= disabled 重启
-笔记本自带键盘关闭 如果想恢复，只要外置键盘以同样方法输入下面这个代码，重启即可。 sc config i8042prt start= auto
+sc config i8042prt start= auto  
+
+创建服务器的四个步骤
+const http=require('http')  //导入模块
+const server=http.createServer() //创建一个服务器对象
+server.on('request',function(req,res){ //绑定requeset方法
+console.log('req.url')
+})
+
+server.listen(80,function(){ //添加事件监听
+console.log('http://127.0.0.1')
+})
+
+ctrl+c 关闭服务器
+inetmgr IIS管理器
 
 
-                                                                                                                                          
+ //设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+ res.setHeader(200, { "Content-type": "text/html;charset=UTF-8" });
+ res.end() //将请求的内容发送到网页上
 
-                  
+模块分为三种 
+内置模块 fs path http 
+用户自定义的模块
+第三方模块（包）
+
+//自定义模块内置module对象  module代表当前的模块
+//将私有的成员共享出去   module.exports 属性 ||exports 指向同一个对象   
+  *输出的结果以module.expor{}为准
+   module.exports={}===exports={}  不建议混用
+npm 包管理工具的常用命令
+npm i 包名  //安装包
+npm i //安装所有的包
+npm uninstall 包名 //卸载包
+npm init -y  //创建项目的包配置文件 项目的文件夹名字不能是中文
+npm i 包名 -D // 将包名放到开发依赖区域里
+npm i 包名 -g //安装全局包
+npm uninstall 包名 -g //卸载全局包
+2.22.1  大版本.功能版本.bug修复  //语义化规范  version 版本号  resolved 下载地址
+
+切换包的下载地址
+npm config get registry  //查看包的下载地址
+npm config set registry=https://registry.npm.taobao.org  //设置包的下载地址 *发布包只能是国外的网站 .npmjs.
+npm login //登录网站
+npm publish//发布包
+npm unpublish 包名 --force //删除包
+
+npm i nrm -g  //安装nrm工具
+nrm ls //查看所有的镜像源
+nrm use taobao //切换镜像源
+
+Express 服务器框架 web网站服务器 API接口服务器
+*res.send()//将请求的结果发送到网页上
+npm i express@4.17.1 //安装快速服务器模块
+npm i cors //安装跨域资源共享模块
+req.query获取客户端发送过来的查询参数
+req.params 获取动态参数
+app.use('/[前缀]'，express.static('./wenjianjia')) //获取文件夹里的文件
+ndoemon 安装命令 npm i-g nodemon  //自动重启服务器是全局的模块
+app.use('/[前缀]','路由名字')//服务器使用路由
+
+*中间件就是一个函数 可以是全局也可以是局部  中间件之间共享req和res对象
+express 内置express.static()  express.json()  express.urlencoded() 3个中间件
+*app.use(express.urlencoded({ extended: false }))基于第三方中间件"body-parser" //作用是将表单数据解析出来
+const router=express.Router()//创建路由
+
+//配置post请求的中间件
+*app.use(express.urlencoded({ extended: false }))
+
+node内置解析模块querystring  解析方法 qs.parse()
+req.params包含路由参数（在URL的路径部分），而req.query包含URL的查询参数（在URL的？后的参数）。
+
+npm i mysql //安装mysql 模块
+配置mysql=>({ host//IP地址， user//账号名字， password//账号密码 ，database//数据库名字 })
+检测数据库是否配置成功//db.query('select 1',(err,results)=>{})
+*只有查找返回的是数组 
+
+//配置session
+app.use(session({
+secret:'itheima',
+resabe:false,
+saveUninitialized:true
+}))
+前后端身份认证 session jwt 
+jwt由三部分组成 header头部.payload有效荷载 .signature 签名
+安装session // npm i express-session
+
+CORS的使用 ==>跨域资源共享
+安装 npm i cors 
+导入 const cors=require('cors')
+使用cors app.user(cors())
+
+session 只能存20分钟 不限定存储容量 保存到服务器的内存里
+jwt将用户的信息保存到浏览器里
+npm i jsonwebtoken express-jwt //jwt安装两个包
+jsnowebtoken 生成jwt字符串
+express.jwt 将jwt字符串解析json对象
+req.user //获取用户的信息
+npm i bcryptjs@2.4.3//安装加密模块
+npm install @hapi/joi@17.1.0  //安装表单每项的验证规则
+npm i @escook/express-joi  //安装用户信息验证模块
+req.body //用户输入的参数 是一个对象类型
+expressjoi()//方法用于数据的验证
+affectedRows //表示受影响的行数
+Multer是Express官方推出的，用于Node.jsmultipart/form-data请求数据处理的中间件
+Multer 安装方法 npm i multer@1.4.2
 
 
 
@@ -544,20 +602,6 @@ sc config i8042prt start= disabled 重启
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-`	
 
 
 
