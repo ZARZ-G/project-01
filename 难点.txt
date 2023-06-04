@@ -1,3 +1,4 @@
+node.js 下载第三方包前 需要先执行一下 npm init -y 命令进行初始化
 app.use(cors())//cors是一个方法
 req.query req.data()  req.end()  req.send() req.body() req.params 获取动态参数
 req.query //获取查询字符串的内容
@@ -248,7 +249,6 @@ setTimeout() 最低延迟40毫秒
 让窗体跳到指定该的链接    window.location.href = 'http://www.baidu.com' 
 loaction.reload(true) //强制刷新页面
 history.go(1,-1,0)  前进，后退，刷新
-
 sessionStorage 临时存储 只要关闭了浏览器保存的数据就会丢失
 
 存储数据：localStorage.setItem(key,JSON.stringify(value))
