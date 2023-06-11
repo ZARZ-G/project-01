@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            name;
+            #age;
+            #weight;
+
+            constructor(name, age, weight) {
+                this.name = name
+                this.#age = age
+                this.#weight = weight
+            }
+
+            info(help) {
+                console.log(this.name)
+                console.log(this.#age)
+                console.log(this.#weight)
+                console.log(help)
+            }
+        }
+
+
+        const p = new Person('张三', 20, '50kg')
+        p.info('这是私有属性只能在内部的方法中使用')
+    </script>
+</body>
+
+</html>

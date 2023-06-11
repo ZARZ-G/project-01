@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //创建promise对象p
+        const p = new Promise((resolve, reject) => {
+            resolve('黑马程序员')
+            // reject('失败')
+            // throw ('error')
+        })
+        // const p2 = Promise.reject('失败了')
+        // // const p2 = Promise.resolve('成功了')
+        // const p3 = Promise.resolve('成功了')
+        // p.catch(err => {
+        //     console.log(err)
+        // })
+        // console.log(p)
+
+        //TODO:promise all方法的使用
+        //返回数据都成功才显示成功 否则失败
+        // const result = Promise.all([p, p2, p3])
+        // result.catch(err => {
+        //     console.log(err)
+        // })
+        // conso.log(result)
+
+        //TODO:promise race用法 只看第一个函数的处理结果
+        // const result = Promise.race([p, p2, p3])
+        // result.catch(err => {
+        //     console.log(err)
+        // })
+        // console.log(result)
+
+        //TODO:指定执行多次回调函数
+
+
+
+        //通过then方法解决回调地狱的问题
+        p.then(value => {
+            console.log(value)
+        })
+        p.then(value => {
+            console.log(value)
+        })
+        p.then(value => {
+            console.log(value)
+        })
+    </script>
+</body>
+
+</html>

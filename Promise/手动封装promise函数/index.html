@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./promise.js"></script>
+</head>
+
+<body>
+    <script>
+
+        // const p = new Promise((resolve, reject) => {
+        //执行器
+        // reject('失败了')
+        // resolve('ok')
+        //抛出错误
+        // throw '我是错误的语句'
+        // setTimeout(() => {
+        //     reject('失败了')
+        // }, 1000);
+        //TODO:要实现的功能
+        //编写promsie的框架
+        //设置promise状态只能修改一次
+        //实现then方法
+        //实现异步状态
+        //实现多次回调的调用
+        //同步状态返回then方法的返回值
+        //异步状态返回then方法的返回值
+        //then方法优化
+        //事项catch功能
+        //封装resolve()
+        // 封装reject方法
+        // 封装all方法
+        // 封装rece方法
+        // then方法回调异步执行
+        //封装class类
+        // })
+
+        // console.log(p)
+        // const res = p.then((value) => {
+        //     // return '成功了'
+        //     console.log(value)
+        //     // return new Promise((resolve, reject) => {
+        //     //     //resolve('成功了')
+        //     //     // reject('失败了')
+        //     // })
+        //     //抛出错误
+        //     // throw 'Error'
+        // }, (reason) => {
+        //     // return 'error'
+        //     // console.warn(reason)
+        //     throw '我是错误信息'
+        // })
+        // const res = p.then()
+        //     .then(value => {
+        //         throw ('error')
+        //         console.log(222)
+        //     }).then(value => {
+        //         console.log(333)
+        //     }).then(value => {
+        //         console.log(444)
+        //     }).catch(reason => {
+        //         console.log(reason)
+        //     })
+        // console.log(res)
+        // // p.then((value) => {
+        //     alert(value)
+        // }, (reason) => {
+        //     alert(reason)
+        // })
+
+
+
+        // const p = Promise.resolve('ok')
+        // const p2 = new Promise.resolve(new Promise((resolve, reject) => {
+        //     // resolve('成功')
+        //     // reject('失败')
+        //     throw ('错误了')
+        // }))
+        // const p3 = Promise.resolve(Promise.resolve('OK'))
+        // console.log(p3)
+
+
+
+        // const p = Promise.reject('Error')
+        // const p2 = Promise.reject(new Promise((resolve, reject) => {
+        //     //无论成功和失败都返回失败状态
+        //     // reject('失败了')
+        //     resolve('成功了')
+        // }))
+        // console.log(p)
+        // console.log(p2)
+
+        // const p1 = Promise.reject('失败了')
+        // const p2 = Promise.resolve('成功2')
+        // // const p2 = Promise.reject('失败')
+        // const p3 = Promise.resolve('成功3')
+
+        // const p = Promise.race([p1, p2, p3])
+        // // const p = Promise.all([p1, p2, p3])
+        // console.log(p)
+
+
+
+        const p = new Promise((resolve, reject) => {
+            // setTimeout(() => {
+            //     resolve('ok')
+            // }, 1000);
+            throw 'error'
+
+        })
+        // const p = Promise.resolve('ok')
+        p.then(value => {
+            console.log(value)
+        }, reason => {
+            console.log(reason)
+        })
+
+        console.log(p)
+
+    </script>
+</body>
+
+</html>

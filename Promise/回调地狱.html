@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //回调地狱 异常处理麻烦 不便于阅读
+        // setTimeout(() => {
+        //     console.log('张三')
+        //     setTimeout(() => {
+        //         console.log('李四')
+        //         setTimeout(() => {
+        //             console.log('王二')
+        //             setTimeout(() => {
+        //                 console.log('回调地狱')
+        //             }, 1000);
+        //         }, 1000);
+        //     }, 2000);
+        // }, 3000);
+
+        const person = new Promise((resolve, reject) => {
+            resolve()
+        })
+
+        person.then(() => {
+            setTimeout(() => {
+                console.log('111')
+            }, 1000);
+        })
+        person.then(() => {
+            setTimeout(() => {
+                console.log('222')
+            }, 2000);
+        })
+        person.then(() => {
+            setTimeout(() => {
+                console.log('333')
+            }, 3000);
+        })
+
+      
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Phone {
+            constructor(brand, price) {
+                //将参数传递给属性
+                this.brand = brand
+                this.prand = brand
+            }
+
+            hellow() {
+                console.log('我是父类的方法')
+            }
+        }
+
+        //子类继承父类的属性和方法  但父类访问不到子类的方法和属性
+        //TODO:子类可以重写父类的同名方法
+        class SmallPhone extends Phone {
+            constructor(brand, price, color, size) {
+                //调用父类的构造函数
+                //super 指向父类
+                super(brand, price)
+                this.color = color
+                this.size = size
+            }
+
+            photo() {
+                console.log('我是子类的方法我会拍照哦')
+            }
+            hellow() {
+                console.log('我是子类的hellow方法')
+            }
+        }
+
+        const p = new SmallPhone('苹果', 2000, '黑色', '6.5寸')
+        console.log(p)
+        p.hellow()
+        p.photo()
+    </script>
+</body>
+
+</html>

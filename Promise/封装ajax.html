@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" class="btn">点击发送get请求</button>
+    <script>
+        document.querySelector('.btn').addEventListener('click', function () {
+            //点按钮发起get请求
+            // let xhr = new XMLHttpRequest()
+            // xhr.open('get', 'http://www.liulongbin.top:3006/api/news')
+            // xhr.send()
+            // xhr.onreadystatechange = () => {
+            //     if (xhr.readyState === 4) {
+            //         if (xhr.status >= 200 && xhr.status < 300) {
+            //             console.log(xhr.response)
+            //         }
+            //         else {
+            //             console.log(xhr.status)
+            //         }
+            //     }
+            // }
+
+            const p = new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest()
+                xhr.open('get', 'http://www.liulongbin.top:3006/api/news')
+                xhr.send()
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            return resolve(xhr.response)
+                        }
+                        else {
+                            return reject(xhr.status)
+
+                        }
+                    }
+                }
+            })
+            p.then((value) => {
+                console.log(value)
+            }, (resaon) => {
+                console.log(resaon)
+            })
+        })
+    </script>
+</body>
+
+</html>

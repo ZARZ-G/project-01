@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const s = Symbol()
+        // console.log(typeof s)
+        // const s1 = Symbol('张三')
+        // console.log(s1)
+        // const s2 = Symbol('张三')
+
+        // console.log(s1 === s2)
+
+        // const n1 = Symbol.for('李四')
+        // const n2 = Symbol.for('李四')
+        // console.log(n1 === n2)
+        //Symbol 类型不能进行运算和比较
+        // const s = Symbol(123)
+        // s += s
+        // console.log(s)
+        // console.log(s > 10)
+        // //string number null  bool undefind object symbol
+
+
+        //给对象添加symbol 类型的属性
+
+        const person = {
+            name: '张三',
+            age: 20,
+            [Symbol('fn')]() {
+                console.log('我是吃喝玩乐')
+            }
+        }
+        console.log(person)
+    </script>
+</body>
+
+</html>

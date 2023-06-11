@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const name = '张三'
+        const age = 20
+        const obj = {
+            //属性：变量 原来的写法
+            name: name,
+            //简化
+            age,
+            fn() {
+                console.log('我的名字叫' + name + age)
+            }
+        }
+        obj.fn()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //父类的构造函数
+        function Phone(brind, price) {
+            this.brind = brind
+            this.price = price
+        }
+
+        Phone.prototype.hello = function () {
+            console.log('我是父类的方法哦')
+        }
+
+        //子类的构造函数
+        function SmartPhone(brind, price, color, size) {
+            //调用父类的构造函数
+            Phone.call(this, brind, price)//这里的this指向父类
+            // 这里的this指向子类
+            this.color = color
+            this.size = size
+            console.log(`这款手机的牌子是${this.brind}价钱是${this.price}颜色是${this.color}大小是${this.size}`)
+        }
+
+        //子类指向父类
+        SmartPhone.prototype = new Phone()
+        //让子类的构造函数指向子类
+        SmartPhone.prototype.constructor = SmartPhone
+
+        SmartPhone.prototype.get = function () {
+            console.log('这是子类的方法')
+        }
+
+
+        const zilei = new SmartPhone('苹果', 2500, '蓝色', '6寸')
+        zilei.hello()
+        zilei.get()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let m = new Map()
+        m.set('name', '张三')
+        m.set({
+            fn() {
+                console.log('hello world')
+            }
+        }, '这是一个方法')
+        m.set({ 'school': '实验中学' }, [1, 2, 3, 4, 5])
+        // console.log(m.size)
+        // console.log(m.delete('name'))
+        // console.log(m.clear())
+        // console.log(m.get('name'))
+        console.log(m)
+        for (const item of m) {
+            console.log(item)
+        }
+    </script>
+</body>
+
+</html>

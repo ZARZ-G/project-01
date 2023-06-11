@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>抽奖</button>
+    <script>
+        function rand(n, m) { return Math.ceil(Math.random() * (n - m + 1)) + m - 1 }
+
+        document.querySelector('button').addEventListener('click', () => {
+            //resolve 成功  reject 失败
+            const p = new Promise((resolve, reject) => {
+                //TODO:回调函数
+                setTimeout(() => {
+                    let n = rand(1, 100)
+                    if (n <= 30) {
+                        resolve(n)
+                    }
+                    else {
+                        reject(n)
+                    }
+
+                }, 500);
+            })
+
+            //那么
+            p.then((value) => {
+                console.log(p)
+                alert('恭喜抽中100万参号为' + value)
+            }, (value) => {
+                alert('没抽中参号为' + value)
+            })
+        })
+
+    </script>
+</body>
+
+</html>

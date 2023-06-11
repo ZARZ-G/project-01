@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1]
+        // let result = [...new Set(arr)]
+        // console.log(result)
+
+        //交集
+        let arr2 = [4, 5, 6, 4, 4, 7]
+        //将s2转换成集合并且去重
+        // let s2 = new Set(arr2)
+        // const result = [...new Set(arr)].filter(item => {
+        //     if (s2.has(item)) {
+        //         return item
+        //     }
+        // })
+
+        // console.log([...new Set(arr)].filter(item => new Set(arr2).has(item)))
+
+
+        //并集
+        // const arrs = [...new Set([...arr, ...s2])]
+        // console.log(arrs)
+
+        //差集
+        //找arr中不包含arr2的元素
+        console.log([...new Set(arr2)].filter(item => !(new Set(arr).has(item))))
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

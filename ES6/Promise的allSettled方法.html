@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+            resolve('成功')
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            resolve('成功')
+            // reject('失败')
+            // throw 'error'
+        })
+        //Promise.allSettled方法只返回成功 值时promise对象的值
+        // const res = Promise.allSettled([p1, p2])
+        // console.log(res)
+
+        //Promise.all()方法只有都成功才能成功 值为promise对象的值
+        const res = Promise.all([p1, p2])
+        console.log(res)
+
+    </script>
+</body>
+
+</html>

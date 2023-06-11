@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        //分别暴露
+        import * as m1 from './src/m1.js'
+        console.log(m1)
+        m1.hellow()
+
+        //统一暴露
+        import *as m2 from './src/m2.js'
+        console.log(m2)
+        m2.fn()
+
+        //默认暴露
+        import * as m3 from './src/m3.js'
+        console.log(m3)
+        //默认的暴露调用时要加上default关键字
+        m3.default.fn()
+    </script>
+</body>
+
+</html>

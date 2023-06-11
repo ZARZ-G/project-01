@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //.*? 配喷如何字符
+        const str =
+            `
+        <ul>
+        <li>
+            <a>虹猫蓝兔七侠传</a>
+            <p>2000/1/1</p>
+        </li>
+
+        <li>
+            <a>猫和老鼠</a>
+            <p>1990/1/1</p>
+        </li>
+        </ul>
+        `
+
+        const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/sg
+        const result = str.matchAll(reg)
+        const arr = [...result]
+        console.log(arr)
+    </script>
+</body>
+
+</html>

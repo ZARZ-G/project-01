@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        //使用生成器对象解决回调地狱的问题
+        function one() {
+            setTimeout(() => {
+                console.log('111')
+                p.next()
+            }, 1000);
+        }
+
+        function tow() {
+            setTimeout(() => {
+                console.log('222')
+                p.next()
+            }, 2000);
+        }
+
+        function three() {
+            setTimeout(() => {
+                console.log('333')
+            }, 3000);
+        }
+
+        function* fn() {
+            yield one()
+            yield tow()
+            yield three()
+        }
+
+        const p = fn()
+        p.next()
+    </script>
+</body>
+
+</html>

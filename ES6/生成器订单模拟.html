@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //获取用户的信息 订单数据 商品数据
+
+        function getuserInfo() {
+            setTimeout(() => {
+                console.log('用户信息')
+                p.next()
+            }, 1000);
+        }
+
+        function getDingdian() {
+            setTimeout(() => {
+                console.log('订单数据')
+                p.next()
+            }, 1000);
+        }
+
+        function getshapp() {
+            setTimeout(() => {
+                console.log('商品数据')
+            }, 1000);
+        }
+
+
+        function* fn() {
+            yield getuserInfo()
+            yield getDingdian()
+            yield getshapp()
+        }
+
+        const p = fn()
+        p.next()
+
+
+
+
+
+    </script>
+</body>
+
+</html>

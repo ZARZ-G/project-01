@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <p></p>
+    <script>
+        // const arr = ['张安', '老子', '王二', '李四']
+        // function fn() {
+        //     console.log(arguments)
+        // }
+        // fn(...arr)
+        //扩展运算符的实际应用
+
+        //合并数组
+        // const arr = [1, 2, 3, 4]
+        // const arr2 = [4, 3, 2, 1]
+        // const arr3 = [...arr, ...arr2]
+        // console.log(arr3)
+
+        //克隆数组
+        // const arr = [1, 2, 3, 4]
+        // const arr2 = [...arr]
+        // console.log(arr2)
+
+        //将伪数组转换成真数组
+        const divs = document.querySelectorAll('div')
+        const arr = [...divs]
+        const p = document.querySelector('p')
+        arr.push(p)
+        console.log(arr)
+
+    </script>
+</body>
+
+</html>

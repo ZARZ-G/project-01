@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function* fn() {
+            console.log(111)
+            //yield阻止下一次循环
+            yield '这是第一句话'
+            console.log(222)
+            yield '这是第二句话'
+            console.log(333)
+            yield '这是第三句话'
+            console.log(444)
+            yield '这是第四句话'
+        }
+
+        //生成器表达式
+        // const fn2 = function* (args) {
+        //     console.log(args)
+        // }
+        // const p = fn2('AAA')
+        // p.next()
+
+
+        // const p = fn()
+        // p.next()
+        // p.next()
+        // p.next()
+        // p.next()
+
+        for (const item of fn()) {
+            console.log(item)
+        }
+    </script>
+</body>
+
+</html>

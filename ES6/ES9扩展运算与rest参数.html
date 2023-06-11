@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //...user 存放属性
+        // function fn({ host, port, ...user }) {
+        //     console.log(host)
+        //     console.log(port)
+        //     console.log(user)
+
+        // }
+
+        // fn({
+        //     host: '800',
+        //     port: '123',
+        //     id: '1122',
+        //     ischecked: 'true',
+        //     abc: 123
+
+        // })
+
+        //合并对象
+        const one = {
+            n1: '张三'
+        }
+
+        const tow = {
+            n2: '李四'
+        }
+
+        const three = {
+            n3: '王二'
+        }
+
+
+        const hebing = { ...one, ...tow, ...three }
+        console.log(hebing)
+
+
+        //合并数组
+        const arr1 = [1, 2, 3, 4, 5]
+        const arr2 = [6, 7, 8, 9, 9]
+        const arrs = [...arr1, ...arr2]
+
+        console.log(arrs)
+
+
+
+
+    </script>
+</body>
+
+</html>

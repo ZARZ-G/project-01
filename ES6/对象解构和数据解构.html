@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const arr = ['赵本山', 20, 30]
+        // const [a, b, c] = arr
+        // console.log(a)
+
+
+        const person = {
+            name: '小沈阳',
+            age: 20,
+            //对象的方法声明方法名字在前
+            fn: function () {
+                console.log('我会唱歌')
+            }
+        }
+        //没解构之前
+        person.fn()
+
+        const { name, age, fn } = person
+        // console.log(name)
+        // console.log(age)
+        // console.log(fn)
+        //解构之后
+        fn()
+
+        //方法解构
+        function ppt({ name, age, gender, aihao = '网游戏' }) {
+            console.log(name + age + gender + aihao)
+        }
+        ppt({ name: '张三', age: 20, gender: '男' })
+    </script>
+</body>
+
+</html>

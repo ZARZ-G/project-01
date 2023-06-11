@@ -1,0 +1,65 @@
+vue 是js的渐进式框架 
+node.js是js的运行环境 后端
+容器和实例一一对应
+Vue模板分为2大类
+1.插值语法 {{xxx}}
+2.指令语法 v-bind===可以简写成:
+v-bind:href="url" // 绑定超链接
+Vue支持单向绑定和双向绑定 v-bind 和v-model :value 简写 v-model="name"
+双向绑定主要用在表单元素上
+Vue里的函数不能用箭头函数
+原型上面挂载方法 object.defineProoerty(对象名,'属性名',{value:值})
+数据代理：通过一个对象代理另一个对象的属性的操作
+_data==data //内置getter setter  实时更新数据
+v-on:click='方法名'   简写@ //绑定事件
+事件回调需要配置在methods对象中，会自带挂载在vm实例上
+VUE中的内置函数this指向vm或组件对象
+//常用修饰符可以连写
+.prevent 阻止事件的默认行为
+.stop 阻止事件冒泡
+.stop.prevent 阻止默认行为和冒泡
+.self 阻止子元素的事件冒泡
+.capture 事件捕获
+.once事件只触发一次
+
+
+Promise笔记
+Promise 是一个构造函数也是异步编程的解决方案
+从功能上来说 promise对象用来封装一个异步操作并获取成功或者失败的结果
+*优点：
+1.支持链式调用解决回调地狱问题
+2.指定回调函数的方式更加灵活
+回调地狱的概念：回调函数里面嵌套回调函数
+解决回调地狱的问题 promise async/await  生成器函数实例
+function rand() { return  Math.ceil(Math.random()*(n-m+1))+m-1}//随机数方法
+const p = new promise((resolve,reject) => { }) //promise 语法格式
+resolve() 表示成功   reject()表示失败
+*util.promisify(回调函数).then(方法一，方法二)//将回调函数转换成promise类型的函数
+promise 方法内置 resolve()  reject() all() race() then() 
+throw '错误' //改变状态
+cath(err=>{}) //捕获错误
+async 返回promise对象 
+await必须写在async函数里
+await右边一般都是promise对象
+Promise.all([promise对象…]) //都成功才成功 否则失败
+Promise.race([promise对象…])//返回第一个对象的结果
+//then方法链式调用的原理：
+then方法返回的结果不是Promise 的对象 它的状态为成功 值由返回的内容决定
+then方法返回的结果是Promise的对象  它的状态由Promise对象的状态决定 值由Promise对象的值决定
+then方法中抛出错误 它的状态为失败 值为抛出错误的值
+中断promise链的方法就是返回一个pending状态的promise对象
+以*标识的函数名就叫生成器
+ Set() //集合
+Map对象支持for of 遍历
+for in 遍历键
+for of 遍历值
+注意 for of 不能遍历对象否则报错
+class 类中的属性和方法叫做静态成员 实例成员可以访问到 非静态成员实例对象访问不到
+
+webpack笔记
+webpack功能 将写好的代码压提高浏览器的性能和兼容性
+
+
+
+
+

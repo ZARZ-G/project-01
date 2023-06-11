@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            get price() {
+                return '读取get'
+            }
+
+            set price(data) {
+                console.log(`修改了price内容为` + data)
+            }
+        }
+
+        const p = new Person()
+        console.log(p)
+        console.log(p.price)
+        p.price = 'abc'
+    </script>
+</body>
+
+</html>

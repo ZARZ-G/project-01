@@ -1,3 +1,35 @@
+BigInt//大整形
+str.mathAll(正则)//快速提取字符串
+Promise.all()方法只有都成功才能成功 值为promise对象的值
+Promise.allSettled()//方法只返回成功 值为promise对象的值
+类中私有属性用#标识
+flat()//降低数组维数
+Object.entries()//将对象转换成数组
+Object.fromentries()//将数组转换成对象
+globalThis //全局对象
+一个类中可以有多个构造函数,只能有一个析构函数。
+异步编程的解决方案 promise 生成器函数 async函数 await对象   
+await必须要写在async函数里  
+ES6暴露语法 分别暴露  统一暴漏  默认暴露  
+模块导入方式：
+通用的导入方式
+解构赋值形式
+arr.includes()//判断数组是否包含某个元素
+Object.assign(p1, p2) //对象的合并
+Math.sign()判断数值是否为正数1 负数-1  零0
+Math.trunc()//去小数
+Number.parseInt () //字符串转整数   失败返回NaN
+Number.ParseFloat()//字符串转小数  失败返回NaN
+res.setHeader('Content-Type','text/html;charset=utf-8')//服务器发送的中文语句是乱码  该代码设置请求头来处理乱码 问题
+req 是客户端  res是服务器端
+\n是换行，英文是New line
+\r是回车，英文是Carriage return
+JS数据类型 USONB  Symbol
+第七种数据类型 Symbol 类型
+arguments 获取方法中的所有的参数
+箭头函数适合与this无关的回调 定时器 数据回调
+箭头函数不适合与和this有关的回调 事件回调 对象的方法
+*前端开发遵循 模块化 组件化 自动化 规范化
 node.js 下载第三方包前 需要先执行一下 npm init -y 命令进行初始化
 app.use(cors())//cors是一个方法
 req.query req.data()  req.end()  req.send() req.body() req.params 获取动态参数

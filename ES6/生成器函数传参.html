@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function* fn(args) {
+            console.log(args)
+            const n1 = yield 111
+            console.log(n1)
+            const n2 = yield 222
+            console.log(n2)
+        }
+
+        const person = fn('AAA')
+        console.log(person.next())
+        console.log(person.next('BBB'))
+        console.log(person.next('CCC'))
+
+
+    </script>
+</body>
+
+</html>

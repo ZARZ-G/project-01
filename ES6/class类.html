@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            name = '小明';
+            fn() {
+                console.log('我是人类')
+            };
+            age = '20'
+        }
+
+        // Person.age = '20' //给Person对象添加age属性 Person的实例对象是访问不到的
+        const p = new Person()
+        console.log(p.age)
+        // console.log(new Person().name)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn() {
+            //arguments 获取函数的实参
+            // 返回对象
+            console.log(arguments)
+        }
+        fn(1, 2, 3, 4, '王阿姨')
+
+        function fn(...args) {
+            //...args 获取函数的实参
+            //  返回数组
+            console.log(args)
+        }
+        fn(1, 2, 3, 4, '王阿姨')
+
+        function fn2(a, b, ...args) {
+            console.log(a, b, args)
+        }
+        fn2(1, 2, 3, 4, 5, 6)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            transition: all .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+
+        // const fn = (arguments) => {
+        //     console.log(arguments)
+        // }
+        // fn(1, 2, 3)
+
+
+        // function sum(arguments) {
+        //     console.log(arguments)
+        // }
+        // sum(10, 2, 3)
+
+        // const result = n => n * n
+        // console.log(result(9))
+
+        //   点击div2s之后换颜色
+        document.querySelector('.box').addEventListener('click', function () {
+            setTimeout(() => {
+                this.style.backgroundColor = 'pink'
+            }, 2000);
+        })
+
+        //   从数组中返回偶数的元素
+        const arr = [1, 2, 3, 4, 5, 6, 7]
+        //传统方法
+        arr.forEach(item => {
+            if (item % 2 === 0) {
+                console.log(item)
+            }
+        })
+        //es6
+        const result = arr.filter(item => item % 2 === 0)
+        console.log(result)
+    </script>
+</body>
+
+</html>
