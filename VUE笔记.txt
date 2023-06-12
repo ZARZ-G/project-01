@@ -58,6 +58,50 @@ class 类中的属性和方法叫做静态成员 实例成员可以访问到 非
 
 webpack笔记
 webpack功能 将写好的代码压提高浏览器的性能和兼容性
+"dev": "set NODE_OPTIONS=--openssl-legacy-provider &&webpack" //解决node版本高运行不了的问题
+webpack的使用步骤
+安装webpack @5.42.1 webpack-cli@4.7.2 -D
+配置webpack 
+运行webpack的script脚本
+引入dist/main.js
+npm i webpack-dev-server@3.11.2 -D //安装webpack实时更新模块
+npm i  html-webpack-plugin -D  //指定访问路径的插件 功能：将指定的页面复制到内存中，自动添加js文件
+//loader加载器执行流程：
+webpack只能处理js文件  如果发现非js文件他会去webpack.config.js文件中匹配对象后缀名的loader加载器 
+先将该文件放到最后一个loader进行处理 再将处理好的结果转交给下一个loader  如果没有loader了就将结果
+转交给webpack  将处理好的结果合并到/dist/main.js 中  最后生成打包好的文件
+开发阶段 文件在内存中  发布阶段文件在硬盘上
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

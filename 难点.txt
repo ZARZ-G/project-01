@@ -1,4 +1,6 @@
-BigInt//大整形
+模块的两种请求 ：require 是服务器用的 import 是客户端用的
+用 export 导出的模块，需要用 import 来进行导入，而不能用 require
+BigInt(n)//大整形
 str.mathAll(正则)//快速提取字符串
 Promise.all()方法只有都成功才能成功 值为promise对象的值
 Promise.allSettled()//方法只返回成功 值为promise对象的值
@@ -15,10 +17,14 @@ ES6暴露语法 分别暴露  统一暴漏  默认暴露
 通用的导入方式
 解构赋值形式
 arr.includes()//判断数组是否包含某个元素
+优化网页图片的方法 精灵图  转base64(小图片)
 Object.assign(p1, p2) //对象的合并
 Math.sign()判断数值是否为正数1 负数-1  零0
 Math.trunc()//去小数
 Number.parseInt () //字符串转整数   失败返回NaN
+-S  //save 上线必带的包
+-D //dev 开发中使用的包
+import $ from 'jquery'//导入包
 Number.ParseFloat()//字符串转小数  失败返回NaN
 res.setHeader('Content-Type','text/html;charset=utf-8')//服务器发送的中文语句是乱码  该代码设置请求头来处理乱码 问题
 req 是客户端  res是服务器端

@@ -1,0 +1,32 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider &&webpack server",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider &&webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-proposal-decorators": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.3",
+    "style-loader": "^3.3.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.86.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^3.11.3"
+  }
+}
