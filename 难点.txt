@@ -1,3 +1,17 @@
+get请求 featch   jquery  axios  xhr对象
+创建服务器 http内置模块  express模块
+// Vue中数据赋值不能这样写  this.myage = this.myage++    
+//应直接写成this.myage++  因为data对象中的属性由getter 和setter 实现数据实时更新
+Node.js 基于CommandJS 
+销毁Vue实例 this.$destroy()
+让文本框自动获取焦点 加上 autofocus 属性
+| 管道分割符 将参数从左边传到右边
+Vue数据劫持 基于Object.defineProperty(obj, prop, descriptor) 该方法是在对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。监听对象里的某个属性，做数据劫持处理。
+Vue数据代理 data===_data
+Vue中的v-show 和v-if  值是false 不显示 true 显示
+slice()//截取字符串
+Promise 是异步编程的一种解决方案
+promise有三种状态：pending(等待态)，fulfiled(成功态)，rejected(失败态)；状态一旦改变，就不会再变
 模块的两种请求 ：require 是服务器用的 import 是客户端用的
 用 export 导出的模块，需要用 import 来进行导入，而不能用 require
 BigInt(n)//大整形
@@ -61,7 +75,7 @@ on 在……时候
 [\S]表示匹配 非空白字符
 g表示匹配全局
 两者同时出现[\s\S]表示匹配 任何字符
-
+行高越大字体越往下走 反之亦然
 
 给字符串加空格 +'\xa0' 
 sort()
@@ -71,7 +85,7 @@ pop()
 shift()
 unshift()
 join(',')//将数组转换成字符串
-concat()
+concat() //合并
 filter()
 some()
 every()
@@ -388,13 +402,81 @@ ${item.isChecked ? 'checked' : ''} 判断复选框是否选中
 fn.call(对象，1，2，3)   //参数是1，2，3
 fn.apply(对象，[1,2,3]) //参数必须是数组
 fn.bind(对象，1，2，3)不调用函数 返回一个函数
-|管道分割符
 定时器的this默认指向window 
 reduce() 累计器
 
 *非空判断强力推荐for循环
 
 join('\r\n') //将数组转成字符串并且换行
+
+
+
+/* 多行文字溢出显示省略号 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+	
+/*单行文字溢出显示省略号*/
+1.使用overflow: hidden把超出的内容进行隐藏；
+2.然后使用white-space: nowrap设置内容不换行；
+3.最后使用text-overflow: ellipsis设置超出内容为省略号
+
+清除盒子塌陷的方法 display:table
+
+原型和原型链
+		原型对象：每个函数都有prototype属性 也加原型或者原型对象
+		原型对象主要放一些共享的属性和方法给实例对象使用
+		原型可以被继承
+		原型链：每个实例对象都有__proto__属性 这个属性指向它的原型对象 
+		原型对象也是对象 也有__proto__属性 指向原型对象的原型对象 这样一层一层形成的链式结构称为原型链 最顶层找不到返回null
+
+
+Object.defineProperty()语法说明 只能添加属性不能添加方法
+Object.defineProperty()的作用就是直接在一个对象上定义一个新属性，或者修改一个已经存在的属性
+
+Object.defineProperty(obj, prop, desc)
+obj 需要定义属性的当前对象
+prop 当前需要定义的属性名
+desc 属性描述符
+一般通过为对象的属性赋值的情况下，对象的属性可以修改也可以删除，
+但是通过Object.defineProperty()定义属性，通过描述符的设置可以进行更精准的控制对象属性。
+Object.defineProperties()//给对象添加多个属性 
+
+HTML选择器优先级 !important>id>类>标签>全选选择器
+对象的id用字符串 推荐
+//数组的替换
+		arr = arr.fill({ id: '05', name: '张三' }, 4)
+传统数组的删除方法
+		  let arr = [1, 2, 3, 4, 5]
+          arr.shift()//前删除
+         arr.pop()//后删除
+         arr.splice(1, 2)//从指定位置开始删除后面的元素 下标是从1开始的不是从0开始的
+	     arr = arr.slice(0, 3)//从数组中返回选定的元素，作为一个新数组 下标从0开始
+	     arr.filter() //根据条件删除
+         arr = arr.filter(item => {
+		 return item !== 2
+         })
+         console.log(arr)
+非传统数组的删除方法
+		arr.filter() //根据条件删除
+		arr = arr.filter(item => {
+            return item.id !== n
+        })
+
+数组的合并 arr.concat(6,7,8)
+
+在html5中宽度可以被继承 但是高度不能被继承 display:table   宽度不能被继承
+
+http模块决绝乱码和跨域问题
+	 res.writeHead(200, {
+        "Content-Type": "application/json;charset=utf-8",
+        // cors头,允许跨域，放行所有请求
+        "access-control-allow-origin":"*"
+    })
+
+
 
 
 

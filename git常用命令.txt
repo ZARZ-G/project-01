@@ -16,7 +16,7 @@ git add  文件名字//添加新文件到暂存区
 
 git add  .   //添加多个文件到暂存区
 
-git commit -m "提交说明"//提交到本地仓库里
+git commit -m "提交说明"//将暂存区内容提交到本地仓库里
 
 git commit -a -m  "直接将修改过的文件保存到本地仓库 跳过暂存区  可以提交多个暂存区里的文件" 
 
@@ -78,7 +78,7 @@ git push 远程仓库名字 --delete 远程分支的名字  //删除远程分支
 
 
 通过SSH将本地仓库上传到远程仓库
-git remote add origin git@github.com:ZARZK/project-02.git//将远程仓库和本地仓库绑定
+git remote add origin git@github.com:ZARZK/project-01git//将远程仓库和本地仓库绑定
 git branch -M main // 切换到主分支上
 git push -u origin main //添加主分支上的文件到远程仓库
 

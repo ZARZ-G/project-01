@@ -1,26 +1,525 @@
+VUE 开发者 尤雨溪
 vue 是js的渐进式框架 
-node.js是js的运行环境 后端
+vue特点: 采用组件化模式  声明式编码	 使用虚拟DOM和Diff算法 尽量复用DOM节点
+js采用式命令式编码
+node是js的运行环境 后端
 容器和实例一一对应
+开发中只有一个Vue实例 并且配合组件一起使用
+new Vue({配置对象})
 Vue模板分为2大类
-1.插值语法 {{xxx}}
-2.指令语法 v-bind===可以简写成:
-v-bind:href="url" // 绑定超链接
-Vue支持单向绑定和双向绑定 v-bind 和v-model :value 简写 v-model="name"
-双向绑定主要用在表单元素上
+1.插值语法 {{xxx}} //里面写js的表达式
+2.指令语法 v-bind===可以简写成 :
+v-bind:href="url" // 给href属性绑定超链接 主要功能给标签中的某个属性绑定值用v-bind
+Vue支持单向绑定和双向绑定 v-bind 和v-model 
+v-model 只能用在表单元素上 简写写法v-model="value"
 Vue里的函数不能用箭头函数
-原型上面挂载方法 object.defineProoerty(对象名,'属性名',{value:值})
+*Vue 参考的模型式MVVM 中的VM 所以他的实例名叫vm最合适
+给对象添加属性// object.defineProoerty(对象名,'属性名',{value:值})
 数据代理：通过一个对象代理另一个对象的属性的操作
 _data==data //内置getter setter  实时更新数据
 v-on:click='方法名'   简写@ //绑定事件
 事件回调需要配置在methods对象中，会自带挂载在vm实例上
-VUE中的内置函数this指向vm或组件对象
-//常用修饰符可以连写
+Vue中的内置函数this指向vm或组件对象
+
+//常用修饰符可以连写  只能在V-on指令上使用
 .prevent 阻止事件的默认行为
-.stop 阻止事件冒泡
+.stop 阻止事件冒泡//给子元素添加
 .stop.prevent 阻止默认行为和冒泡
-.self 阻止子元素的事件冒泡
-.capture 事件捕获
+.self 阻止子元素的事件冒泡 //给父元素添加
+.capture 事件捕获 //给父元素添加
 .once事件只触发一次
+.passive事件的默认行为会立即执行 无需等待回调执行完毕
+ arr.filter ()//过滤数组或数组对象
+
+MVVM 详细分析
+  M 模型 对应data的数据
+  V 视图  对应模板/容器
+  VM 视图模型  对应Vue实例对象
+  
+VM特点：
+data 中的所有的数据都出现在vm对象身上
+vm身上所有的属性以及Vue原型上的属性在Vue模板中都可以使用
+
+Vue中的数据代理
+	通过vm对象来代理data对象中的属性的读写操作
+数据代理的好处
+	更加方便操作data中的数据
+基本原理
+	通过Object.defineProperty() 把data对象中所有属性添加到vm对象上
+	为每一个添加到vm对象上的属性指定一个getter/setter方法
+	在getter/setter 内部去操作读写data对象中对应的属性
+	
+computed:{ 内置对象{get.set}}  用来定义计算属性 是一个对象 内置geter 和setter，getter自带缓存  
+split('-') //将字符串拆开 返回数组
+slice(0,1)//将字符串截取
+Vue内部的this指向vm对象 
+watch:{handler(newVlaue,oldValue){}}//用来监视属性
+deep//开启深度监视 监视多级数据 
+Vue默认能监视多级属性
+监视属性可以进行异步操作，计算属性不能进行异步操作, 监视属性可以监视计算属性
+计算属性能完成的监视属性也能完成
+为了让this的指向是vm ==》被Vue管理的函数写成普通函数  不被Vue管理的函数写成箭头函数   
+在Vue中冒号后面是表达式
+v--show 隐藏元素 || v-if  直接移除元素//控制显示和隐藏
+要想使用Vue代码 必须在script代码中创建Vue实例
+v-if v-else-if v-else //多条件判断语法
+template标签的使用只能和v-if 配合使用 不能和v-show配合使用  不是真正的dom节点
+template属性不会显示在dom树上 用来解析模块标签
+v-for="(p,index) of person :key='index' "//可以遍历对象和数组  
+监视属性的简写形式 ==》属性名(newValue,oldValue){}
+indexOf()//包含   0 表示匹配到了  -1 没有匹配到 
+字符串能匹配空字符串 返回0
+升序是p1—p2 降序是p2—p1
+*Vue.set(vm._data,‘age’,'男') 或者 vm.$set() //在_data上手动添加属性或者修改属性
+ 此方法不能在data里和vm 对象上添加属性  通过此方法可以修改数组和对象的值
+
+数组的splice方法：
+数组中最强大的方法splice()，可以对数组进行添加、删除、替换操作
+删除
+arr=[‘0赵’,‘1钱’,‘2孙’,‘3李’,‘4周’,‘5吴’]
+arr.splice(index,num)
+第一个参数表示开始删除的索引位置，num表示删除的个数
+如arr.splice(1,2)
+返回的结果为:arr=[‘0赵’,‘3李’,‘4周’,‘5吴’]
+添加
+arr=[‘0赵’,‘1钱’,‘2孙’,‘5吴’]
+arr.splice(index,0,‘x’,‘y’)
+第一个参数表示开始插入的索引位置，0表示删除0个，后面的表示添加的元素
+如 arr.splice(2,0,‘haaa’,‘wuuu’]
+返回的结果为:arr=[‘0赵’,‘1钱’,‘haaa’,‘wuuu’,‘2孙’,‘5吴’]
+替换
+arr=[‘red’,‘yellow’,‘green’,‘blue’]
+arr.splice(index,num,‘x’,‘y’,‘z’)
+第一个参数表示开始删除的索引，num表示删除的个数，后面的几个元素插入到删除的位置上
+Vue监视对象中的数据  通过setter方法
+Vue监视数组中的数据  通包裹数组更新元素的方法实现 原理：调用原生对应的方法对数组进行更新,重新解析模板,用来更新页面
+表单里的radio按钮要想获得值需要额外添加value属性
+表单里的checkbox要想获得值需要额外添加value属性并且要用数组来存值
+v-model.number //用来修饰年龄
+v-model.lazy //让textarea不实时更新
+v-model.trim//去首尾空格
+v-text//向标签里添加文字会替换标签里的文字
+v-html //能解析标签 但是不安全
+filters{fn(){}}  //过滤器 支持插值和v-bind  并且支持串联
+Vue特殊指令：
+v-cloak 是一个特殊的属性 Vue实例创建完毕并接管容器后 会删掉v-cloak属性 解决网速慢页面显示未解析的模板问题
+使用css 配合v-cloak可以解决网速慢页面展示出{{xxx}}的问题
+v-once 首次会被渲染之后就变成静态内容不在改变 主要用于优化性能
+v-pre 跳过所在节点的编译过程  可跳过没有使用指令语法 没有使用插值语法的节点 加快编译
+directives:{} //声明自定义的指令的关键字  命名格式'bind-number':(){}
+自定义指令何时被调用:
+	指令与元素成功绑定时调用
+	指令所在的模板被重新解析时调用
+自定义指令包含  
+			  bind函数 指令与元素绑定时调用
+			  inserted函数 指令所在的元素插入页面时调用
+			  update函数  指令所在模块被重新解析时调用
+共同点：他们的this指向window 
+全局自定义指令 Vue.directive(指令名,配置对象或者回调函数)
+
+Vue的生命周期==》 创建  挂载 更新  销毁
+	  又叫生命周期回调函数 生命周期函数 生命周期钩子
+	  是指Vue在关键的时刻帮我们调用的一些特殊的函数
+	  生命周期函数的名字不可改变但具体逻辑是根据需求编写的
+	  生命周期的this 指向vm 或者组件实例对象
+
+mounted() {} //完成解析并把初始的真实dom放入到页面上之后执行
+
+vue的钩子函数:
+	 创建
+     beforeCreate 
+	 created
+	 挂载
+	 beforeMount
+	 mounted
+	 更新
+	 beforeUpdate
+	 updated
+	 销毁
+	 beforeDestroy
+	 destroyed
+使用了 keep-alive时多出了两个周期
+	activited  组件激活时
+	deactivited 组件销毁时
+	
+ Vue常用的生命周期钩子
+	  mounted 发送ajax请求 启动定时器 绑定自定义事件 订阅消息等
+	  beforeDestroy 清除定时器  解绑自定义事件 取消订阅消息等
+ 关于销毁Vue实例 
+	销毁后借助Vue开发者工具包看不到任何消息
+	销毁后自定义事件会失效 但原生Dom事件依然有效
+	一般不会在beforeDestroy操作数据  就算操作数据也不会在触发更新流程了
+ 
+组件 分为非单文件组件 和单文件组件
+组件的使用步骤 
+	 定义组件 
+	 注册组件
+	 使用组件
+
+定义组件的方法 Vue.extend()
+	el 不写 由vm管理
+	data 必须写成函数 避免组件复用时数据存在引用关系
+	使用template属性可以配置组件结构
+如何注册组件
+	局部注测 new Vue的时候传入components:{}对象
+	全局注册 Vue.component('组件名',组件相关配置)
+
+编写组件的标签
+	<school></school>
+
+关于组件名
+		一个单词组成
+		第一种写法 首字母小写
+		第二种写法 首字母大写 *推荐
+多个单词组成
+		第一种写法 短横线命名 my-school  
+		第二种写法 驼峰法 mySchool （需要脚手架）
+组件名尽可能回避html中已经有的元素的名称 h1等
+可以使用name配置组件名在开发者工具中的名字
+
+关于组件标签
+	可以写成双标签	<school></school>  或者 单标签</school> 
+    组件中的钩子函数和vm身上的一样
+声明组件时可以省略掉Vue.extend({})  vue会自动补全
+组件嵌套 主组件是App
+组件的本质就是VueComponet构造函数  Vue.extend生成的
+
+调用组件标签就会执行一次组件的构造函数
+每次调用 Vue.extend 都会返回一个全新的VueComponet
+关于this指向
+组件配置中this指向VueComponent实例对象
+在Vue中this 指向vm或者组件对象
+VueComponent 组件实例对象 简称vc 
+vc!=vm
+
+*内置关系 VueComponent.prototype.__proto__===Vue.prototype  
+让组件实例对象vc可以访问到Vue原型对象上的属性和方法
+
+npm i @vue/cli  -g  //安装全局脚手架 
+*vue create xxx //创建脚手架 脚手架的名字要小写
+*npm run serve //运行脚手架
+*修改vue.config中的内容 加上 lintOnSave:false /关闭语法检查/
+
+关于不同版本的Vue
+	vue.js是完整版的Vue 包含核心功能和模板解析器
+	vue.runtime.xxx.js是运行版的Vue 只有核心功能没有模板解析器  需要配合random函数实现模板解析功能
+
+Vue获取dom元素 用ref属性标识 ref="对象名字" id的替代者 获取方法this.$refs.对象名字  
+ref是vue或者vc自带的属性 $refs 是一个对象 { 对象名字：元素}
+
+
+*单文件组件使用==》在父组件里注册子组件 父组件不需要注册 父组件直接使用子组件标签
+
+组件里的props属性  //接收父组件传递过来的属性或者方法 它的优先级更高 使用props声明的属性不建议修改数据否则会出现警告
+诺想要修改需要声明一个新属性接收props传递过来的属性 然后修改
+冒号可以让数字值的属性转换成Number类型
+
+Vue混入 mixin 功能 把多个组件公共的配置对象提取成一个混入对象
+使用方式
+		定义组件{data(){},methods:{},....}
+		使用混入 全局混入Vue.mixin(xxx)  局部混入mixins:['xxx']
+
+插件的功能 用于增强Vue 
+插件的本质  包含install方法的一个对象 install方法的第一个参数是Vue 第二个参数是使用者传递的数据
+定义插件  对象.install =function(vue,options){全局过滤器 全局指令 全局混入 实例方法}
+使用方法 Vue.use()
+
+定义局部样式  <style scoped  lang="less"//语言选择></style>  防止冲突
+
+
+模块 向外提供功能的js文件
+原因	 js文件很复杂
+作用 复用js 简化js的编写 提高js运行效率
+
+组件  用来实现局部功能效果的代码集合 h5 c3 js 
+原因  一个界面的功能很复杂
+作用  复用代码 简化项目编码 提高运行效率
+
+模块化 当应用中的js都是以模块来编写的那这个应用就是一个模块化的应用
+组件化 当应用中的功能都以多组件的方式编写的 那这个应用就是组件化的应用
+
+组件包括三个标签  <template>模版</template>  <script>js </script>   <style>样式</style>
+nanoid 插件 随机数  时间戳 //随机生成id
+
+ //累加数组被选中的个数
+ return this.todolist.reduce((pre, next) => pre += next.done ? 1 : 0, 0)
+
+浏览器存储包括localstorage sessionStorage 容量为5M
+相关函数  setItem   getItem removeItem clear
+sessionStorage 保存的数据关闭浏览器后数据丢失
+localstorage  数据需要手动删除 或调用api函数删除
+如果数据为空 返回null
+json.parse(null) 返回null
+
+
+组件化编码流程：
+	一：拆分静态组件 组件要按照功能点拆分 命名不要与html冲突
+	二：实现动态组件 考虑好数据的存放位置 数据是一个组件在用 还是很多组件在用
+	数据是一个组件在用 放到组件自身
+	很多组件在用 	放在他们共同的父组件上
+	
+	props 实现 父组件到子组件的通信 
+					 子组件到父组件的通信 （父组件先传给子组件一个函数）
+	使用v-model时注意 v-model绑定的值不能时props传过来的值 因为props时不能修改的
+	props传过来的是对象类型的值 修改对象中的属性value不会报错 但不推荐这么做
+
+this.$emit(‘自定义事件名字’，'传过去的数据')//获取自定义事件 vc内置方法
+this.$off(‘自定义事件名字’’)  注销VM 注销VC //解绑自定义事件 	
+
+VUE 数据通信的方法：
+父给子 推荐props  $ref   this.$refs.student.$on('getdata', this.fn)  插槽
+子给父  不推荐props  父传子方法  全局事件总线   VueX  消息订阅与发布 作用域插槽
+兄弟传  全局事件总线   VueX  消息订阅与发布
+全局事件总线安装方法 在beforeCreate钩子里配置 Vue.prototype.$bus=this (vm)
+*全局事件总线的使用 
+		new Vue({
+			beforeCreate(){
+			//将Vue对象上的api赋值给$bus 
+				Vue.prototype.$bus=this 
+			}
+		})
+使用方法
+		接收数据方
+		mounted(){
+		this.$bus.$on('自定义事件名',(data)=>{})
+		}
+		提供数据方 //按钮要写在该组件里
+		function fn(){
+		this.$bus.$emit('自定义事件名',this.data)
+		}
+       在beforeDestroy钩子里用$off去解绑当前组件的所用到的事件
+
+订阅与发布的使用	
+	安装 npm i pubsub-js
+	引入 import pubsub from pubsub-js'
+	
+	接收数据 mounted (){
+	this.pid= pubsub.subscribe('自定义事件名',(msg,data)=>{})
+	}
+	最好在before Destroy钩子里 用pubsub.unsubscribe(pid) 取消订阅
+	
+	提供数据 pubsub.publish(’自定义事件名‘,this.data)
+
+nextTick //在下一次dom更新后执行
+		this.$nextTick(回调函数)
+
+vue封装动画与过渡
+vue中的transition 标签定于动画   加上appear 关键字页面刷新就播放动画
+  v-enter-active //进入  v-enter  v-enter-to
+  v-leave-active  //离开  v-leave  v-leave-to
+有多个元素需要过渡 需要使用 <transition-group> 给每个加key值
+
+代理服务器解决跨域问题
+	   //开启代理服务器 在vue.config配置文件中
+	   方式一 ：开启一个代理服务器
+	  devServer: {
+		proxy: 'http://localhost:5001'//端口号写服务器里的端口号 url 地址写本地请求地址
+	  }
+		方式二：开启多个代理服务器
+		
+	  devServer:{
+	  proxy:{
+		'/api1':{
+				target:'http://localhost:5000'，
+				changeOrigin:true//改变本地url地址的端口号为服务器的端口号
+					//false//服务器的请求头host是 localhotst:8081 默认
+				pathRewrite:{'^/api1':' '}
+					}
+				},
+				
+		'/api2':{
+				target:'http://localhost:5001'
+				changeOrigin:true //服务器的请求头host为 localhost:5001
+				//changeOrigin默认是false  服务器的请求头host是 localhotst:8081
+				pathRewrite:{'^/api1':' '}
+					}
+		},
+	}
+	
+代理服务器特点 协议 域名 端口号要和服务器保持一致	
+发起get请求时 协议 域名 端口号要和本机地址一致 后面加上代理服务器的后缀名 
+
+安装 npm i  vue-resource 
+vue中的this.$http 功能和axios一样 更推荐使用axios
+
+
+插槽分为 默认插槽 作用域插槽 具名插槽  
+插槽标签<slot></slot>在Dom中不显示 name属性给插槽起名字 slot='name'   v-slot:tv
+使用template 标签包裹同名字的插槽 
+作用 让父组件可以向子组件指定位置插入html结构  适用于父组件==》子组件 通信
+作用域插槽原理： 数据在组件的自身 但数据生成的结构由组件使用者决定  *用法给使用者添加 scope="games"    子组件==》父组件
+
+VueX 实现集中式状态管理的插件 可以实现任意组件的通信 实时共享数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+						
+						
+						
+						
+						
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Promise笔记
@@ -56,7 +555,8 @@ for of 遍历值
 注意 for of 不能遍历对象否则报错
 class 类中的属性和方法叫做静态成员 实例成员可以访问到 非静态成员实例对象访问不到
 
-webpack笔记
+
+WebPack笔记
 webpack功能 将写好的代码压提高浏览器的性能和兼容性
 "dev": "set NODE_OPTIONS=--openssl-legacy-provider &&webpack" //解决node版本高运行不了的问题
 webpack的使用步骤
@@ -71,39 +571,7 @@ webpack只能处理js文件  如果发现非js文件他会去webpack.config.js�
 先将该文件放到最后一个loader进行处理 再将处理好的结果转交给下一个loader  如果没有loader了就将结果
 转交给webpack  将处理好的结果合并到/dist/main.js 中  最后生成打包好的文件
 开发阶段 文件在内存中  发布阶段文件在硬盘上
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@ 表示根目录
 
 
 
