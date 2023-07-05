@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <app></app>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        const zujian2 = Vue.extend({
+            name: 'aihao',
+            template: `<h1>{{aihao}}</h1>`,
+            data() {
+                return { aihao: '爱好是打游戏' }
+            }
+        })
+
+        const zujian1 = Vue.extend({
+            name: 'age',
+            template: `
+            <div>
+              <h1>{{age}}</h1>
+              <zujian2></zujian2>
+            </div>`,
+            data() {
+                return { age: '我今年20岁了' }
+            },
+            components: {
+                zujian2
+            }
+        })
+
+        const app = Vue.extend({
+            name: 'app',
+            template: `
+            <div>
+              <h1>{{name}}</h1>
+              <zujian1></zujian1>
+            </div>
+            `,
+            data() {
+                return { name: '我的名字叫小明' }
+            },
+            // 嵌套组件
+            components: { zujian1 }
+        })
+
+
+
+        new Vue({
+            el: '.root',
+            components: {
+                app
+            }
+        })
+    </script>
+</body>
+
+</html>

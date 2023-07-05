@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 通过vue里的v-for指令遍历数组 -->
+    <div class="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入人名" v-model="keywords">
+        <button v-on:click="typeSort=1">升序</button>
+        <button v-on:click="typeSort=2">降序</button>
+        <button v-on:click="typeSort=0">恢复原顺序</button>
+        <p v-for="p of fullname">{{p.name}}-{{p.age}}-{{p.gender}}
+            <input type="text" name="" id="" v-model="p.name">
+        </p>
+    </div>
+    <script src="./Vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                arr: [
+                    { name: '马冬梅', age: 10, gender: '女' },
+                    { name: '马铃薯', age: 20, gender: '男' },
+                    { name: '王宝钏', age: 30, gender: '女' },
+                    { name: '王宝强', age: 20, gender: '男' },
+                ],
+                //定义一个变量接收用户输入的参数
+                keywords: '',
+                //保持匹配的结果
+                fullarr: [],
+                //判断排序类型
+                typeSort: 0//1升序 2降序 0原顺序
+            },
+            //匹配数据
+            //监视属性
+            // watch: {
+            //     keywords: {
+            //         immediate: true,//放到被监视的属性里面
+            //         handler(newValue) {
+            //             this.fullarr = this.arr.filter(item => {
+            //                 return item.name.indexOf(newValue) !== -1
+            //             })
+            //         }
+            //     }
+            // }
+            //计算属性
+            computed: {
+                //内置一个方法
+                fullname() {
+                    const arr = this.fullarr = this.arr.filter(item => {
+                        //将用户输入的内容匹配返回出去
+                        return item.name.indexOf(this.keywords) !== -1
+                    })
+
+                    //将过滤的结果进行排序
+                    if (this.typeSort) {
+                        arr.sort((p1, p2) => {
+                            return this.typeSort === 1 ? p1.age - p2.age : p2.age - p1.age
+                        })
+                    }
+                    return arr
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>人员列表</p>
+    <ul class="root">
+        <li v-for="item of person" :key="person.id">{{item.name}}--{{item.age}}</li>
+        <!-- 遍历对象 -->
+        <li v-for="(value,key) of Objs" :key="key">{{key}}--{{value}}</li>
+
+        <!-- 遍历字符串 -->
+        <!-- <li v-for="(value,key) of str" :key="key">{{key}}--{{value}}</li> -->
+
+        <!-- 遍历指定次数 -->
+        <li v-for="(value,key) of 10" :key="key">{{key}}--{{value}}</li>
+
+
+
+    </ul>
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                person: [
+                    { id: 1, name: '张三', age: 20 },
+                    { id: 2, name: '李四', age: 30 },
+                    { id: 3, name: '王二', age: 30 },
+                    { id: 4, name: '赵六', age: 10 }],
+
+                Objs: {
+                    name: '王老吉',
+                    age: 20,
+                    color: 'skyblue'
+                },
+
+                str: 'hello'
+            },
+        })
+    </script>
+</body>
+
+</html>

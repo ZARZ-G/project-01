@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        姓：<input type="text" v-model:value="name">
+        <br>
+        名：<input type="text" v-model="lastName">
+        <p>全称：{{fullName}}</p>
+        <!-- <p>全称：{{fullName}}</p>
+        <p>全称：{{fullName}}</p>
+        <p>全称：{{fullName}}</p> -->
+
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.root',
+            data: {
+                name: '张',
+                lastName: '三'
+            },
+            computed: {
+                fullName: {
+                    //内部要封装get和set
+                    get() {
+                        console.log('get被调用了')
+                        return this.name.slice(0, 3) + '-' + this.lastName.slice(0, 3)
+                    },
+                    //当fullName修改时 自动调用set
+                    set(value) {//set的主要作用就是给vm对象上的属性重新赋值
+                        //姓名以—分隔开
+                        const arr = value.split('-')
+                        // console.log(arr) 将姓名存数组里
+                        this.name = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <p>显示格式化后的时间</p>
+        <!-- 过滤器支持串联 左参数右方法-->
+        <p>{{Date.now()|filterTime('YYYY HH:mm')|filteryear('YYYY')}}</p>
+        <a v-bind:href="time| filterTime">日期和时间</a>
+    </div>
+    <script src="./vue/Day.js"></script>
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                time: Date.now(),
+                str: ''
+            },
+            //使用计算属性
+            computed: {
+                //计算属性里面是一个方法只是调用的时候不写()
+                Time() {
+                    return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            //使用方法完成
+            methods: {
+                getTime() {
+                    return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            //使用过滤器完成
+            filters: {
+                filterTime(value, str = 'YYYY-MM-DD HH:mm:ss') {
+                    return dayjs(value).format(str)
+                },
+                filteryear(value, str) {
+                    return dayjs(value).format(str)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

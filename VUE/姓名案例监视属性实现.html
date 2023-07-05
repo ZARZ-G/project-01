@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        姓：<input type="text" v-model="name">
+        <br>
+        名：<input type="text" v-model="lastName">
+        <p>全称：{{fullname}}</p>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.root',
+            data: {
+                name: '张',
+                lastName: '三',
+                fullname: '张-三'
+            },
+            watch: {//针对异步处理
+                name(newvalue) {
+                    //普通函数js引擎调用默认指向window
+                    //箭头函数没有this 默认向外找
+                    setTimeout(() => {
+                        console.log(this)
+                        this.fullname = newvalue + '-' + this.lastName
+                    }, 1000);
+
+                },
+                lastName(newvalue) {
+                    this.fullname = this.name + '-' + newvalue
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

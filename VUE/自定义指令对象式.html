@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>让页面上的文本框自动获取焦点</title>
+    <style>
+        .a {
+            background-color: pink;
+        }
+
+        .b {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root">
+        <input type="text" placeholder="看我能不能获取焦点" v-fbind:value="n">
+        <button v-on:click="n++">n++</button>
+    </div>
+
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: { n: 1 },
+            directives: {
+                // fbind(element, binding) {
+                //     // console.log(element, binding)
+                //     // element.value = binding.value 默认undefined
+                //     //input只是和指令绑定还未出现在页面上 不能获取焦点里
+                //     element.focus()
+                // }
+
+                //自定义指令对象形式
+                fbind: {
+                    //内置bind inserted update
+                    bind(element, binding) {
+                        // console.log(element, binding)
+                        console.log('指令和元素绑定了')
+                    },
+                    //简写不包含inserted
+                    inserted(element, binding) {
+                        element.focus()
+                        element.classList.add('a')
+                        console.log('元素插入到页面上了')
+                        // console.log(element, binding)
+                    },
+                    update(element, binding) {
+                        element.focus()
+                        console.log('元素的值更新了,Vue重新解析了')
+                        element.classList.add('b')
+                        // console.log(element, binding)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <!-- <h1>今天天气很{{ishot?'热':'冷'}}</h1> -->
+        <!-- 计算属性写法 -->
+        <h1>今天天气很{{info}}</h1>
+        <!-- <button v-on:click="fn">切换天气</button> -->
+        <!-- 只针对一个条件 -->
+        <button v-on:click="fn">切换天气</button>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.root',
+            data: {
+                ishot: true,
+            },
+
+            //计算属性
+            computed: {
+                info() {
+                    return this.ishot ? '热' : '冷'
+                }
+            },
+            methods: {
+                fn() {
+                    this.ishot = !this.ishot
+                }
+            },
+            // 添加内部监视属性
+            // watch: {
+            //     TODO:监视属性是一个对象 里面有handler方法和immediate属性
+            //     ishot: {
+            //         immediate: true, 初始化时监视
+            //         handler(newvalue, oldvalue) {
+            //             console.log(newvalue, oldvalue)
+            //         }
+            //     }
+            // },
+        })
+
+        //外部监视属性
+        vm.$watch('ishot', {
+            immediate: true,
+            handler(newvalue, oldvalue) {
+                console.log(newvalue, oldvalue)
+            }
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="root">
+        <button v-on:click="fn()">添加一个新的爱好</button>
+        <p>{{student.name}}</p>
+        <p>{{student.sex}}</p>
+        <p>{{student.age}}</p>
+        <p>{{student.aihao1}}</p>
+        <p>{{person.aihao2}}</p>
+        <!-- <p>{{person.show}}</p> -->
+    </div>
+
+
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                student: {
+                    name: '张三',
+                    sex: '男',
+                    age: 20,
+                    aihao1: '玩游戏',
+                },
+                person: {}
+            },
+            methods: {
+                fn() {
+                    Vue.set(this.person, 'aihao2', '跳舞')
+                }
+            }
+        })
+
+        //两种添加属性的方法
+        // Vue.set(vm.student, 'aihao2', '打球')
+        // vm.$set(vm.student, 'aihao2', '打球')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 鼠标经过事件 -->
+    <div class="box" v-on:mousemove="fn"></div>
+
+
+    <input type="text" class="text" placeholder="请按下键盘" v-on:keyup.ctrl.Enter="fn">
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.text',
+            methods: {
+                fn(e) {
+                    //限制按键的两种方法
+                    // if (e.key == 'Enter')
+                    console.log(e.target.value)
+                }
+            }
+        })
+
+
+        new Vue({
+            el: '.box',
+            methods: {
+                fn(e) {
+                    console.log('鼠标滑动了')
+                    console.log(e)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

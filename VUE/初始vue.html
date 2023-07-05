@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始VUE</title>
+</head>
+
+<body>
+    <!--vue模板/容器 -->
+    <div class="box">
+        <!-- TODO:插值语法 写在标签体里 -->
+        <!-- 花括号里写js表达式-->
+        <!-- 表达式 ：一个表示式会产生一个值 -->
+        <h1 v-bind:x="name">hellow {{name.toUpperCase()}}{{Date.now()}},{{url}}</h1>
+        <!-- TODO:指令语法  用于解析标签-->
+        <a v-bind:href="url">百度一下</a>
+        <h2>熊出没 {{person.name}}</h2>
+    </div>
+
+    <script src="./vue/vue.js"></script>
+    <script>
+        // 创建vue实例 配置对象
+        new Vue({
+            el: '.box',
+            data: {
+                name: '你好', url: 'http://www.baidu.com', person: {
+                    name: '熊大 熊二 光头强'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

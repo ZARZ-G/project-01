@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <p ref="p">我是p标签</p>
+        <input type="text" ref="input">
+        <button class="btn" v-on:click="fn">点我获得焦点</button>
+    </div>
+    <!-- 引入Vue -->
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            methods: {
+                fn() {
+                    this.$refs.input.focus()
+                    this.$refs.p.innerText = '我是一个好人'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

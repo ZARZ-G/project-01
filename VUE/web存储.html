@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">保存数据</button>
+    <button id="btn2">读取数据</button>
+    <button id="btn3">单个数据删除</button>
+    <button id="btn4">全删除</button>
+</body>
+
+<script>
+    const person = { "xm": "小明" }
+
+    // document.querySelector('#btn1').addEventListener('click', () => {
+    //     localStorage.setItem("name", "张三")
+    //     localStorage.setItem("person", JSON.stringify(person))
+    // })
+
+
+    // document.querySelector('#btn2').addEventListener('click', () => {
+    //     console.log(JSON.parse(localStorage.getItem("person")))
+    // })
+
+    // document.querySelector('#btn3').addEventListener('click', () => {
+    //     localStorage.removeItem("person")
+    // })
+
+    // document.querySelector('#btn4').addEventListener('click', () => {
+    //     localStorage.clear()
+    // })
+
+    document.querySelector('#btn1').addEventListener('click', () => {
+        sessionStorage.setItem("name", "张三")
+        sessionStorage.setItem("person", JSON.stringify(person))
+    })
+
+
+    document.querySelector('#btn2').addEventListener('click', () => {
+        console.log(JSON.parse(sessionStorage.getItem("person")))
+    })
+
+    document.querySelector('#btn3').addEventListener('click', () => {
+        sessionStorage.removeItem("person")
+    })
+
+    document.querySelector('#btn4').addEventListener('click', () => {
+        sessionStorage.clear()
+    })
+
+    const arr = []
+    console.log(arr.length)
+</script>
+
+</html>

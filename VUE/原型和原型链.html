@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {
+
+        }
+        const arr = new Array()
+        console.log(arr)
+
+        let obj = {}
+        //定义单个属性
+        // Object.defineProperty(obj, 'name', {
+        //     // writable: false,//只读
+        //     value: '张三',
+        // })
+        // console.log(obj.name)
+
+        //定义多个属性
+        const student = {}
+        Object.defineProperties(student, {
+            name: {
+                writable: false,
+                value: "lisi"
+            },
+            age: {
+                writable: true,
+                value: 16,
+            },
+            sex: {
+                get() {
+                    return '男';
+                },
+                set(v) {
+                    this.sex = v
+                }
+            },
+
+        })
+        console.log(student)
+
+
+
+    </script>
+</body>
+
+</html>

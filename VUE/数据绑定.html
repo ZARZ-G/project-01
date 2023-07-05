@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <!-- 单项绑定 -->
+        单项数据绑定： <input type="text" :value="value" class="btn">
+        <br />
+        <!-- 双向绑定 -->
+        双项数据绑定： <input type="text" v-model:value="value">
+        <br />
+        <!-- 使用双向绑定完成全选功能 -->
+        <!-- v-model 简写写法 -->
+        全选：<input type="checkbox" v-model="check">
+        <!-- 全选：<input type="checkbox" v-model:checked="check"> -->
+        复选框2：<input type="checkbox" :checked="check">
+        复选框1：<input type="checkbox" :checked="check">
+        复选框2：<input type="checkbox" :checked="check">
+        复选框1：<input type="checkbox" :checked="check">
+        复选框2：<input type="checkbox" :checked="check">
+    </div>
+
+
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                value: '我是输入框',
+                check: "checked"
+            }
+        })
+    </script>
+</body>
+
+</html>

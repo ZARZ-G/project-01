@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <p>a是{{numbers.a}}</p>
+        <p>b是{{numbers.b}}</p>
+        <button v-on:click="numbers.a++">a++</button>
+        <button v-on:click="numbers.b++">b++</button>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.root',
+            data: {
+                numbers: {
+                    a: 1,
+                    b: 1,
+                }
+            },
+            //watch默认只能监视单个属性
+            watch: {
+                //'numbers.a'监视单个属性
+                //deep 监视多个属性
+                numbers: {
+                    deep: true,
+                    handler() {
+                        console.log('a改变了')
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

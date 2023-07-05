@@ -1,0 +1,59 @@
+Promise //承诺
+resolve// 解决
+reject// 拒绝
+reason //原因 
+symbol //标志
+yield //产生
+prototype//原型
+extends //继承
+super //管理人 指向父类
+constructor //声明构造函数的关键字
+import//导入
+express //快速
+export//导出
+as//为
+rest //存放
+spread //展开
+flat //降
+entry//人口
+asset//资源
+limit//限制
+dirname //目录名
+diff //比较
+model//模型
+property//属性
+handler//处理程序
+watch//监视
+of   ...一部分
+immediate//立即
+computed//计算属性
+defineProperty //自定义属性
+directives//自定义指令
+mounted//挂载完成
+debugger//断点
+template//模板
+extend //扩展
+filters//过滤器
+components//自定义组件
+dir//目录
+$mount //挂载
+mixin //混入
+plugins //插件
+scoped//范围
+keep-alive//保持活动
+props//属性
+emit //触发
+appear//出现
+host //主机
+path Rewrite//路径重写
+proxy//代理
+
+
+
+
+
+
+
+
+
+

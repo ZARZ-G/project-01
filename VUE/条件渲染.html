@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div class="root" v-show="false">我是一个消息</div> -->
+    <div class="root">
+        <h1>{{number}}</h1>
+        <button v-on:click="number++">n++</button>
+        <!-- 判断盒子是否显示或隐藏 -->
+        <div v-if="number===1">1号盒子</div>
+        <div v-else-if="number===2">2号盒子</div>
+        <div v-else-if="number===3">3号盒子</div>
+        <div v-else>4号盒子</div>
+
+        <!-- template的使用 -->
+        <template v-if="number===4">
+            <p>我是一个p标签</p>
+            <p>我是一个p标签</p>
+            <p>我是一个p标签</p>
+        </template>
+
+
+    </div>
+
+    <script src=" ./vue/vue.js">
+    </script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                number: 1
+            },
+
+        })
+    </script>
+</body>
+
+</html>

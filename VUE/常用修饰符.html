@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .out {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        .out div {
+            width: 50px;
+            height: 50px;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 阻止元素默认行为 -->
+    <a v-bind:href=url class="baidu" v-on:click.prevent>{{name}}</a>
+    <!-- 阻止事件冒泡 -->
+    <div class="out" v-on:click="fn">
+        <div v-on:click.stop="fn2"></div>
+    </div>
+    <!-- 只有按住ctrl键才会触发事件 -->
+    <button class="btn" v-on:click.ctrl.exact="fn">只有ctrl按下才触发</button>
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.baidu',
+            data: {
+                name: '百度一下',
+                url: 'http://www.baidu.com'
+            },
+        })
+
+
+        new Vue({
+            el: '.out',
+            methods: {
+                fn() {
+                    alert('我很牛 爸爸')
+                },
+                fn2() {
+                    alert('我很好 儿子')
+                }
+            }
+        })
+
+
+        new Vue({
+            el: '.btn',
+            methods: {
+                fn() {
+                    alert('按钮i按下了')
+                }
+            }
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

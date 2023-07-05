@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a {
+            background-color: pink;
+        }
+
+        .b {
+            background-color: red;
+        }
+
+        .c {
+            background-color: skyblue;
+        }
+
+        .d {
+            background-color: purple;
+        }
+
+        .aa {
+            background-color: blue;
+        }
+
+        .bb {
+            color: pink;
+        }
+
+        .cc {
+            text-shadow: 10px 10px 10px black;
+        }
+
+
+        .root {
+            width: 300px;
+            height: 100px;
+            border: 5px solid black;
+            text-align: center;
+            font-size: 24px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TODO:当点击盒子的时候随机改变盒子的背景颜色 -->
+    <!-- <div class="root" :class="moon" v-on:click="fn">{{text}}</div> -->
+    <!-- TODO:动态添加样式 -->
+    <!-- <div class="root" :class="classarr" v-on:click="fn">{{text}}</div> -->
+    <!-- TODO 对象写法 -->
+    <!-- <div class="root" :class="classObj" v-on:click="fn">{{text}}</div> -->
+    <!-- TODO 绑定style 对象写法与数组写法 -->
+    <div class="root" :style="styleArr" v-on:click="fn">{{text}}</div>
+
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                text: '格局与法则',
+                moon: '',
+                classarr: ['aa', 'bb', 'cc'],
+                classObj: { 'aa': !true, 'bb': true, 'cc': !false },
+                styleObj: {
+                    fontSize: 50 + 'px',
+                    color: 'pink',
+                    borderColor: 'blue'
+                },
+                styleArr: [
+                    {
+                        fontSize: 50 + 'px',
+                        color: 'pink',
+                    },
+                    {
+                        fontSize: 50 + 'px',
+                        color: 'pink',
+                        backgroundColor: 'blue'
+                    }
+                ]
+            },
+            methods: {
+                fn() {
+                    console.log(this.classObj.cc)
+                    // document.querySelector('.root').classList.add('a')//避开DOM的操作
+                    const arr = ['a', 'b', 'c', 'd']
+                    this.moon = arr[Math.floor(Math.random() * 4)]
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

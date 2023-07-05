@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <!-- 强制让初始值不变 -->
+        <p v-once>初始值：{{n}}</p>
+        <p>最终值：{{n}}</p>
+        <button v-on:click="n++">n++</button>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                n: 1
+            },
+        })
+    </script>
+</body>
+
+</html>

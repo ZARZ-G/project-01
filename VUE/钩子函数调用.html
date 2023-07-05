@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div class="root">
+        {{a}}
+        <button v-on:click="add">a++</button>
+        <button v-on:click="fn">vue结束了</button>
+    </div>
+    <script src="./vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: { a: 1 },
+            methods: {
+                fn() {
+                    this.$destroy()
+                },
+                add() {
+                    console.log('加加')
+                    this.a++
+                }
+            },
+            // 生命周期钩子
+            beforeCreate() {
+                console.log('beforeCreate执行了')
+                console.log(this)
+                // debugger
+            },
+            //初始化后
+            created() {
+                console.log('created执行了')
+                console.log(`output->this`, this)
+                // debugger
+            },
+            beforeMount() {
+                console.log('挂载之前')
+                console.log(`output->this`, this)
+            },
+            mounted() {
+                console.log('挂载之后')
+                // setInterval(() => {
+                //     this.a++
+                // }, 1000);
+            },
+            beforeUpdate() {
+                console.log('数据更新之前')
+                console.log(this.a)
+            },
+            updated() {
+                console.log('数据跟新后')
+            },
+            // 结束生命周期
+            beforeDestroy() {
+                console.log('结束之前')
+            },
+            destroyed() {
+                console.log('结束后')
+            }
+        })
+    </script>
+</body>
+
+</html>

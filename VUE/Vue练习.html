@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <button v-on:click="student.age++">年龄加一</button>
+        <button v-on:click="add()">添加性别属性</button>
+        <button v-on:click="student.sex='女'">修改性别</button>
+        <button v-on:click="addPengyou()">添加一个朋友</button>
+        <button v-on:click="changePengyou()">修改第一个朋友的名字为刘禹锡</button>
+        <button v-on:click="addAihao()">添加一个爱好</button>
+        <button v-on:click="changeAihao()">修改第一个爱好为开车</button>
+        <button v-on:click="removeAihao('唱歌')">过滤爱好中的唱歌</button>
+        <h1>学生信息</h1>
+        <h2>姓名:{{student.name}}</h2>
+        <h2>年龄:{{student.age}}</h2>
+        <h2 v-show="student.sex">性别:{{student.sex}}</h2>
+        <!-- v-for实时渲染数据 -->
+        <h3 v-for="(p,index) of student.pengyou" :key="index">朋友：{{p}}</h3>
+        <h3 v-for="item of student.aihaos">爱好：{{item.aihao}}</h3>
+    </div>
+    <script src="vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.root',
+            data: {
+                student: {
+                    name: '张三',
+                    age: 20,
+                    pengyou: ['小明', '小张'],
+                    aihaos: [{ aihao: '唱歌' }, { aihao: '玩游戏' }]
+                }
+
+            },
+            methods: {
+                add() {
+                    Vue.set(this.student, 'sex', '男')
+                },
+                addPengyou() {
+                    this.student.pengyou.unshift('小红')
+                },
+                changePengyou() {
+                    //通过数组自导的方法实现数组的数据实时更新
+                    // this.student.pengyou.splice(0, 1, '刘禹锡')
+                    Vue.set(this.student.pengyou, 0, '刘禹锡')
+                },
+                addAihao() {
+                    this.student.aihaos.unshift({ aihao: '打球' })
+                },
+                changeAihao() {
+                    this.student.aihaos[0].aihao = '开车'
+                },
+                removeAihao(str) {
+                    this.student.aihaos = this.student.aihaos.filter(item => {
+                        return item.aihao !== str
+                    })
+                }
+
+            },
+
+        })
+    </script>
+</body>
+
+</html>

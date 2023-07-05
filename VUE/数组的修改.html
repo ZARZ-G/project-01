@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <!-- <button onclick="fn()">让张三变成李四</button> -->
+        <button v-on:click="fn()">让张三变成李四</button>
+        <p v-for="(p,index) in arr" :key="index">{{arr[index]}}</p>
+    </div>
+    <script src="vue/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.root',
+            data: {
+                arr: ['张三', '李四', '王五', '李六']
+            },
+            methods: {
+                fn() {
+                    Vue.set(this.arr, 0, '李四')
+                }
+            }
+        })
+
+        // //  外部写法
+        // function fn() {
+        //     vm.$set(vm.arr, 0, '李四')
+        // }
+
+
+        //数组实现实时更新的方法
+        // 使用数组自带的方法 增删改查...
+        // 使用Vue.set()
+    </script>
+</body>
+
+</html>

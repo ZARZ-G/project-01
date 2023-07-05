@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <p>{{info}}</p>
+        <!-- 定义组件标签 -->
+        <school></school>
+        <student></student>
+        <hello></hello>
+    </div>
+
+    <div class="root2">
+        <hello></hello>
+    </div>
+    <script src="./vue/vue.js"></script>
+
+    <script>
+        //使用组件解决重名问题  
+        //创建
+        const school = Vue.extend({
+            //TODO 组件里不写el
+            //TODO data不能写成对象形式 必须是普通函数
+            template: `
+            <div>
+                <h1>{{name}}</h1>
+                <h1>{{address}}</h1>
+            </div>
+                
+                `,
+            data() {
+                return {
+                    name: '杏店小学',
+                    address: '河南省周口市',
+                }
+            },
+        })
+        const student = Vue.extend({
+            template: `
+            <div>
+                <h1>{{name}}</h1>
+                <h1>{{address}}</h1>
+            </div>
+                `,
+            data() {
+                return {
+                    name: '张三',
+                    address: '周口市'
+                }
+            }
+        })
+
+
+        // 创建全局组件
+        const hello = Vue.extend({
+            template: `
+            <div>
+                <h1>{{hello}}</h1>
+            </div>
+            `,
+            data() {
+                return {
+                    hello: '你好'
+                }
+            }
+        })
+
+
+        //注册全局组件
+        // 组件名字 组件的配置内容
+        Vue.component('hello', hello)
+        //一定要创建vm
+        new Vue({
+            el: '.root',
+            data: {
+                info: '学校信息和学生信息'
+            },
+            components: {
+                //注册
+                school,
+                student
+            }
+        })
+
+        new Vue({
+            el: '.root2',
+        })
+
+
+
+    </script>
+</body>
+
+</html>
