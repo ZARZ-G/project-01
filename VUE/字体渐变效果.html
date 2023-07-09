@@ -11,7 +11,7 @@
 <body>
     <!-- opacity: 0.5; -->
     <div class="root">
-        <p v-bind:style="{opacity}">字体渐变效果</p>
+        <p v-bind:style={opacity}>字体渐变效果</p>
         <!-- <button v-on:click="fn()">点一下</button> -->
     </div>
     <script src="./vue/vue.js"></script>
@@ -28,16 +28,18 @@
             //     }
             // },
 
-            //使用vue生命周期函数
+            //使用vue生命周期函数来实现自动执行
             //完成解析并把初始的真实dom放入到页面上之后执行
             mounted() {
-                setInterval(() => {
-                    console.log(this)//vue
+                this.time = setInterval(() => {
                     this.opacity = this.opacity <= 0 ? this.opacity = 1 : this.opacity - 0.1
                 }, 100);
+            },
+            beforeDestroy() {
+                clearInterval(this.time)
             }
-
         })
+
         // window.onload = vm.fn()
     </script>
 </body>

@@ -138,10 +138,11 @@ vue的钩子函数:
 	 销毁
 	 beforeDestroy
 	 destroyed
-使用了 keep-alive时多出了两个周期
-	activited  组件激活时
-	deactivited 组件销毁时
+使用了 keep-alive时多出了两个钩子
+	activited  路由组件激活时触发
+	deactivited  路由组件失活时触发
 	
+	$nextTick 下一轮 
  Vue常用的生命周期钩子
 	  mounted 发送ajax请求 启动定时器 绑定自定义事件 订阅消息等
 	  beforeDestroy 清除定时器  解绑自定义事件 取消订阅消息等
@@ -350,18 +351,107 @@ vue中的this.$http 功能和axios一样 更推荐使用axios
 作用域插槽原理： 数据在组件的自身 但数据生成的结构由组件使用者决定  *用法给使用者添加 scope="games"    子组件==》父组件
 
 VueX 实现集中式状态管理的插件 可以实现任意组件的通信 实时共享数据
+vuex包括三个常用的对象 actions{定义方法}  mutations{方法体}  state{原始数据} 
+// 关闭Vue身上的所有的警告 再main.js中配置
+Vue.config.silent = true
+
+vc中读取vuex中的数据 $store.state.sum
+vc中修改vuex中的数据 $store.dispatch("方法名字",要传的数据) 或者$storee.commite('方法名字','数据')
+如果没有ajax请求或其他业务逻辑 可以不写 dispatch 越过actions 直接写 commit
+
+getters对象的使用 当state中的数据需要加工时再使用getters
+使用map方法优化计算属性： 
+...mapState 帮我们映射state中的数据为计算属性   
+	computer
+	{                  //计算属性的名字,state里的变量名字
+	...mapState({sum:'sum'})
+	...mapState(['sum'])
+ 
+...mapGetters 帮我们映射getters中的数据为计算属性   
+ 			         //计算属性的名字,getters里的方法的名字
+	...mapGetters({bigSum:'bigSum'})
+	...mapGetters(['bigSum'])
+	}
+	
+   
+	// 简写mutations里的方法
+	methods{				
+								//方法名，mutations的方法名
+	...mapMutations({ jia: 'JIA', jian: 'JIAN' }),
+    ...mapMutations(['JIA', 'JIAN'])
+
+	//简写 actions里的方法   actions里的方法名字小写
+							   	//方法名，actions的方法名
+	...mapActions({ jisuojia: 'jishuojia', denghuijia: 'denghuijia' }),
+	...mapActions(['jishuojia', 'denghuijia'])}
+	}
+
+模块化+命名空间目的：让代码更好维护 让多种数据更加明确
+开启命名空间的方法  namespaced: true
+
+路由的实现了单页面的响应 优化网页的性能
+安装路由 npm i vue-router@3   //v2
+实现切换 active-class="active" //高亮
+<router-link  to="/Home"></router-link> //相当于a链接
+<router-view></router-view> //指定显示的位置
+
+路由组件存放到 pages文件夹里 一般组件放到 components 文件夹
+切换路由隐藏的路由组件会被销毁 需要的时候再去挂载
+每个组件都有自己的$route属性 里面存着自己的路由信息
+整个应用只有一个router （l路由器） 可以通过$router属性获取
+子级路由不要写 /   跳转时要写父亲的路径加自己的路径
+命名路由 简化跳转链接 :to="{name:'hello'}"
+
+路由的query参数
+	 <!-- 使用？号传参数 -->
+		<!-- <router-link :to="`/home/news/three?id=${m.id}&title=${m.title}`">{{ m.title }}</router-link> -->
+		<!-- 对象写法 -->
+		<router-link :to="{
+		//path 只能写单引号
+		path: '/home/news/three',
+		query: {
+			id: m.id,
+			title: m.title
+		}
+	}">
+		{{ m.title }}
+	</router-link>
+接收参数
+$route.query.id 
 
 
+路由的params参数
+	声明path路径时加上demo/:id/:title 使用占位符接收params参数
+	:to后面加上要传递的参数 /${m.id}/${m.title}  //字符串传参
+	使用对象传参时不能使用path属性 只能写name属性  用params:{}对象接收
+	接收参数
+	$route.parsms.id 
 
+ 组件传值的简写方式
+	// props: { a: 100, b: 200 } 只能传递死数据 不推荐使用
+	// props: true  //只能把params参数的数据传递出去 不支持query 
 
+	//props函数形式 支持query传值和params传值
+	props({ query }) {
+		return { id: query.id, title: query.title }
+	}
 
+接收方式 props:['id','title']                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
+路由组件的历史记录默认是push  添加replace属性 可以替换当前的历史记录
+编程式路由导航 不借助router-link 实现路由跳转 让路由跳转更加灵活
+路由器的接口 this.$router.push({})  this.$router.replace({}) 
+this.$router.back() this.$router.forward()  this.$router.go()
+	
+<keep-alive  include="路由组件名字">展示区</keep-alive>保存路由组件的数据 写上这个标签路由组件就不会触发销毁钩子
+<KeepAlive :include="Home, Dome"> 第二种写法 指定保存路由组件
 
-
-
-
-
-
+路由守卫
+	作用对路由权限的控制
+	分为全局守卫 独享守卫 组件内守卫
+	全局前置守卫 beforeEnter:(to,from,next)=>{}初始化时执行 每次路由切换前执行
+	全局后置守卫 afterEach:(to,from)=>{}初始化时执行 每次路由切换后执行
+	独享守卫 beforeEnter:(to,from,next)=>{}
 
 
 

@@ -47,8 +47,9 @@ appear//出现
 host //主机
 path Rewrite//路径重写
 proxy//代理
-
-
+dispatch //分配
+deactivated//失去激活
+activated//激活
 
 
 

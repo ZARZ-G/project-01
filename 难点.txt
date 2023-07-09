@@ -1,5 +1,13 @@
 get请求 featch   jquery  axios  xhr对象
-创建服务器 http内置模块  express模块
+//创建服务器的两种方法：
+	使用http内置模块 缺点中文会出现乱码 使用cors或者解决中文乱码需要配置响应头比较麻烦
+	express模块 特点中文不会出现乱码 使用cors比较方便
+	http模块解决中文乱码和跨域问题
+	 res.writeHead(200, {
+        "Content-Type": "application/json;charset=utf-8",
+        // cors头,允许跨域，放行所有请求
+        "access-control-allow-origin":"*"
+    })
 // Vue中数据赋值不能这样写  this.myage = this.myage++    
 //应直接写成this.myage++  因为data对象中的属性由getter 和setter 实现数据实时更新
 Node.js 基于CommandJS 
@@ -44,6 +52,7 @@ res.setHeader('Content-Type','text/html;charset=utf-8')//服务器发送的中�
 req 是客户端  res是服务器端
 \n是换行，英文是New line
 \r是回车，英文是Carriage return
+lintOnSave: false, VUE关闭提示信息
 JS数据类型 USONB  Symbol
 第七种数据类型 Symbol 类型
 arguments 获取方法中的所有的参数
@@ -468,14 +477,7 @@ HTML选择器优先级 !important>id>类>标签>全选选择器
 数组的合并 arr.concat(6,7,8)
 
 在html5中宽度可以被继承 但是高度不能被继承 display:table   宽度不能被继承
-
-http模块决绝乱码和跨域问题
-	 res.writeHead(200, {
-        "Content-Type": "application/json;charset=utf-8",
-        // cors头,允许跨域，放行所有请求
-        "access-control-allow-origin":"*"
-    })
-
+<iframe id="leftframe" align="left" width="700" height="100"></iframe> //超链接的显示盒子
 
 
 
