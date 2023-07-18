@@ -50,11 +50,14 @@ proxy//代理
 dispatch //分配
 deactivated//失去激活
 activated//激活
-
-
-
-
-
-
-
+setup //设置
+directive//指令
+proxy//代理
+reactive//响应
+reflect //反射
+Reflmpl //引用实现  
+reference//引用
+implement//实现
+Effect//反应 作用
+Composition Api//组合式Api
 

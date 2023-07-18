@@ -1,4 +1,4 @@
-/* 清除浮动 */
+/* 双伪元素清除浮动 */
 .clearfix:before,
 .clearfix:after {
   content: '';
@@ -462,20 +462,13 @@ jsonp 只能get请求 不能post请求
 
 
 Node.JS 笔记
-
 node.js是javascript 的运行环境 用来做后端开发的插件
-
 node.js 常用的命令
-
 ESC 清除命令   cls 清空内容   TAB自动补全   上箭头打印上一条命令
-
 __dirname 获取文件的根路径
-
 path.join()//拼接路径 
-
 path.basename()//将文件名解析出来
 path.extname() //获取文件的扩展名
-
 DNS将域名转换成IP地址
 http 端口号 80   默认可以省略
 本地地址 127.0.0.1 ==> localhost

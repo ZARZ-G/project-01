@@ -1,3 +1,4 @@
+VUE2笔记
 VUE 开发者 尤雨溪
 vue 是js的渐进式框架 
 vue特点: 采用组件化模式  声明式编码	 使用虚拟DOM和Diff算法 尽量复用DOM节点
@@ -69,7 +70,7 @@ v-for="(p,index) of person :key='index' "//可以遍历对象和数组
 监视属性的简写形式 ==》属性名(newValue,oldValue){}
 indexOf()//包含   0 表示匹配到了  -1 没有匹配到 
 字符串能匹配空字符串 返回0
-升序是p1—p2 降序是p2—p1
+升序是p1-p2 降序是p2-p1
 *Vue.set(vm._data,‘age’,'男') 或者 vm.$set() //在_data上手动添加属性或者修改属性
  此方法不能在data里和vm 对象上添加属性  通过此方法可以修改数组和对象的值
 
@@ -203,9 +204,9 @@ npm i @vue/cli  -g  //安装全局脚手架
 
 关于不同版本的Vue
 	vue.js是完整版的Vue 包含核心功能和模板解析器
-	vue.runtime.xxx.js是运行版的Vue 只有核心功能没有模板解析器  需要配合random函数实现模板解析功能
+	vue.runtime.xxx.js是运行版的Vue 只有核心功能没有模板解析器不能使用template配置项  需要配合random函数实现模板解析功能
 
-Vue获取dom元素 用ref属性标识 ref="对象名字" id的替代者 获取方法this.$refs.对象名字  
+Vue获取dom元素或者组件 用ref属性标识 ref="对象名字" id的替代者 获取方法this.$refs.对象名字  
 ref是vue或者vc自带的属性 $refs 是一个对象 { 对象名字：元素}
 
 
@@ -261,7 +262,7 @@ json.parse(null) 返回null
 	
 	props 实现 父组件到子组件的通信 
 					 子组件到父组件的通信 （父组件先传给子组件一个函数）
-	使用v-model时注意 v-model绑定的值不能时props传过来的值 因为props时不能修改的
+	使用v-model时注意 v-model绑定的值不能是props传过来的值 因为props是不能修改的
 	props传过来的是对象类型的值 修改对象中的属性value不会报错 但不推荐这么做
 
 this.$emit(‘自定义事件名字’，'传过去的数据')//获取自定义事件 vc内置方法
@@ -269,7 +270,7 @@ this.$off(‘自定义事件名字’’)  注销VM 注销VC //解绑自定义�
 
 VUE 数据通信的方法：
 父给子 推荐props  $ref   this.$refs.student.$on('getdata', this.fn)  插槽
-子给父  不推荐props  父传子方法  全局事件总线   VueX  消息订阅与发布 作用域插槽
+子给父  不推荐props  父传子方法  全局事件总线   VueX  消息订阅与发布 作用域插槽 自定义事件 refs
 兄弟传  全局事件总线   VueX  消息订阅与发布
 全局事件总线安装方法 在beforeCreate钩子里配置 Vue.prototype.$bus=this (vm)
 *全局事件总线的使用 
@@ -343,17 +344,16 @@ vue中的transition 标签定于动画   加上appear 关键字页面刷新就�
 安装 npm i  vue-resource 
 vue中的this.$http 功能和axios一样 更推荐使用axios
 
-
+f
 插槽分为 默认插槽 作用域插槽 具名插槽  
-插槽标签<slot></slot>在Dom中不显示 name属性给插槽起名字 slot='name'   v-slot:tv
+插槽标签<slot></slot>在Dom中不显示, name属性给子组件的slot标签起名字   父组件使用声明插槽加 slot='name'   v-slot:box1
 使用template 标签包裹同名字的插槽 
 作用 让父组件可以向子组件指定位置插入html结构  适用于父组件==》子组件 通信
 作用域插槽原理： 数据在组件的自身 但数据生成的结构由组件使用者决定  *用法给使用者添加 scope="games"    子组件==》父组件
 
 VueX 实现集中式状态管理的插件 可以实现任意组件的通信 实时共享数据
 vuex包括三个常用的对象 actions{定义方法}  mutations{方法体}  state{原始数据} 
-// 关闭Vue身上的所有的警告 再main.js中配置
-Vue.config.silent = true
+Vue.config.silent = true   // 关闭Vue身上的所有的警告 再main.js中配置
 
 vc中读取vuex中的数据 $store.state.sum
 vc中修改vuex中的数据 $store.dispatch("方法名字",要传的数据) 或者$storee.commite('方法名字','数据')
@@ -389,8 +389,8 @@ getters对象的使用 当state中的数据需要加工时再使用getters
 模块化+命名空间目的：让代码更好维护 让多种数据更加明确
 开启命名空间的方法  namespaced: true
 
-路由的实现了单页面的响应 优化网页的性能
-安装路由 npm i vue-router@3   //v2
+路由的实现了单页面的响应 优化网页的性能 key-value 关系
+安装路由 npm i vue-router@3   //v2   v3:4
 实现切换 active-class="active" //高亮
 <router-link  to="/Home"></router-link> //相当于a链接
 <router-view></router-view> //指定显示的位置
@@ -402,7 +402,7 @@ getters对象的使用 当state中的数据需要加工时再使用getters
 子级路由不要写 /   跳转时要写父亲的路径加自己的路径
 命名路由 简化跳转链接 :to="{name:'hello'}"
 
-路由的query参数
+路由的query传值
 	 <!-- 使用？号传参数 -->
 		<!-- <router-link :to="`/home/news/three?id=${m.id}&title=${m.title}`">{{ m.title }}</router-link> -->
 		<!-- 对象写法 -->
@@ -419,18 +419,19 @@ getters对象的使用 当state中的数据需要加工时再使用getters
 接收参数
 $route.query.id 
 
+name属性用来给路由起名字 可以代替path属性
+数据传递原理 父组件先将数据传递给路由身上 再让路由渲染到子组件上
+路由配置里的path属性不能少  但参数里可以用name属性代替
 
-路由的params参数
+路由的params传值
 	声明path路径时加上demo/:id/:title 使用占位符接收params参数
 	:to后面加上要传递的参数 /${m.id}/${m.title}  //字符串传参
-	使用对象传参时不能使用path属性 只能写name属性  用params:{}对象接收
-	接收参数
+	使用对象传参时不能使用path属性 只能写name属性  用params对象接收参数
 	$route.parsms.id 
 
- 组件传值的简写方式
+ 路由的props传值
 	// props: { a: 100, b: 200 } 只能传递死数据 不推荐使用
 	// props: true  //只能把params参数的数据传递出去 不支持query 
-
 	//props函数形式 支持query传值和params传值
 	props({ query }) {
 		return { id: query.id, title: query.title }
@@ -440,24 +441,195 @@ $route.query.id
 
 路由组件的历史记录默认是push  添加replace属性 可以替换当前的历史记录
 编程式路由导航 不借助router-link 实现路由跳转 让路由跳转更加灵活
-路由器的接口 this.$router.push({})  this.$router.replace({}) 
-this.$router.back() this.$router.forward()  this.$router.go()
+路由器的接口 this.$router.push({}) 添加历史记录默认  this.$router.replace({}) 替换历史记录 
+this.$router.back() 后退  this.$router.forward() 前进  this.$router.go() 可前可后
 	
 <keep-alive  include="路由组件名字">展示区</keep-alive>保存路由组件的数据 写上这个标签路由组件就不会触发销毁钩子
 <KeepAlive :include="Home, Dome"> 第二种写法 指定保存路由组件
 
 路由守卫
+	使用前最后给路由起个名字
 	作用对路由权限的控制
 	分为全局守卫 独享守卫 组件内守卫
-	全局前置守卫 beforeEnter:(to,from,next)=>{}初始化时执行 每次路由切换前执行
-	全局后置守卫 afterEach:(to,from)=>{}初始化时执行 每次路由切换后执行
-	独享守卫 beforeEnter:(to,from,next)=>{}
+	全局前置守卫 beforeEach:(to,from,next)=>{}初始化时执行 每次路由切换前执行  使用方法直接在index.js文件里定义
+	全局后置守卫 afterEach:(to,from)=>{}初始化时执行 每次路由切换后执行  使用方法直接在index.js文件里定义
+	独享守卫 beforeEnter:(to,from,next)=>{} 定义在路由的配置里
+	组件内路由守卫  beforeRoutEnter(to,from,next)    //通过路由规则进入路由时触发
+								  beforerouteLeave(to,from,next)  //通过路由规则离开路由时触发
+meta属性 路由元信息 存自定义属性 meta:{isAuth:true, title:'信息'}
+项目写好后打包的命令是 npm run build
+将打包好的文件部署到服务器上才能看到
+hash值是指 #后面的内容就是hash值
+hash值不会包含在http请求中 hash不给服务器
+路由器的两种工作模式：
+hash模式 地址中永远带着#号 手机验证可能会被标记成不合法 兼容性强
+history模式 地址干净 兼容性略差 应用部署上线时需要后端人员支持 解决了刷新页面404问题
 
+npm i -g nodemon //服务器自动更新模块
+npm i connect-history-api-fallback //解决history模式刷新页面出现404问题 
+  devServer:{
+    client:{
+      overlay:false
+    }
+  }
+cmd 进入桌面 ：cd Desktop
 
+Vite笔记					
+Vite 是前端构建工具
+优势如下 开发环境中 无需打包操作 可以快速冷启动
+清凉快速的热重载
+按需编译 
 
-
+Vite的创建命令
+    npm init vite-app test
+	cd test 
+	npm install
+	npm run dev  //运行vite 
 						
 						
+VUE3 笔记
+lintOnSave:false  //关闭语法检查
+setup方法 return{}
+return （）=>h('盒子名字','盒子内容') //渲染函数原理
+setup中的配置尽量不要与vue2中的配置混用
+    Vue2配置可以访问到setup中的属性方法
+	但在setup中不能访问到Vue2的配置
+	如果重名 setup优先
+setup不能是一个async函数因为返回值不是return的对象 而是promise 模板看不到return 对象的属性
+import {ref} from 'vue' //引入vue中的ref方法 该方法可以把变量变成响应式的数据
+js想拿到ref标记的变量就要使用xxx.value属性来查看 修改也是通过xxx.value属性来完成
+模板中读取数据不需要.value
+ref引用对象接收的数据可以是基本数据类型也可以是对象类型
+基本数据类型响应式依靠Object.definePropert()的get和set完成
+对象类型的数据 内部求助了vue3中的一个新函数reactive函数 内部实现了proxy函数
+
+reactive函数
+作用 定义一个对象类型的响应式数据 基本类型不要用它用ref
+语法 const 代理对象 =reactive(源对象)接收一个对象或数组 返回一个代理对象（Proxy的对象）
+reactive定义的响应式数据是深层次的
+内部基于ES6的Proxy实现6的Proxy实现 通过代理对象操作源对象内部数据进行操作
+
+Vue2的响应式原理
+	对象类型通过Object.defineProoerty()对属性的读取修改进行数据劫持
+	数组类型通过重写更新数组的一系列方法来实现数据劫持 对数组对象的变更进行了包裹
+	
+	存在问题新增属性 删除属性界面不会更新
+	直接通过下标修改数组 界面不会自动更新
+	修改解决办法就是使用 this. $set(target, ‘属性名字’,属性值) 或者Vue.set(target, ‘属性名字’,属性值)
+    删除解决办法就是使用 this.$delete(target,‘属性名’) 后者Vue.delete(target,‘属性名’)
+
+Vue3的响应原理
+通过Proxy 拦截对象中的任意属性的变化 属性的修改 删除 添加等
+通过Proxy 反射 对源对象的属性进行操作
+
+reactive对比ref
+从定义数据的角度比
+	ref 用来定义 基本数据类型 也可以定义对象类型的数据它内部会自动通过reactive转为代理对象
+	reactive 用来定义对象或着数组
+从原理的角度对比
+	ref通过Object.definePropert()的get与set来实现数据劫持
+	reactive通过使用Proxy来实现数据劫持 并通过Reflect 操作源对象内部的数据
+从使用角度来比较
+	ref 操作数据需要写.value  读取数据不用写.value
+	reactive 定义的数据读写都不需要写.value
+
+setup两个注意点
+	setup在beforeCreate之前执行一次 this是undefined
+setup包含两个参数 ==>setup(props,context)
+	props 值为对象 包含： 组件外部传递过来且组件内部声明接收了属性
+	context 上下文对象
+		attrs 值为对象 包含：组件外部传递过来 但没有props配置中声明的属性 相当与this.$attr
+		slots 收到的插槽内容 相当于 this.$slots
+		emit 分发自定义事件的函数 相当于this.$emit
+*Vue3中声明具名插槽要写成 v-slot:box1
+VUE3中的computed 计算属性与VUE2配置功能一样
+import {computed} from 'vue' //使用方法
+Vue3中的watch监视属性和Vue2中的配置功能一样
+    两个小坑  ：监视reactive定义的响应式数据时 oldvalue无法正确获取 强制开启深度监视 deep配置无效
+	监视reactive定义的响应式数据中的某个属性时(该属性是个对象类型的) deep有效
+	监视ref类型的对象属性 需要加.value 或者开启deep :true
+wactchEffect函数 不用指明监视的属性，监视的回调中用到那个属性，就监视那个属性
+watch 既要监视属性，也要指明监视的回调
+wacthEffect 有点像计算属性
+	计算属性需要写返回值 注重回调函数的返回值，而wachtEffect不用写返回值 注重回调函数的函数体
+    初始化时会执行  用到属性时就会执行
+
+Vue3中的生命周期和Vue2中的差不多 可以写外部也可以写组合式Api类型
+Vue3把Vue2里的beforeDestroy和destroyed 改成 beforeUnmount 和unmounted  销毁改成卸载了
+
+hook作用 类似与vue2中的混入  hook函数封装setup中使用的组合式Api
+自定义hook的优势  复用代码 让setup中的逻辑更加清楚易懂
+
+toRef 作用 创建一个ref对象 它的值指向另一个对象的某个属性
+语法 const name= toRef(person,'name')
+应用 将响应式对象中的某个属性单独提供给外部使用时
+扩展 toRefs与toRefs功能一致 但可以批量创建多个对象 ...toRefs(person)
+
+shallowReactive  只处理对象最外层的响应式(浅响应式) 
+shallowRef 只处理基本类型的响应式 不进行对象的响应式处理
+使用场景：
+    如果有一个对象数据 结构比较浅 变化的是外层数据用 shallowReactive
+	如果有一个对象数据 后续功能不会修改该对象中的属性 而是生新的对象来替换  shallowRef
+
+readonly 让一个响应式的数据变成只读的 (深只读)
+shallowReadonly 让一个响应式的数据变成只读的 (浅只读)
+使用场景 不希望数据被修改时
+
+
+toRaw 将一个reactive生成的响应式对象转为普通对象  对这个普通对象的操作不会引起页面更新
+markRaw 标记一个对象 使其永远不会成为响应式的对象
+	有些值不应被设置成响应式时使用
+	渲染不可变数据的列表时 使用可以提高性能
+
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 						
 						
 						

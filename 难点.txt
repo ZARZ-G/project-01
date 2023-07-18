@@ -1,3 +1,4 @@
+const 声明的对象可以修改里面的属性 但是不能替换该对象
 get请求 featch   jquery  axios  xhr对象
 //创建服务器的两种方法：
 	使用http内置模块 缺点中文会出现乱码 使用cors或者解决中文乱码需要配置响应头比较麻烦
@@ -478,7 +479,6 @@ HTML选择器优先级 !important>id>类>标签>全选选择器
 
 在html5中宽度可以被继承 但是高度不能被继承 display:table   宽度不能被继承
 <iframe id="leftframe" align="left" width="700" height="100"></iframe> //超链接的显示盒子
-
 
 
 
