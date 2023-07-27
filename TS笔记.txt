@@ -1,0 +1,116 @@
+TypeScript 笔记
+TS包含JS 是js的超集 为js添加了类型系统
+可以在TS文件中写JS的代码
+TS比JS的优势：
+一：类型化思维方式 使开发严谨 提前发现错误减少找Bug的时间
+二：类型系统提高了代码的可读型 使重构和维护代码更容易
+三：补充接口 枚举等开发大型应用时JS缺失的功能
+Vue3源码使用TS重写 TS是优势
+
+TS使用时需要先安装TS的工具包 npm i -g typescript
+运行TS的代码先将TS转换成JS  转换命令是tsc hellow.ts  将会自动生成JS文件然后在通过node hellow.js运行
+TS运行简化工具包 使用ts-node包  安装命令是 npm i -g ts-node  使用方式 ts-node hellow.ts
+TS中的注释分为单行注释 ctrl+/   多行注释 shift+alt+a
+
+变量的使用方式 let age :number =20
+类型注解：是一种为变量添加类型的约束方式  约定什么类型就只能赋值该类型
+
+变量的规则和规范
+	规则：变量的名称只能出现 数字 字母 下划线_ 美元符号$ 不能以数字开头 变量区分大小写
+	规范：变量的名称要有意义推荐使用驼峰法命名 首字母小写 后面的单词首字符大写
+
+TS的数据类型：
+基本数据类型 number string boolean undefined null
+对象类型：复杂数据类型 
++字符串拼接  计算	 转换数字类型
+三元运算符 a>b?1:2
+定义数组 let arr:string[]=['张三','李四','王二']  
+数组通常是相同类型的数据 用于存放多个数据的集合
+length关键字获取数组的长度
+获取数组的最后一个元素用 arr[arr.length-1]
+给数组添加新元素arr[arr.length]=i  || arr.push(i)
+i<arr.length === i<=arr.length-1 //for循环判断条件两种写法
+for循环的循环条件里如果写上i<arr.length  就不能直接在循环体里写 arr[arr.length]=i  || arr.push(i)给数组添加新元素了
+
+函数解决代码冗余  function getSum(){return x}
+//函数形参的类型注解要和实参的类型注解保持一致不能省略
+将鼠标放到函数名上会显示函数的参数 数据类型和 返回值类型
+函数参数要一一对应
+如果没有指定函数的返回值 默认的返回值为void 空的
+return 将函数处理的结果返回出来 以便对结果进行计算等操作 也可以终止函数的执行
+ function fn():boolean{return true} //给函数指定返回值类型
+void //表示没有返回值
+any//表示可以返回任意类型的值
+函数里面可以嵌套函数 函数执行时遇到其它函数会先执行该函数最后再继续执行外层函数代码
+变量作用域 分为全局和局部
+局部变量 函数内部声明
+全局变量 没有在函数内声明能全局访问
+
+对象 属性和方法的集合 
+let person =[} 定义语法
+属性和方法的区分 看值是不是方法 如果是就是方法不是就是属性
+
+对象的类型注解为对象添加约束
+let person:{
+	name:string
+	age:number
+}
+
+//对象的类型注解不能实现复用所以推荐接口作为对象类型注解
+TS中的接口定义 接口的名称要以I开头
+interface Iuser{
+  name:string
+  age:number
+}
+
+使用接口
+let p1:Iuser={
+name:'jack',
+age:20
+}
+
+遍历数组用for循环和forEach循环都行
+forEach没有返回值 能自动推导出回调函数的参数类型
+不需要为回调函数的参数和返回值指定类型注解
+some方法查找是否有一个满足条件的元素 如果有就可以停止循环 返回值为boolean类型 
+
+类型推论省略类型注解 只在初始化时触发 （常用于声明变量时省略:number关键字 定义方法时省略:Iuser接口关键字）
+*浏览器不能直接运行TS代码 必需将ts转换成js再引入使用 tsc hellow.ts  
+tsc --watch index.ts  //监视ts文件内容的变化
+
+使用console.dir(p) 查看元素的类型
+判断元素是否包含某个类名dom.classList.contains('a')
+e.target //指触发事件的Dom元素
+e.type//指触发事件的类型
+as HTMLbuttonElement //类型断言 指定类型
+removeEventListener('click', hand)//移除事件
+addEventListener('click', hand,{once:true})//指定事件只触发一次
+
+TS枚举
+定义 enum Person{X='x',O='o'}  当变量的值是固定的几个值使用枚举
+使用 let p=Person.X
+枚举是只读的不能赋值
+枚举的值分为数字枚举 从0开始自增  字符串枚举 都要给枚举成员赋值
+伪数组只有长度和索引
+
+点按钮重新刷新页面 location.reload()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

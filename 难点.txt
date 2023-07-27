@@ -1,3 +1,4 @@
+JS中异步任务包括普通事件click resize 资源加载load error 定时器 setTimeout setInterval
 const 声明的对象可以修改里面的属性 但是不能替换该对象
 get请求 featch   jquery  axios  xhr对象
 //创建服务器的两种方法：
