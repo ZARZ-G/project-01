@@ -1,0 +1,24 @@
+//修复网络问题
+打开cmd 以管理员身份运行
+输入 netsh winsock reset 回车
+输入 ipconfig /flushdns 回车
+重启电脑
+
+
+//卸载Win11小组件，
+我们需要用到CMD。使用管理员权限打开Windows Terminal终端的“命令提示符”，或者使用管理员权限运行CMD，输入以下命令。
+winget uninstall MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy
+按下回车键，Win11小组件就会被卸载掉了。
+
+如果你想要重新安装Win11小组件，则可以执行以下命令。
+winget install 9MSSGKG348SP
+
+
+//禁用电脑键盘
+在搜索栏中输入cmd，找到命令提示符（cmd），并且右键以管理员身份运行。
+在弹出的窗口中将下面这段代码输入进去，并且回车。
+sc config i8042prt start= disabled
+如果想恢复，只要以同样方法输入下面这个代码，重启即可。
+sc config i8042prt start= auto
+
+
