@@ -21,4 +21,13 @@ sc config i8042prt start= disabled
 如果想恢复，只要以同样方法输入下面这个代码，重启即可。
 sc config i8042prt start= auto
 
+释放win11保留的空间//
+DISM.exe /Online /Set-ReservedStorageState /State:Disabled 即可关闭，立即生效。
+DISM.exe /Online /Set-ReservedStorageState /State:Enabled 可以开启。
+可以用 DISM.exe /Online /Get-ReservedStorageState 查看当前的状态，是已禁用还是已启用。
+
+关闭休眠文件//
+点击开始，输入cmd,右键命令提示符以管理员运行 点是 输入 powercfg -h off，再按回车即可 C盘下就没有这个hiberfil.sys这个文件了，空间就会释放出来，
+如果您需要用到这个功能，可以再输入以下命令即可： powercfg -h on
+
 
