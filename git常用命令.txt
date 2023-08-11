@@ -54,8 +54,6 @@ git reset --hard  d7b5
 
 git reflog // 查看历史记录
 
- ssh-keygen -t  rsa -b 4096 -C "1959921870@qq.com"  //在本地C盘里创建一个SSH  key 文件
-
 *git clone  远程仓库的地址   //将远程仓库下载到本地
 
 git branch  //查看当前仓库的分支
@@ -95,10 +93,9 @@ git branch -M main // 切换到主分支上
 git push -u origin main //添加主分支上的文件到远程仓库
 
 SSH的使用配置
-ssh-keygen  -t rsa -b 4096 -C "个人邮箱"  
+ssh-keygen -t  rsa -b 4096 -C "1959921870@qq.com"  //在本地C盘里创建一个SSH  key 文件
 连敲三次回车 C:\Users\用户文件夹\.ssh 目录中生成 id_rsa 和 id_rsa.pub 文件 
-
-ssh-T git@github.com //检测配置是否成功
+ssh -T git@github.com //检测配置是否成功
 
 //说明
 *号表示当前所在的分支
@@ -110,6 +107,12 @@ M绿色表示已修改且放到暂存区但未保存到本地存储里
 ??表示新添加的文件未添加到暂存区
 D绿色表示文件被删除
 忽略文件 .gitignore  可以定义忽略的文件 使用方法先保存到本地仓库 再定义忽略的文件  
+
+
+
+//错误： git SSL certificate problem: unable to get local issuer certificate
+这个问题是由于没有配置信任的服务器HTTPS验证。默认，cURL被设为不信任任何CAs，就是说，它不信任任何服务器验证。
+只需要执行下面命令就可以解决：git config --global http.sslVerify false
 
 
 
