@@ -87,10 +87,8 @@ git push 远程仓库名字 --delete 远程分支的名字  //删除远程分支
 
 通过SSH将本地仓库上传到远程仓库
 git remote add origin git@github.com:ZARZK/project-01git  //将远程仓库和本地仓库绑定
-git remote add origin https://github.com/ZARZK/project-01.git  //将远程仓库和本地仓库绑定
-
-git branch -M main // 切换到主分支上
-git push -u origin main //添加主分支上的文件到远程仓库
+git branch -M master// 切换到主分支上
+git push -u origin master//添加主分支上的文件到远程仓库
 
 SSH的使用配置
 ssh-keygen -t  rsa -b 4096 -C "1959921870@qq.com"  //在本地C盘里创建一个SSH  key 文件
